@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">ScreenX</string>
+    <string name="card_text">Linen Dress White\nNo Pattern</string>
+    <string name="card_text_bestfit">Best Fit</string>
+
+    <string name="card_brand_name">BRAND NAME</string>
+    <string name="loreum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. </string>
+    <string name="sellingP">SELLING PRICE: </string>
+    <string name="retailP">RETAIL PRICE: </string>
+    <string name="size">SIZE:</string>
+    <string name="price">$300</string>
+    <string name="rprice">$1200</string>
+    <string name="sizeM">M</string>
+    <string name="sizeUS">US</string>
+    <string name="howmany">How Many Units?</string>
+    <string name="unitprice">UNIT PRICES:</string>
+    <string name="stock">STOCK:</string>
+    <string name="unitpriceis">$600</string>
+    <string name="totstock">20</string>
+    <string name="reviews">Reviews</string>
+    <string name="report">Report a Problem</string>
+    <string name="back">BACK</string>
+    <string name="selectdates">Select Dates</string>
+
+
+</resources>
