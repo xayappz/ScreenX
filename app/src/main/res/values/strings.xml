@@ -21,6 +21,8 @@
     <string name="report">Report a Problem</string>
     <string name="back">BACK</string>
     <string name="selectdates">Select Dates</string>
-
+    <string name="loadmore">LOAD MORE</string>
+    <string name="loaddots"> .  .  . </string>
+    <string name="units">2 unt.</string>
 
 </resources>

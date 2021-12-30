@@ -1,22 +1,27 @@
 package com.xayappz.screenx.adapters
 
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.NonNull
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.xayappz.screenx.R
 import com.xayappz.screenx.models.Review
 
-internal class ReviewAdapter(private var itemsList: List<Review>) :
+internal class ReviewAdapter(private var itemsList: List<Review>, private var activity: Activity) :
     RecyclerView.Adapter<ReviewAdapter.MyViewHolder>() {
+    private lateinit var reviewImageAdapter: ReviewImageAdapter
+
     internal inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var nameofReviewer: TextView = view.findViewById(R.id.reviewwenameTxt)
         var description: TextView = view.findViewById(R.id.reviewTxt)
         var date: TextView = view.findViewById(R.id.dateTxt)
         var userImage: ImageView = view.findViewById(R.id.profile_image)
+        var reviewImages: RecyclerView = view.findViewById(R.id.images_review_recyclerView)
 
     }
 
@@ -28,10 +33,27 @@ internal class ReviewAdapter(private var itemsList: List<Review>) :
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.nameofReviewer.text = itemsList.get(position).name
-        holder.description.text = itemsList.get(position).details
-        holder.date.text = itemsList.get(position).date
+        val layoutManagerImage = LinearLayoutManager(activity)
+
+        holder.nameofReviewer.text = itemsList[position].name
+        holder.description.text = itemsList[position].details
+        holder.date.text = itemsList[position].date
         holder.userImage.setImageResource(itemsList[position].image)
+        holder.reviewImages.layoutManager = layoutManagerImage
+        layoutManagerImage.orientation = LinearLayoutManager.HORIZONTAL
+
+        if (itemsList[position].reviewImages.isNotEmpty() && position % 2 == 0) {
+            holder.reviewImages.visibility = View.VISIBLE
+            reviewImageAdapter = ReviewImageAdapter(itemsList[position].reviewImages)
+            holder.reviewImages.adapter = reviewImageAdapter
+
+
+        } else {
+            holder.reviewImages.visibility = View.GONE
+
+        }
+        reviewImageAdapter.notifyDataSetChanged()
+
 
     }
 
