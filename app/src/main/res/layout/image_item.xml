@@ -7,7 +7,7 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageReviewIV"
         android:scaleType="fitXY"
-
+android:layout_margin="@dimen/_8sdp"
         android:layout_width="@dimen/_44sdp"
         android:layout_height="@dimen/_44sdp"
         app:layout_constraintEnd_toEndOf="parent"
