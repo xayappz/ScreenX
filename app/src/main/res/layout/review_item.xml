@@ -30,6 +30,7 @@
                 android:layout_width="@dimen/_36sdp"
                 app:civ_border_width="2dp"
                 app:civ_border_color="#FFFF"
+                
                 android:layout_height="@dimen/_36sdp"
                 android:src="@drawable/model"
                 app:layout_constraintStart_toStartOf="parent"
