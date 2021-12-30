@@ -6,13 +6,13 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "review")
 data class ReviewTable(
-    @PrimaryKey(autoGenerate = true) var id:Int=0,
+    @PrimaryKey(autoGenerate = true) var id: Int = 0,
     @ColumnInfo(name = "name")
-    var name:String,
+    var name: String,
     @ColumnInfo(name = "rating")
-    var rating:Float,
+    var rating: Float,
     @ColumnInfo(name = "description")
-    var comment:String,
+    var comment: String,
     @ColumnInfo(name = "image")
-    var iamge:String,
-    )
+    var image: String,
+)

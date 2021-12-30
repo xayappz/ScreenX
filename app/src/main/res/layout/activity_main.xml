@@ -14,7 +14,7 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/ViewPagerId"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_30sdp"
+            android:layout_height="@dimen/_330sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -109,15 +109,15 @@
 
                 <androidx.appcompat.widget.AppCompatRatingBar
                     android:id="@+id/ratingBar"
+                    style="?android:attr/ratingBarStyleIndicator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="?android:attr/ratingBarStyleIndicator"
 
-                    android:scaleX="1"
-                    android:scaleY=".9"
                     android:isIndicator="false"
                     android:progressTint="#FFCC01"
                     android:rating="3.5"
+                    android:scaleX="1"
+                    android:scaleY=".9"
                     android:stepSize="0.5"
                     android:transformPivotY="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -252,12 +252,10 @@
                     android:text="@string/size"
                     android:textSize="@dimen/_10sdp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/appCompatButton"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toEndOf="@+id/sellingprice"
-                    app:layout_constraintTop_toBottomOf="@+id/appCompatButton"
-                    app:layout_constraintVertical_bias="0.704" />
+                    app:layout_constraintBottom_toBottomOf="@+id/sellingprice"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/sellingprice"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/sizeM"
