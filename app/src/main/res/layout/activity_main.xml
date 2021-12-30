@@ -14,7 +14,7 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/ViewPagerId"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_370sdp"
+            android:layout_height="@dimen/_30sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -52,7 +52,6 @@
                     android:id="@+id/textcard"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="84dp"
                     android:padding="@dimen/_12sdp"
                     android:text="@string/card_text"
                     android:textColor="@color/black"
@@ -60,8 +59,10 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/view1"
                     app:layout_constraintEnd_toStartOf="@+id/appCompatButton"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/view1"
                     app:layout_constraintTop_toTopOf="@+id/view1"
-                    app:layout_constraintVertical_bias="0.37" />
+                    app:layout_constraintVertical_bias="0.483" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/icon_card"
@@ -108,10 +109,12 @@
 
                 <androidx.appcompat.widget.AppCompatRatingBar
                     android:id="@+id/ratingBar"
-                    style="?android:attr/ratingBarStyleIndicator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    style="?android:attr/ratingBarStyleIndicator"
 
+                    android:scaleX="1"
+                    android:scaleY=".9"
                     android:isIndicator="false"
                     android:progressTint="#FFCC01"
                     android:rating="3.5"
@@ -130,7 +133,6 @@
                     android:textSize="@dimen/_14sdp"
                     app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
                     app:layout_constraintEnd_toStartOf="@+id/ratingBar"
-                    app:layout_constraintHorizontal_bias="0.857"
                     app:layout_constraintStart_toEndOf="@+id/brandname"
                     app:layout_constraintTop_toTopOf="@+id/ratingBar" />
 
@@ -349,9 +351,10 @@
                     android:id="@+id/view22"
                     android:layout_width="@dimen/_100sdp"
                     android:layout_height="@dimen/_20sdp"
+                    android:layout_marginTop="12dp"
                     android:background="@drawable/my_shape"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/size2"
+                    app:layout_constraintHorizontal_bias="0.769"
                     app:layout_constraintStart_toStartOf="@+id/size2"
                     app:layout_constraintTop_toBottomOf="@+id/size2" />
 
@@ -644,6 +647,22 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/appCompatButton3" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_reviewBn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/purple_700"
+            android:text="@string/add_review"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.539"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatButton3"
+            app:layout_constraintVertical_bias="0.974" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

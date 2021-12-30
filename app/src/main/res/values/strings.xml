@@ -24,5 +24,7 @@
     <string name="loadmore">LOAD MORE</string>
     <string name="loaddots"> .  .  . </string>
     <string name="units">2 unt.</string>
+    <string name="add_review">Add Review</string>
+    <string name="uploadpics">Upload Photos</string>
 
 </resources>

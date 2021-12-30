@@ -1,6 +1,7 @@
 package com.xayappz.screenx.adapters
 
 import android.app.Activity
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,10 +42,9 @@ internal class ReviewAdapter(private var itemsList: List<Review>, private var ac
         holder.userImage.setImageResource(itemsList[position].image)
         holder.reviewImages.layoutManager = layoutManagerImage
         layoutManagerImage.orientation = LinearLayoutManager.HORIZONTAL
-
-        if (itemsList[position].reviewImages.isNotEmpty() && position % 2 == 0) {
+        if (itemsList[position].reviewImages?.isNotEmpty() == true && position % 2 == 0) {
             holder.reviewImages.visibility = View.VISIBLE
-            reviewImageAdapter = ReviewImageAdapter(itemsList[position].reviewImages)
+            reviewImageAdapter = itemsList[position].reviewImages?.let { ReviewImageAdapter(it) }!!
             holder.reviewImages.adapter = reviewImageAdapter
 
 
@@ -52,8 +52,7 @@ internal class ReviewAdapter(private var itemsList: List<Review>, private var ac
             holder.reviewImages.visibility = View.GONE
 
         }
-        reviewImageAdapter.notifyDataSetChanged()
-
+//
 
     }
 

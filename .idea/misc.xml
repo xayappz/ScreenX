@@ -13,6 +13,7 @@
         <entry key="..\:/Users/Akshay Rohilla/AndroidStudioProjects/ScreenX/app/src/main/res/drawable/ratingbar_empty.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/Akshay Rohilla/AndroidStudioProjects/ScreenX/app/src/main/res/drawable/ratingbar_filled.xml" value="0.26614583333333336" />
         <entry key="..\:/Users/Akshay Rohilla/AndroidStudioProjects/ScreenX/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/Akshay Rohilla/AndroidStudioProjects/ScreenX/app/src/main/res/layout/add_review_dialog.xml" value="0.2" />
         <entry key="..\:/Users/Akshay Rohilla/AndroidStudioProjects/ScreenX/app/src/main/res/layout/image_item.xml" value="0.25" />
         <entry key="..\:/Users/Akshay Rohilla/AndroidStudioProjects/ScreenX/app/src/main/res/layout/item_desc.xml" value="0.1816123188405797" />
         <entry key="..\:/Users/Akshay Rohilla/AndroidStudioProjects/ScreenX/app/src/main/res/layout/item_page.xml" value="0.24635416666666668" />
@@ -27,5 +28,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
   </component>
 </project>
