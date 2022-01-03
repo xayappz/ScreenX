@@ -13,16 +13,24 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.xayappz.screenx.R
+import com.xayappz.screenx.models.Images
 import com.xayappz.screenx.models.ReviewImage
+import com.xayappz.screenx.utils.ClickReview
+import com.xayappz.screenx.utils.DeleteReview
 import com.xayappz.screenx.utils.ReviewDialog
+import com.xayappz.screenx.viewmodels.DialogViewModel
 
 
 internal class ReviewAdapter(
     private var itemsList: ArrayList<ReviewImage>,
-    private var activity: Activity
-) :
-    RecyclerView.Adapter<ReviewAdapter.MyViewHolder>() {
+    private var reviewListImages: ArrayList<Images>,
+    private var activity: Activity,
+    var reviewClick: ClickReview,
+    var deleteReview: DeleteReview
+) : RecyclerView.Adapter<ReviewAdapter.MyViewHolder>(),ClickReview {
+    private var isVisibleImages = false
     private lateinit var reviewImageAdapter: ReviewImageAdapter
+    private var images: ArrayList<Images> = ArrayList()
 
     internal inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var nameofReviewer: TextView = view.findViewById(R.id.reviewwenameTxt)
@@ -31,7 +39,7 @@ internal class ReviewAdapter(
         var userImage: ImageView = view.findViewById(R.id.profile_image)
         var reviewImages: RecyclerView = view.findViewById(R.id.images_review_recyclerView)
         var rating: RatingBar = view.findViewById(R.id.ratingBar)
-
+        var imageShow: ImageView = view.findViewById(R.id.imageView5)
     }
 
     @NonNull
@@ -52,30 +60,56 @@ internal class ReviewAdapter(
         holder.reviewImages.layoutManager = layoutManagerImage
         layoutManagerImage.orientation = LinearLayoutManager.HORIZONTAL
 
-        Log.d("SDAd", itemsList.get(position).name.toString() + "")
         holder.nameofReviewer.setOnClickListener {
+            reviewClick.onCellClickListener(itemsList.get(position).id.toString())
             ReviewDialog().show(
                 (activity as AppCompatActivity).supportFragmentManager,
-                "EditReviewDialogFrag"
+                itemsList.get(position).id.toString()
             )
 
         }
+        holder.imageShow.setOnClickListener {
+            images.clear()
+            if (!isVisibleImages) {
+            holder.reviewImages.visibility = View.VISIBLE
 
-//        if (itemsList[position].reviewImages?.isNotEmpty() == true && position % 2 == 0) {
-//            holder.reviewImages.visibility = View.VISIBLE
-//            reviewImageAdapter = itemsList[position].reviewImages?.let { ReviewImageAdapter(it) }!!
-//            holder.reviewImages.adapter = reviewImageAdapter
-//
-//
-//        } else {
-//            holder.reviewImages.visibility = View.GONE
-//
-//        }
-//
+            holder.imageShow.setImageResource(R.drawable.ic_baseline_minimize_24)
+            isVisibleImages = true
+
+        } else {
+            holder.reviewImages.visibility = View.GONE
+            holder.imageShow.setImageResource(R.drawable.ic_baseline_remove_red_eye_24)
+            isVisibleImages = false
+
+
+        }
+            var userId = itemsList[position].userId
+            for (data in reviewListImages) {
+                if (data.userId.equals(userId)) {
+                    images.add(Images(data.userId, data.imageBmp))
+                    reviewImageAdapter = ReviewImageAdapter(null, images!!, this)
+                    holder.reviewImages.adapter = reviewImageAdapter
+
+                }
+
+            }
+
+
+        }
+
 
     }
 
     override fun getItemCount(): Int {
         return itemsList.size
     }
+
+    override fun onCellClickListener(data: String) {
+        deleteReview.onCellClickDelete(data)
+    }
+
+    override fun onCellClickListener(data: String, userId: String) {
+        TODO("Not yet implemented")
+    }
+
 }

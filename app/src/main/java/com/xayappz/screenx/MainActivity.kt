@@ -2,20 +2,21 @@ package com.xayappz.screenx
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.*
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import androidx.viewpager2.widget.ViewPager2
 import com.xayappz.screenx.adapters.ReviewAdapter
+import com.xayappz.screenx.adapters.ReviewImageAdapter
 import com.xayappz.screenx.adapters.ViewPageAdapter
 import com.xayappz.screenx.db.Database
 import com.xayappz.screenx.models.ImageReview
+import com.xayappz.screenx.models.Images
 import com.xayappz.screenx.models.ReviewImage
-import com.xayappz.screenx.utils.ReviewDialog
+import com.xayappz.screenx.utils.*
 import com.xayappz.screenx.viewmodels.DialogViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.review_item.*
@@ -23,15 +24,19 @@ import kotlinx.coroutines.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ClickReview, DeleteReview, ViewReview {
     private val imageList = mutableListOf<Int>()
-    private val reviewList: ArrayList<ReviewImage> = ArrayList<ReviewImage>()
 
+    private val reviewList: ArrayList<ReviewImage> = ArrayList<ReviewImage>()
+    lateinit var dialogViewModel: DialogViewModel
     private val mutableLiveData: MutableLiveData<ArrayList<ReviewImage>> =
         MutableLiveData<ArrayList<ReviewImage>>()
     private lateinit var reviewAdapter: ReviewAdapter
-    private val reviewImageList = ArrayList<ImageReview>()
+    private lateinit var reviewAdapterImages: ReviewImageAdapter
+    private val reviewListImages: ArrayList<Images> = ArrayList<Images>()
 
+    private val reviewImageList = ArrayList<ImageReview>()
+    private lateinit var reviewViewModel: DialogViewModel
     private lateinit var database: Database
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +46,13 @@ class MainActivity : AppCompatActivity() {
             Room.databaseBuilder(applicationContext, Database::class.java, "reviewDB")
                 .fallbackToDestructiveMigration().build()
         dummyBannerImages()
-        val reviewViewModel = ViewModelProvider(this)[DialogViewModel::class.java]
+
+        dialogViewModel = ViewModelProvider(
+            this,
+            DialogFactory(this.application, this)
+        ).get(DialogViewModel::class.java)
+
+        // reviewViewModel = ViewModelProvider(this)[DialogViewModel::class.java]
         ViewPagerId.adapter = ViewPageAdapter(imageList)
         ViewPagerId.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         images_review_recyclerView
@@ -54,20 +65,62 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        lifecycleScope.launch(Dispatchers.Main) {
-            reviewViewModel.getReview().observe(this@MainActivity, Observer {
-                Log.d("FASFAFSA", it.get(0).name)
-                reviewAdapter = ReviewAdapter(it, this@MainActivity)
-                review_recyclerView.adapter = reviewAdapter
-                reviewAdapter.notifyDataSetChanged()
+        GlobalScope.launch(Dispatchers.Main) {
+            val x = async {
+                dialogViewModel.getReview().observe(this@MainActivity, Observer {
 
-            })
+
+                    reviewList.clear()
+
+
+                    if (it.size > 5) {
+                        loadMore.visibility = View.VISIBLE
+                    } else {
+                        loadMore.visibility = View.GONE
+
+                    }
+                    reviewList.addAll(it)
+                    reviewAdapter = ReviewAdapter(
+                        reviewList,
+                        reviewListImages,
+                        this@MainActivity,
+                        this@MainActivity,
+                        this@MainActivity
+                    )
+
+
+                    review_recyclerView.adapter = reviewAdapter
+                    reviewAdapter.notifyDataSetChanged()
+                })
+            }
+            val y = async {
+                dialogViewModel.getReviewImage().observe(
+                    this@MainActivity,
+                    Observer {
+                        reviewListImages.clear()
+                        reviewListImages.addAll(it)
+                        reviewAdapter = ReviewAdapter(
+                            reviewList,
+                            reviewListImages,
+                            this@MainActivity,
+                            this@MainActivity,
+                            this@MainActivity
+                        )
+
+
+                        review_recyclerView.adapter = reviewAdapter
+                        reviewAdapter.notifyDataSetChanged()
+                    })
+
+            }
+            x.await()
+
+            y.await()
+
 
         }
-
-
         add_reviewBn.setOnClickListener {
-            ReviewDialog().show(supportFragmentManager, "AddReviewDialogFrag")
+            ReviewDialog().show(supportFragmentManager, null)
 
 
         }
@@ -112,9 +165,9 @@ class MainActivity : AppCompatActivity() {
 //    }
 
     private fun prepareReviewsWithImages() {
-        reviewImageList.add(ImageReview(R.drawable.model))
-        reviewImageList.add(ImageReview(R.drawable.yup))
-        reviewImageList.add(ImageReview(R.drawable.yo))
+        reviewImageList.add(ImageReview(R.drawable.model, null))
+        reviewImageList.add(ImageReview(R.drawable.yup, null))
+        reviewImageList.add(ImageReview(R.drawable.yo, null))
 
     }
 
@@ -128,6 +181,36 @@ class MainActivity : AppCompatActivity() {
             addBannerImages(R.drawable.yo)
 
     }
+
+    override fun onCellClickListener(data: String) {
+
+        lifecycleScope.launch(Dispatchers.Main) {
+
+            dialogViewModel.getReviewById(data).observe(this@MainActivity, Observer {
+                //reviewAdapter = ReviewAdapter(it, this@MainActivity)
+//                review_recyclerView.adapter = reviewAdapter
+//                reviewAdapter.notifyDataSetChanged()
+
+            })
+
+        }
+    }
+
+    override fun onCellClickListener(data: String, userId: String) {
+    }
+
+
+    override fun onCellClickSee(data: String) {
+
+    }
+
+    override fun onCellClickDelete(data: String) {
+        lifecycleScope.launch(Dispatchers.Main) {
+            dialogViewModel.deleteUserReviewImage(data)
+            reviewAdapter.notifyDataSetChanged()
+        }
+    }
+
 
 //    private fun prepareReviews() {
 //
@@ -152,3 +235,4 @@ class MainActivity : AppCompatActivity() {
 //        return profileDao
 //    }
 }
+

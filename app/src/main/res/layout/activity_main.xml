@@ -534,11 +534,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_10sdp"
-
                     android:text="@string/loadmore"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold"
+                    android:visibility="gone"
 
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -633,11 +633,11 @@
             android:id="@+id/appCompatButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:backgroundTint="@color/white"
             android:text="@string/back"
             android:textAllCaps="false"
             android:textColor="@color/black"
-            android:layout_marginStart="16dp"
 
             android:textSize="@dimen/_14sdp"
             app:layout_constraintBottom_toBottomOf="@+id/appCompatButton3"
@@ -661,6 +661,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appCompatButton3"
             app:layout_constraintVertical_bias="0.974" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
