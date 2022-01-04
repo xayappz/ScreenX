@@ -21,9 +21,12 @@
 
 Add/Edit/Remove Reviews and upload images by Capturing from Phone
 
+![Screenshot_1641312764](https://user-images.githubusercontent.com/77268176/148089537-54e106f1-be07-4f4e-8d99-df6d8b831f91.png)
 
-![Screenshot_1641217433](https://user-images.githubusercontent.com/77268176/147938066-90495e4b-90ea-4d3b-b8d4-c6f152a1b6fc.png)
+![Screenshot_1641312768](https://user-images.githubusercontent.com/77268176/148089543-aa87d7f9-f87c-47e9-b9de-480f6fc1be5e.png)
 
-![Screenshot_1641217724](https://user-images.githubusercontent.com/77268176/147938072-7747e860-f0f7-4653-a247-b53f8ceb9a0b.png)
+![Screenshot_1641312778](https://user-images.githubusercontent.com/77268176/148089546-fc482ea3-d0e5-4dfa-9d33-16daf827e746.png)
 
-![Screenshot_1641217420](https://user-images.githubusercontent.com/77268176/147938075-88d7d356-fe0b-4d6f-98ce-bfc58848f64b.png)
+![Screenshot_1641312783](https://user-images.githubusercontent.com/77268176/148089549-fba99c86-1a0a-496d-b872-9b13b2a644c9.png)
+
+![Screenshot_1641312758](https://user-images.githubusercontent.com/77268176/148089552-9cdba0b5-29d3-4477-b882-eeda5d6f3223.png)
