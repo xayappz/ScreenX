@@ -15,7 +15,6 @@ import com.xayappz.screenx.db.ReviewTable
 import com.xayappz.screenx.models.ImageReview
 import com.xayappz.screenx.models.Images
 import com.xayappz.screenx.models.ReviewImage
-import com.xayappz.screenx.utils.DeleteReview
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.io.ByteArrayOutputStream
@@ -23,7 +22,6 @@ import java.io.ByteArrayOutputStream
 
 class DialogViewModel(
     application: Application,
-    var reviewClick: DeleteReview,
 
     ) : ViewModel() {
     private var database: Database =
@@ -55,39 +53,50 @@ class DialogViewModel(
 
 
     fun saveUserAnswer(
-        userId: String?,
         name: String?,
         review: String?,
-        rating: Float?
+        rating: Float?,
+        count: String?
     ) {
 
+        var counter= 0
+        if (!count.isNullOrEmpty()) {
+            counter = count.toInt()
+
+        }
 
         viewModelScope.launch(Dispatchers.IO) {
-
             database.reviewDAO()
                 .insertReview(
                     ReviewTable(
                         0,
-                        userId!!,
                         name.toString(),
                         rating!!,
                         review.toString(),
-                        ""
+                        counter
                     )
                 )
 
-            getReview()
+            getReviewByLimit()
         }
     }
 
     fun saveUserReviewImage(
-        userId: String?,
+        name: String,
         review: ArrayList<Bitmap?>
     ) {
-        viewModelScope.launch(Dispatchers.IO) {
 
-            for (data in review!!) {
-                database.reviewDAO().insertReviewImage(ImagesTable(0, userId!!, data.toString()!!))
+        Log.d("review", review.toString())
+
+        viewModelScope.launch(Dispatchers.IO) {
+            for (data in review) {
+                try {
+                    database.reviewDAO()
+                        .insertReviewImage(ImagesTable(0, name, data.toString()!!))
+
+                } catch (e: java.lang.Exception) {
+                    Log.d("SDDSD", e.toString())
+                }
             }
 
         }
@@ -96,10 +105,19 @@ class DialogViewModel(
     suspend fun deleteUserReviewImage(
         imageName: String?
     ) {
-        Log.d("DELETE", imageName.toString())
         viewModelScope.launch(Dispatchers.IO) {
 
             database.reviewDAO().deleteImage(imageName!!)
+
+        }
+    }
+    suspend fun deleteUserImage(
+        userId: String?,
+        newValue: String?
+    ) {
+        viewModelScope.launch(Dispatchers.IO) {
+
+            database.reviewDAO().deleteImageById(newValue!!,userId!!)
 
         }
     }
@@ -107,31 +125,63 @@ class DialogViewModel(
     suspend fun deleteReview(userId: String?) {
         viewModelScope.launch(Dispatchers.IO) {
             database.reviewDAO().deleteReview(userId!!)
-            getReview()
-
+            getReviewByLimit()
         }
     }
 
 
-    fun updateUserAnswer(id: String, name: String?, review: String?, rating: Float?) {
-        Log.d("uswr_id", id.toString() + ".....")
-        Log.d("name", name.toString() + ".....")
-        Log.d("reviww", review.toString() + ".....")
-        Log.d("rating", rating.toString() + ".....")
+    fun updateUserAnswer(
+        id: String,
+        name: String?,
+        review: String?,
+        rating: Float?,
+        count: String?
+    ) {
+        var counter= 0
+        if (!count.isNullOrEmpty()) {
+            counter = count.toInt()
+
+        }
 
         viewModelScope.launch(Dispatchers.IO) {
             database.reviewDAO()
                 .updateReview(
                     ReviewTable(
-                        id.toInt(), id, name!!, rating!!.toFloat(), review!!, ""
+                        id.toInt(), name!!, rating!!.toFloat(), review!!, counter
                     )
                 )
-            getReview()
+            getReviewByLimit()
         }
 
 
     }
 
+    suspend fun getReviewByLimit(): MutableLiveData<ArrayList<ReviewImage>> {
+        reviewData.clear()
+        mutableLiveDataReviewImage.value?.clear()
+        val profileDao = database.reviewDAO().loadAllReviewsBylimit()
+        if (profileDao.size == 0) {
+            mutableLiveDataReviewImage.postValue(reviewData)
+            return mutableLiveDataReviewImage
+        }
+        for (data in profileDao) {
+            reviewData.add(
+                ReviewImage(
+                    data.id,
+                    data.name,
+                    data.comment,
+                    data.image,
+                    data.rating,
+                    "30 Dec"
+                )
+            )
+            mutableLiveDataReviewImage.postValue(reviewData)
+        }
+
+
+        return mutableLiveDataReviewImage
+
+    }
 
     suspend fun getReview(): MutableLiveData<ArrayList<ReviewImage>> {
         reviewData.clear()
@@ -145,10 +195,9 @@ class DialogViewModel(
             reviewData.add(
                 ReviewImage(
                     data.id,
-                    data.userId,
                     data.name,
                     data.comment,
-                    R.drawable.model,
+                    data.image,
                     data.rating,
                     "30 Dec"
                 )
@@ -169,10 +218,7 @@ class DialogViewModel(
         if (profileDao.size > 0) {
             for (data in profileDao) {
                 reviewDataallImage.add(
-                    Images(
-                        data.userId,
-                        data.imgName
-                    )
+                    Images(data.imgName)
                 )
                 mutableLiveDataReviewImageAll.postValue(reviewDataallImage)
             }
@@ -183,14 +229,13 @@ class DialogViewModel(
     }
 
     suspend fun getImagesbyId(userId: String?): ArrayList<ImageReview> {
+        Log.d("IDDaaaa", userId.toString())
+
         val profileDao = database.reviewDAO().getImagesById(userId.toString());
 
         for (data in profileDao) {
-//            Log.d("IDD", data.id.toString())
-//            Log.d("NAME", data.name.toString())
-//            Log.d("COMMENT", data.comment.toString())
-//            Log.d("RATING", data.rating.toString())
-//
+            Log.d("IDDSSS", data.id.toString())
+
 
             imageBytes = Base64.decode(data.imgName, 0)
 
@@ -204,6 +249,27 @@ class DialogViewModel(
         }
 
         return mutableLiveDataReviewImageByUser
+
+    }
+
+    suspend fun getCount(id: String?): Int {
+        val profileDao = database.reviewDAO().getCount(id!!);
+
+        return profileDao.size
+
+    }
+
+
+    suspend fun isUserExists(name: String?): Boolean {
+        var isExists = false
+        val profileDao = database.reviewDAO().isUserExists(name!!);
+
+        if (profileDao.isNotEmpty()) {
+            isExists = true
+
+        }
+        Log.d("ISEEEE", isExists.toString())
+        return isExists
 
     }
 
@@ -221,10 +287,9 @@ class DialogViewModel(
             reviewDataUser.add(
                 ReviewImage(
                     data.id,
-                    data.userId,
                     data.name,
                     data.comment,
-                    R.drawable.model,
+                    data.image,
                     data.rating,
                     "30 Dec"
                 )

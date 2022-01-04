@@ -12,11 +12,11 @@ interface DeleteReview{
     fun onCellClickDelete(data: String)
 
 }
-interface ViewReview{
-    fun onCellClickSee(data: String)
+interface DeleteImage{
+    fun onCellDeleteImage(data: String,userId: String)
 
 }
-interface LoadImages{
-    fun getImages(images: ArrayList<ImageReview>)
+interface PassToActivity{
+    fun onCellDeleteImage(data: String,userId: String)
 
 }

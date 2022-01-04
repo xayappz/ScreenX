@@ -1,8 +1,8 @@
 package com.xayappz.screenx.adapters
 
-import android.graphics.*
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.os.Build
-import android.util.Base64
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -12,19 +12,18 @@ import androidx.annotation.NonNull
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.xayappz.screenx.R
-import com.xayappz.screenx.models.ImageReview
-import com.xayappz.screenx.models.Images
-import com.xayappz.screenx.utils.ClickReview
-import java.io.ByteArrayOutputStream
+import com.xayappz.screenx.utils.DeleteImage
 
 
-internal class ReviewImageAdapter(
-    private var reviewImageList: ArrayList<ImageReview>?,
-    private var images: ArrayList<Images>?,
-    var reviewClick: ClickReview
+internal class ReviewImageAdapter
+    (
+    private var userId: String,
+    private var count: Int,
+    private var activity: Activity,
+    private var deleteImage: DeleteImage
+
 ) :
     RecyclerView.Adapter<ReviewImageAdapter.MyViewHolder>() {
-    lateinit var imageBytes: ByteArray
 
     internal inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var image: ImageView = view.findViewById(R.id.imageReviewIV)
@@ -38,50 +37,25 @@ internal class ReviewImageAdapter(
         return MyViewHolder(itemView)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        //Log.d("BITMAP", reviewImageList.get(position).imageBmp.toString() + "...")
-
-        imageBytes = Base64.decode(images?.get(position)?.imageBmp.toString(), 0)
-
-        holder.image.setImageBitmap(stringtoBitmap(imageBytes))
+        for (i in 1..count) {
+            holder.image.setImageDrawable(activity.getDrawable(R.drawable.model))
+        }
         holder.remove_rev_Img.setOnClickListener {
-
-            reviewClick.onCellClickListener(
-                images?.get(position)?.imageBmp.toString()
-
-            )
-            images?.removeAt(position)
+            var newImage = count - 1
+            deleteImage.onCellDeleteImage(newImage.toString(), userId)
+            count--
             notifyDataSetChanged()
+
         }
 
     }
 
     override fun getItemCount(): Int {
-        if(images==null)
-        {
-            return reviewImageList!!.size
+        return count
 
-        }else
-        {
-            return images!!.size
-
-        }
-    }
-
-    fun stringtoBitmap(imageBytes: ByteArray): Bitmap? {
-        var bitmap: Bitmap? = null
-        try {
-            val yuvimage = YuvImage(imageBytes, ImageFormat.YUY2, 120, 30, null)
-            val baos = ByteArrayOutputStream()
-            yuvimage.compressToJpeg(Rect(0, 0, 20, 20), 100, baos)
-            val jdata = baos.toByteArray()
-            bitmap = BitmapFactory.decodeByteArray(jdata, 0, jdata.size)
-        } catch (e: Exception) {
-        }
-        //imageListSave?.add(bitmap)
-
-        return bitmap
     }
 
 

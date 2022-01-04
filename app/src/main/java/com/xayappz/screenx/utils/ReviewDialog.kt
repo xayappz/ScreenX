@@ -1,7 +1,7 @@
 package com.xayappz.screenx.utils
 
-import android.Manifest
 import android.annotation.SuppressLint
+import android.app.ActionBar
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.*
@@ -12,8 +12,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.*
-import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
@@ -21,7 +21,6 @@ import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.xayappz.screenx.R
 import com.xayappz.screenx.adapters.ReviewImageAdapter
 import com.xayappz.screenx.models.ImageReview
@@ -34,13 +33,15 @@ import java.io.ByteArrayOutputStream
 import java.util.*
 import kotlin.collections.ArrayList
 
+
 class ReviewDialog : DialogFragment(), ClickReview, DeleteReview {
 
     private var desc: String = ""
-    lateinit var userId: String
-
+    var userId: String = ""
     private var userName: String = ""
     private var ratingCount: Float = 0f
+    private var totalimaegs: Int = 0
+
     private var update: Boolean = false
     private val CAMERA_REQUEST = 1888
     private val MY_CAMERA_PERMISSION_CODE = 100
@@ -58,19 +59,26 @@ class ReviewDialog : DialogFragment(), ClickReview, DeleteReview {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        userId = rand(1, 100).toString()
+        //userId = rand(1, 100).toString()
         return inflater.inflate(R.layout.add_review_dialog, container, false)
     }
 
     override fun onStart() {
         super.onStart()
         dialog?.setCancelable(true)
-
+        val window: Window? = dialog?.getWindow()
+        window?.setLayout(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            ActionBar.LayoutParams.WRAP_CONTENT
+        )
         val name = dialog?.findViewById<EditText>(R.id.editTextTextPersonName)
         val review = dialog?.findViewById<EditText>(R.id.editTextTextPersonName2)
         var rating = dialog?.findViewById<RatingBar>(R.id.ratingBar2)
-        var uploadImages = dialog?.findViewById<FloatingActionButton>(R.id.floatingActionButton)
-        addImagesRV = dialog?.findViewById<RecyclerView>(R.id.addImagesRV)!!
+
+        var count = dialog?.findViewById<EditText>(R.id.enterImagecount)
+
+
+        addImagesRV = dialog?.findViewById(R.id.addImagesRV)!!
         deleteReview = dialog?.findViewById(R.id.imageView3)!!
         val layoutManager = LinearLayoutManager(activity)
         reviewViewModel =
@@ -78,20 +86,7 @@ class ReviewDialog : DialogFragment(), ClickReview, DeleteReview {
 
         addImagesRV.layoutManager = layoutManager
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
-        uploadImages?.setOnClickListener {
-            if (this.activity?.let { it1 ->
-                    checkSelfPermission(
-                        it1.applicationContext,
-                        Manifest.permission.CAMERA
-                    )
-                } !== PackageManager.PERMISSION_GRANTED
-            ) {
-                requestPermissions(arrayOf(Manifest.permission.CAMERA), MY_CAMERA_PERMISSION_CODE)
-            } else {
-                val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                startActivityForResult(cameraIntent, CAMERA_REQUEST)
-            }
-        }
+
         val add = dialog?.findViewById<Button>(R.id.addReview)
 
         if (!tag.isNullOrEmpty()) {
@@ -101,8 +96,8 @@ class ReviewDialog : DialogFragment(), ClickReview, DeleteReview {
 
             val reviewViewModel = ViewModelProvider(
                 this,
-                DialogFactory(application = activity?.application, this)
-            ).get(DialogViewModel::class.java)
+                DialogFactory(application = activity?.application)
+            )[DialogViewModel::class.java]
 
 
             viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
@@ -113,10 +108,12 @@ class ReviewDialog : DialogFragment(), ClickReview, DeleteReview {
                     ratingCount = mutableLiveDataReviewByUser.value?.get(0)?.rating!!
                     desc = mutableLiveDataReviewByUser.value?.get(0)?.description!!
                     userName = mutableLiveDataReviewByUser.value?.get(0)?.name!!
+                    totalimaegs = mutableLiveDataReviewByUser.value?.get(0)?.image!!
 
                     name?.setText(userName)
                     review?.setText(desc)
                     rating?.rating = ratingCount
+                    count?.setText(totalimaegs.toString())
 
                 }
 
@@ -124,6 +121,15 @@ class ReviewDialog : DialogFragment(), ClickReview, DeleteReview {
 
 
         }
+//        viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO)
+//        {
+//            var x = reviewViewModel.getImagesbyId(tag)
+//            withContext(Dispatchers.Main) {
+//                reviewImageAdapter =
+//                    ReviewImageAdapter("",0, this@ReviewDialog.requireActivity(),null!!)
+//                addImagesRV.adapter = reviewImageAdapter
+//            }
+//        }
         deleteReview.setOnClickListener {
             viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
                 reviewViewModel.deleteReview(tag)
@@ -155,15 +161,41 @@ class ReviewDialog : DialogFragment(), ClickReview, DeleteReview {
                     name?.text.toString(),
                     review?.text.toString(),
                     rating?.rating,
+                    count?.text.toString()
                 )
 
             } else {
-                reviewViewModel.saveUserAnswer(
-                    userId,
-                    name?.text.toString(),
-                    review?.text.toString(),
-                    rating?.rating,
-                )
+
+                var isExists = false
+                lifecycleScope.launch(Dispatchers.IO)
+                {
+
+                    isExists = reviewViewModel.isUserExists(name?.text.toString())
+                    var x: String? = ""
+                    x = count?.text?.toString()
+                    if (!isExists) {
+                        reviewViewModel.saveUserAnswer(
+                            name?.text.toString(),
+                            review?.text.toString(),
+                            rating?.rating,
+                            x
+                        )
+
+
+                        reviewViewModel.saveUserReviewImage(
+                            name?.text.toString(),
+                            imageListSave!!
+                        )
+
+                    } else {
+                        withContext(Dispatchers.Main)
+                        {
+                            Toast.makeText(activity, "User Already Exists", Toast.LENGTH_SHORT)
+                                .show()
+
+                        }
+                    }
+                }
 
 
             }
@@ -199,10 +231,10 @@ class ReviewDialog : DialogFragment(), ClickReview, DeleteReview {
             addImagesRV.visibility = View.VISIBLE
             imageBytes = Base64.decode(data.extras?.get("data").toString(), 0)
             imageList.add(ImageReview(0, stringtoBitmap()))
-            reviewImageAdapter = ReviewImageAdapter(imageList!!, null, this)
+            reviewImageAdapter =
+                ReviewImageAdapter("", 0, this@ReviewDialog.requireActivity(), null!!)
             addImagesRV.adapter = reviewImageAdapter
             reviewImageAdapter.notifyDataSetChanged()
-
 
         }
     }
@@ -220,10 +252,12 @@ class ReviewDialog : DialogFragment(), ClickReview, DeleteReview {
         } catch (e: Exception) {
         }
         imageListSave?.add(bitmap)
-        reviewViewModel.saveUserReviewImage(
-            userId,
-            imageListSave!!
-        )
+
+        if (update) {
+            userId = tag.toString()
+        }
+        Log.d("USERID", userId + "...");
+
         return bitmap
     }
 

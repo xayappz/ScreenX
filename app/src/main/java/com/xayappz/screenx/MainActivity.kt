@@ -10,11 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import androidx.viewpager2.widget.ViewPager2
 import com.xayappz.screenx.adapters.ReviewAdapter
-import com.xayappz.screenx.adapters.ReviewImageAdapter
 import com.xayappz.screenx.adapters.ViewPageAdapter
 import com.xayappz.screenx.db.Database
-import com.xayappz.screenx.models.ImageReview
-import com.xayappz.screenx.models.Images
 import com.xayappz.screenx.models.ReviewImage
 import com.xayappz.screenx.utils.*
 import com.xayappz.screenx.viewmodels.DialogViewModel
@@ -24,20 +21,13 @@ import kotlinx.coroutines.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-class MainActivity : AppCompatActivity(), ClickReview, DeleteReview, ViewReview {
+class MainActivity : AppCompatActivity(), ClickReview, DeleteReview, PassToActivity {
+    lateinit var dialogViewModel: DialogViewModel
+    private lateinit var reviewAdapter: ReviewAdapter
+    private lateinit var database: Database
     private val imageList = mutableListOf<Int>()
 
     private val reviewList: ArrayList<ReviewImage> = ArrayList<ReviewImage>()
-    lateinit var dialogViewModel: DialogViewModel
-    private val mutableLiveData: MutableLiveData<ArrayList<ReviewImage>> =
-        MutableLiveData<ArrayList<ReviewImage>>()
-    private lateinit var reviewAdapter: ReviewAdapter
-    private lateinit var reviewAdapterImages: ReviewImageAdapter
-    private val reviewListImages: ArrayList<Images> = ArrayList<Images>()
-
-    private val reviewImageList = ArrayList<ImageReview>()
-    private lateinit var reviewViewModel: DialogViewModel
-    private lateinit var database: Database
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,8 +39,8 @@ class MainActivity : AppCompatActivity(), ClickReview, DeleteReview, ViewReview 
 
         dialogViewModel = ViewModelProvider(
             this,
-            DialogFactory(this.application, this)
-        ).get(DialogViewModel::class.java)
+            DialogFactory(this.application)
+        )[DialogViewModel::class.java]
 
         // reviewViewModel = ViewModelProvider(this)[DialogViewModel::class.java]
         ViewPagerId.adapter = ViewPageAdapter(imageList)
@@ -63,26 +53,17 @@ class MainActivity : AppCompatActivity(), ClickReview, DeleteReview, ViewReview 
 
         review_recyclerView.layoutManager = layoutManager
 
-
-
-        GlobalScope.launch(Dispatchers.Main) {
-            val x = async {
+        loadMore.setOnClickListener {
+            lifecycleScope.launch(Dispatchers.Main) {
                 dialogViewModel.getReview().observe(this@MainActivity, Observer {
 
 
                     reviewList.clear()
 
-
-                    if (it.size > 5) {
-                        loadMore.visibility = View.VISIBLE
-                    } else {
-                        loadMore.visibility = View.GONE
-
-                    }
                     reviewList.addAll(it)
                     reviewAdapter = ReviewAdapter(
                         reviewList,
-                        reviewListImages,
+                        this@MainActivity,
                         this@MainActivity,
                         this@MainActivity,
                         this@MainActivity
@@ -91,83 +72,48 @@ class MainActivity : AppCompatActivity(), ClickReview, DeleteReview, ViewReview 
 
                     review_recyclerView.adapter = reviewAdapter
                     reviewAdapter.notifyDataSetChanged()
+                    loadMore.visibility=View.GONE
                 })
             }
-            val y = async {
-                dialogViewModel.getReviewImage().observe(
-                    this@MainActivity,
-                    Observer {
-                        reviewListImages.clear()
-                        reviewListImages.addAll(it)
-                        reviewAdapter = ReviewAdapter(
-                            reviewList,
-                            reviewListImages,
-                            this@MainActivity,
-                            this@MainActivity,
-                            this@MainActivity
-                        )
+        }
 
 
-                        review_recyclerView.adapter = reviewAdapter
-                        reviewAdapter.notifyDataSetChanged()
-                    })
+        GlobalScope.launch(Dispatchers.Main) {
+            val x = async {
+                dialogViewModel.getReviewByLimit().observe(this@MainActivity, Observer {
+                    reviewList.clear()
+                    if (it.size > 4) {
+                        loadMore.visibility = View.VISIBLE
+                    } else {
+                        loadMore.visibility = View.GONE
 
+                    }
+                    reviewList.addAll(it)
+                    reviewAdapter = ReviewAdapter(
+                        reviewList,
+                        this@MainActivity,
+                        this@MainActivity,
+                        this@MainActivity,
+                        this@MainActivity
+
+                    )
+
+
+                    review_recyclerView.adapter = reviewAdapter
+                    reviewAdapter.notifyDataSetChanged()
+                })
             }
-            x.await()
 
-            y.await()
+            x.await()
 
 
         }
         add_reviewBn.setOnClickListener {
-            ReviewDialog().show(supportFragmentManager, null)
+            if (!ReviewDialog().isVisible)
+                ReviewDialog().show(supportFragmentManager, null)
 
 
         }
-//        mainViewModel.getReview().observe(this@MainActivity, Observer {
-//            GlobalScope.launch {
-//                database.reviewDAO()
-//                    .insertReview(ReviewTable(0, it.name, it.rating, it.description, ""))
-//                addInList()
-//            }
-//        }
-
-
-//        prepareReviewsWithImages()
-//        prepareReviews()
-//
-
-    }
-
-//    private suspend fun addInList() {
-//        lifecycleScope.launch(Dispatchers.IO) {
-//            getreviewList = getReviewFromDB()
-//            // val currentDate: String = SimpleDateFormat("dd/MM/", Locale.getDefault()).format(Date())
-//            reviewList.clear()
-//            for (data in getreviewList) {
-//                reviewList.add(
-//                    ReviewImage(
-//                        data.name,
-//                        data.comment,
-//                        R.drawable.model,
-//                        data.rating,
-//                        "30 Dec"
-//                    )
-//                )
-//            }
-//
-//
-//        }
-//        withContext(Dispatchers.Main) {
-//            reviewAdapter = ReviewAdapter(reviewList, this@MainActivity)
-//            reviewAdapter.notifyDataSetChanged()
-//        }
-//    }
-
-    private fun prepareReviewsWithImages() {
-        reviewImageList.add(ImageReview(R.drawable.model, null))
-        reviewImageList.add(ImageReview(R.drawable.yup, null))
-        reviewImageList.add(ImageReview(R.drawable.yo, null))
 
     }
 
@@ -183,56 +129,57 @@ class MainActivity : AppCompatActivity(), ClickReview, DeleteReview, ViewReview 
     }
 
     override fun onCellClickListener(data: String) {
-
-        lifecycleScope.launch(Dispatchers.Main) {
-
-            dialogViewModel.getReviewById(data).observe(this@MainActivity, Observer {
-                //reviewAdapter = ReviewAdapter(it, this@MainActivity)
-//                review_recyclerView.adapter = reviewAdapter
-//                reviewAdapter.notifyDataSetChanged()
-
-            })
-
-        }
+        //
     }
 
     override fun onCellClickListener(data: String, userId: String) {
+        //
     }
 
-
-    override fun onCellClickSee(data: String) {
-
-    }
 
     override fun onCellClickDelete(data: String) {
         lifecycleScope.launch(Dispatchers.Main) {
+            Log.d("DEELTE", "IAMGE")
             dialogViewModel.deleteUserReviewImage(data)
             reviewAdapter.notifyDataSetChanged()
         }
     }
 
+    override fun onCellDeleteImage(userId: String, data: String) {
+        lifecycleScope.launch(Dispatchers.Main) {
+            Log.d("DALATE", userId)
+            Log.d("dataaaa", data)
 
-//    private fun prepareReviews() {
-//
-//        for (i in 1..5) {
-//            reviewList.add(
-//                Review(
-//                    "Akshay",
-//                    "Dec 29",
-//                    getString(R.string.loreum),
-//                    R.drawable.model,
-//                    reviewImageList
-//                )
-//            )
-//
-//        }
-//        reviewAdapter.notifyDataSetChanged()
-//    }
+            dialogViewModel.deleteUserImage(userId, data)
+            dialogViewModel.getReview().observe(this@MainActivity, Observer {
 
-//    suspend fun getReviewFromDB(): MutableLiveData<List<ReviewImage>> {
-//        val profileDao = database.reviewDAO().loadAllReviews();
-//
-//        return profileDao
-//    }
+
+                reviewList.clear()
+
+
+                if (it.size > 4) {
+                    loadMore.visibility = View.VISIBLE
+                } else {
+                    loadMore.visibility = View.GONE
+
+                }
+                reviewList.addAll(it)
+                reviewAdapter = ReviewAdapter(
+                    reviewList,
+                    this@MainActivity,
+                    this@MainActivity,
+                    this@MainActivity,
+                    this@MainActivity
+                )
+
+
+                review_recyclerView.adapter = reviewAdapter
+                reviewAdapter.notifyDataSetChanged()
+            })
+            reviewAdapter.notifyDataSetChanged()
+        }
+    }
+
+
 }
 

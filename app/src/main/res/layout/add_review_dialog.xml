@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="wrap_content"
+    android:layout_gravity="center"
+    android:layout_height="wrap_content">
 
 
     <EditText
         android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Name"
         android:inputType="textPersonName"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/editTextTextPersonName2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextTextPersonName2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:hint="Review"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/ratingBar2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <RatingBar
         android:id="@+id/ratingBar2"
@@ -38,41 +39,31 @@
         android:scaleY=".9"
         android:stepSize="0.5"
         android:transformPivotY="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/addReview"
+        app:layout_constraintBottom_toTopOf="@+id/enterImagecount"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+
+    <EditText
+        android:id="@+id/enterImagecount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/addImagesRV"
-        app:layout_constraintStart_toStartOf="@+id/addImagesRV"
-        app:layout_constraintTop_toBottomOf="@+id/addImagesRV"
-        app:srcCompat="@drawable/ic_baseline_add_24" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:text="@string/uploadpics"
-
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/floatingActionButton"
-        app:layout_constraintStart_toStartOf="@+id/floatingActionButton"
-        app:layout_constraintTop_toTopOf="@+id/floatingActionButton" />
+        android:hint="Count"
+        android:inputType="number"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/ratingBar2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/addReview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Review"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/enterImagecount" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/addImagesRV"

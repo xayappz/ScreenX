@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">ScreenX</string>
-    <string name="card_text">Linen Dress White\nNo Pattern</string>
+    <string name="card_text">Linen Dress White\nNo Pattern </string>
     <string name="card_text_bestfit">Best Fit</string>
 
     <string name="card_brand_name">BRAND NAME</string>
@@ -26,5 +26,6 @@
     <string name="units">2 unt.</string>
     <string name="add_review">Add Review</string>
     <string name="uploadpics">Upload Photos</string>
+    <string name="itfits">\"IT FIT ME WELL\"</string>
 
 </resources>

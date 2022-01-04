@@ -12,8 +12,7 @@ import com.xayappz.screenx.viewmodels.DialogViewModel
 
 class DialogFactory(
     private val application: Application?,
-    private val myExtraParam: DeleteReview?
 ): ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel> create(modelClass: Class<T>): T =
-        DialogViewModel(application!!, myExtraParam!!) as T
+        DialogViewModel(application!!) as T
 }

@@ -11,7 +11,7 @@
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_4sdp"
+        android:layout_margin="@dimen/_6sdp"
         android:elevation="@dimen/_10sdp"
         app:cardCornerRadius="@dimen/_4sdp"
 
@@ -29,18 +29,20 @@
                 android:id="@+id/imageView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:padding="10dp"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ratingBar"
                 app:srcCompat="@drawable/ic_baseline_remove_red_eye_24" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image"
                 android:layout_width="@dimen/_36sdp"
-                app:civ_border_width="2dp"
-                app:civ_border_color="#FFFF"
-                
                 android:layout_height="@dimen/_36sdp"
                 android:src="@drawable/model"
+
+                app:civ_border_color="#FFFF"
+                app:civ_border_width="2dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -66,7 +68,9 @@
                 android:padding="@dimen/_4sdp"
                 android:text="@string/loreum"
                 android:textSize="@dimen/_10sdp"
+
                 android:textStyle="bold"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/dateTxt"
                 app:layout_constraintTop_toBottomOf="@+id/reviewwenameTxt" />
@@ -90,23 +94,25 @@
                 android:layout_height="wrap_content"
                 android:isIndicator="true"
                 android:progressTint="#FFCC01"
-                android:rating="1.5"
-                android:scaleX=".5"
-                android:scaleY=".5"
+                android:rating="5"
+                android:scaleX=".9"
+                android:scaleY=".8"
                 android:stepSize="0.5"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.007" />
+                app:layout_constraintVertical_bias="0.022" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/images_review_recyclerView"
                 android:layout_width="0dp"
-                android:visibility="gone"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/imageView5"
+                app:layout_constraintHorizontal_bias="0.501"
                 app:layout_constraintStart_toEndOf="@+id/dateTxt"
-                app:layout_constraintTop_toBottomOf="@+id/reviewTxt" >
+                app:layout_constraintTop_toBottomOf="@+id/reviewTxt">
 
             </androidx.recyclerview.widget.RecyclerView>
 

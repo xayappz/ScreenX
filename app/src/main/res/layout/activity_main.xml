@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,8 +15,9 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/ViewPagerId"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_330sdp"
+            android:layout_height="@dimen/_380sdp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -33,48 +35,49 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_220sdp"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_190sdp"
             android:layout_margin="@dimen/_20sdp"
+            android:layout_marginStart="25dp"
+
+            android:layout_marginEnd="25dp"
             android:elevation="@dimen/_10sdp"
             app:cardCornerRadius="@dimen/_4sdp"
-
             app:layout_constraintBottom_toBottomOf="@+id/ViewPagerId"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ViewPagerId">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-
                 android:layout_height="match_parent">
 
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textcard"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_12sdp"
+                    android:maxLines="2"
+                    android:padding="@dimen/_5sdp"
                     android:text="@string/card_text"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_16sdp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/view1"
-                    app:layout_constraintEnd_toStartOf="@+id/appCompatButton"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintEnd_toStartOf="@+id/barrier6"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/view1"
                     app:layout_constraintTop_toTopOf="@+id/view1"
-                    app:layout_constraintVertical_bias="0.483" />
+                    app:layout_constraintVertical_bias="0.363" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/icon_card"
-                    android:layout_width="@dimen/_24sdp"
+                    android:layout_width="36dp"
+                    android:layout_height="31dp"
 
-                    android:layout_height="@dimen/_18sdp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="96dp"
                     app:layout_constraintBottom_toTopOf="@+id/appCompatButton"
-                    app:layout_constraintEnd_toEndOf="@+id/appCompatButton"
-                    app:layout_constraintHorizontal_bias="0.384"
-                    app:layout_constraintRight_toRightOf="@+id/textcard"
-                    app:layout_constraintStart_toStartOf="@+id/appCompatButton"
+                    app:layout_constraintStart_toEndOf="@+id/textcard"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0"
                     app:srcCompat="@drawable/ic_baseline_info_24" />
@@ -83,47 +86,51 @@
                     android:id="@+id/appCompatButton"
                     android:layout_width="@dimen/_34sdp"
                     android:layout_height="@dimen/_14sdp"
+                    android:layout_marginEnd="8dp"
 
-                    android:layout_marginTop="56dp"
+                    android:layout_marginBottom="4dp"
                     android:background="@drawable/button_bg"
                     android:text="@string/card_text_bestfit"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_6sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.927"
-                    app:layout_constraintStart_toStartOf="@+id/ratingBar"
-                    app:layout_constraintTop_toTopOf="@+id/textcard" />
-
+                    app:layout_constraintBottom_toTopOf="@+id/rating"
+                    app:layout_constraintEnd_toEndOf="@+id/icon_card"
+                    app:layout_constraintHorizontal_bias="0.187"
+                    app:layout_constraintStart_toStartOf="@+id/icon_card" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/brandname"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_12sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:padding="@dimen/_6sdp"
                     android:text="@string/card_brand_name"
                     android:textSize="@dimen/_10sdp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/rating"
+                    app:layout_constraintEnd_toEndOf="@+id/textcard"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/rating" />
+                    app:layout_constraintTop_toBottomOf="@+id/textcard" />
 
                 <androidx.appcompat.widget.AppCompatRatingBar
                     android:id="@+id/ratingBar"
                     style="?android:attr/ratingBarStyleIndicator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:isIndicator="false"
+                    android:isIndicator="true"
                     android:progressTint="#FFCC01"
                     android:rating="3.5"
-                    android:scaleX="1"
-                    android:scaleY=".9"
+                    android:scaleX=".8"
+                    android:scaleY="0.9"
+                    android:layout_marginEnd="8dp"
+
                     android:stepSize="0.5"
-                    android:transformPivotY="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toTopOf="@+id/loreum"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.334" />
+                    app:layout_constraintHorizontal_bias="0.405"
+                    app:layout_constraintStart_toEndOf="@+id/textcard"
+                    app:layout_constraintTop_toBottomOf="@+id/appCompatButton"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/rating"
@@ -131,91 +138,106 @@
                     android:layout_height="wrap_content"
                     android:text="4.5"
                     android:textSize="@dimen/_14sdp"
-                    app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
-                    app:layout_constraintEnd_toStartOf="@+id/ratingBar"
-                    app:layout_constraintStart_toEndOf="@+id/brandname"
-                    app:layout_constraintTop_toTopOf="@+id/ratingBar" />
+                    app:layout_constraintBottom_toBottomOf="@+id/brandname"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.563"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textcard"
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/loreum"
 
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_12sdp"
+                    android:padding="@dimen/_5sdp"
                     android:text="@string/loreum"
                     android:textSize="@dimen/_10sdp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/brandname"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/brandname" />
+
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/sellingprice"
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_12sdp"
+                    android:padding="@dimen/_6sdp"
                     android:text="@string/sellingP"
+
                     android:textSize="@dimen/_10sdp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@+id/size"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/loreum" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/XU"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_5sdp"
+                    android:text="X u."
+                    android:textSize="@dimen/_8sdp"
+
 
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/loreum"
-                    app:layout_constraintVertical_bias="0.0" />
-
+                    app:layout_constraintBottom_toBottomOf="@+id/price"
+                    app:layout_constraintStart_toEndOf="@+id/price"
+                    app:layout_constraintTop_toTopOf="@+id/price"
+                    app:layout_constraintVertical_bias="1.0"
+                    app:textAllCaps="false" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/price"
                     android:layout_width="wrap_content"
-
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
+
+                    android:padding="@dimen/_4sdp"
                     android:text="@string/price"
                     android:textColor="@color/black"
 
-                    android:textSize="@dimen/_14sdp"
+                    android:textSize="@dimen/_18sdp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/sellingprice"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/sellingprice"
                     app:layout_constraintTop_toBottomOf="@+id/sellingprice"
-                    app:layout_constraintVertical_bias="0.117" />
-
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/retailprice"
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="44dp"
-                    android:padding="10dp"
-                    android:text="@string/retailP"
 
+                    android:layout_marginTop="76dp"
+                    android:padding="@dimen/_5sdp"
+                    android:text="@string/retailP"
                     android:textSize="@dimen/_8sdp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/price"
-                    app:layout_constraintTop_toBottomOf="@+id/loreum"
-                    app:layout_constraintVertical_bias="0.235" />
+                    app:layout_constraintEnd_toStartOf="@+id/view"
+                    app:layout_constraintHorizontal_bias="0.197"
+                    app:layout_constraintStart_toEndOf="@+id/XU"
+                    app:layout_constraintTop_toTopOf="@+id/loreum" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/rprice"
-                    android:layout_width="wrap_content"
+                    android:layout_width="85dp"
 
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
+                    android:layout_marginStart="24dp"
                     android:text="@string/rprice"
-                    android:textColor="@color/black"
 
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/retailprice"
-                    app:layout_constraintHorizontal_bias="0.375"
-                    app:layout_constraintStart_toStartOf="@+id/retailprice"
+                    app:layout_constraintStart_toEndOf="@+id/XU"
                     app:layout_constraintTop_toBottomOf="@+id/retailprice"
-                    app:layout_constraintVertical_bias="0.105" />
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <View
                     android:id="@+id/view"
@@ -225,69 +247,73 @@
                     android:background="@color/grey"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/size"
-                    app:layout_constraintHorizontal_bias="0.475"
                     app:layout_constraintStart_toEndOf="@+id/rprice"
-                    app:layout_constraintTop_toBottomOf="@+id/ratingBar"
-                    app:layout_constraintVertical_bias="0.929" />
+                    app:layout_constraintTop_toBottomOf="@+id/loreum" />
 
                 <View
 
                     android:id="@+id/view1"
-                    android:layout_width="@dimen/_8sdp"
+                    android:layout_width="@dimen/_6sdp"
                     android:layout_height="@dimen/_18sdp"
                     android:layout_marginTop="16dp"
                     android:background="@color/teal_700"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.19" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/size"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:padding="@dimen/_10sdp"
+                    android:layout_marginEnd="8dp"
+                    android:padding="@dimen/_5sdp"
                     android:text="@string/size"
                     android:textSize="@dimen/_10sdp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/sellingprice"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/sellingprice"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintTop_toBottomOf="@+id/loreum"
+                    app:layout_constraintVertical_bias="0.152" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/sizeM"
                     android:layout_width="wrap_content"
 
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_10sdp"
                     android:text="@string/sizeM"
 
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/size"
+                    app:layout_constraintBottom_toBottomOf="@+id/sizeUS"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/size"
-                    app:layout_constraintTop_toBottomOf="@+id/size" />
+                    app:layout_constraintTop_toTopOf="@+id/sizeUS" />
+
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/sizeUS"
                     android:layout_width="wrap_content"
 
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:text="@string/sizeUS"
 
+                    android:layout_marginTop="28dp"
+                    android:text="@string/sizeUS"
                     android:textSize="@dimen/_10sdp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/textcard"
                     app:layout_constraintEnd_toStartOf="@+id/sizeM"
-                    app:layout_constraintTop_toTopOf="@+id/view"
-                    app:layout_constraintVertical_bias="0.38" />
+                    app:layout_constraintHorizontal_bias="0.716"
+                    app:layout_constraintStart_toEndOf="@+id/view"
+                    app:layout_constraintTop_toTopOf="@+id/view" />
 
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/barrier6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    app:constraint_referenced_ids="textcard,brandname,retailprice,rprice"
+                    app:layout_constraintGuide_percent="0.60" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -295,12 +321,15 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="@dimen/_80sdp"
-            android:layout_margin="@dimen/_20sdp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="25dp"
             android:elevation="@dimen/_10sdp"
             app:cardCornerRadius="@dimen/_4sdp"
-
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -313,7 +342,7 @@
 
                 <View
                     android:id="@+id/view2"
-                    android:layout_width="@dimen/_8sdp"
+                    android:layout_width="@dimen/_6sdp"
                     android:layout_height="@dimen/_18sdp"
 
                     android:background="@color/teal_700"
@@ -331,7 +360,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:padding="10dp"
+                    android:padding="@dimen/_5sdp"
 
                     android:text="@string/howmany"
                     android:textColor="@color/black"
@@ -373,7 +402,7 @@
                     app:layout_constraintHorizontal_bias="0.453"
                     app:layout_constraintStart_toStartOf="@+id/view22"
                     app:layout_constraintTop_toBottomOf="@+id/size2"
-                    app:layout_constraintVertical_bias="0.25" />
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <ImageView
                     android:id="@+id/selctor"
@@ -392,10 +421,9 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/unitprice"
-
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_10sdp"
+                    android:gravity="start"
                     android:text="@string/unitpriceis"
                     android:textColor="@color/black"
 
@@ -413,29 +441,25 @@
                     android:layout_width="wrap_content"
 
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:padding="@dimen/_10sdp"
+                    android:layout_marginEnd="24dp"
                     android:text="@string/unitprice"
                     android:textSize="@dimen/_8sdp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/stockk"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="@+id/selctor" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/stockq"
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_10sdp"
                     android:text="@string/totstock"
-
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/stockk"
-                    app:layout_constraintHorizontal_bias="0.026"
-                    app:layout_constraintStart_toEndOf="@+id/unitP"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/stockk"
                     app:layout_constraintTop_toBottomOf="@+id/stockk"
                     app:layout_constraintVertical_bias="0.0" />
 
@@ -444,29 +468,147 @@
                     android:layout_width="wrap_content"
 
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="8dp"
 
-                    android:padding="@dimen/_10sdp"
                     android:text="@string/stock"
                     android:textSize="@dimen/_8sdp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="@+id/unitP" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/U"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:text="u."
+                    android:textSize="@dimen/_8sdp"
+
+                    app:layout_constraintBottom_toBottomOf="@+id/stockq"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/stockq"
+                    app:layout_constraintTop_toTopOf="@+id/stockq" />
+
+
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView22"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="25dp"
+            android:elevation="@dimen/_10sdp"
+            app:cardCornerRadius="@dimen/_4sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView2"
+            >
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profile_image"
+                    android:layout_width="@dimen/_56sdp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/model"
+
+                    app:civ_border_color="#FFFF"
+                    app:civ_border_width="2dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/reviewwenameTxt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+
+                    android:padding="@dimen/_4sdp"
+                    android:text="User Profile"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/profile_image"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/ratinggg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_10sdp"
+                    android:text="10 RATING"
+                    app:layout_constraintBottom_toBottomOf="@+id/reviewTxt"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/reviewwenameTxt"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/sss"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="4.5"
+                    app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView"
+                    app:layout_constraintEnd_toStartOf="@+id/appCompatImageView"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/ratinggg"
+                    app:layout_constraintTop_toTopOf="@+id/appCompatImageView" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/reviewTxt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_4sdp"
+                    android:text="@string/itfits"
+                    android:textSize="@dimen/_10sdp"
+
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/sss"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/profile_image"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.597" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="28dp"
+                    android:src="@drawable/ic_baseline_star_24"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/ratinggg" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView3"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_margin="@dimen/_20sdp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+
+            android:layout_marginEnd="25dp"
             android:elevation="@dimen/_10sdp"
             app:cardCornerRadius="@dimen/_4sdp"
-
-            app:layout_constraintTop_toBottomOf="@+id/cardView2">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView22">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -476,7 +618,7 @@
 
                 <View
                     android:id="@+id/review_view"
-                    android:layout_width="@dimen/_8sdp"
+                    android:layout_width="@dimen/_6sdp"
                     android:layout_height="@dimen/_18sdp"
 
                     android:layout_marginTop="@dimen/_16sdp"
@@ -508,6 +650,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:scrollbars="vertical"
+                    android:visibility="visible"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/reviewTV" />
 
@@ -516,21 +659,24 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView4"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_20sdp"
+            android:layout_marginStart="25dp"
+            android:layout_marginEnd="25dp"
             android:elevation="@dimen/_10sdp"
+            android:visibility="visible"
             app:cardCornerRadius="@dimen/_4sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView3">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/loadMore"
                 android:layout_width="match_parent"
-
                 android:layout_height="match_parent">
 
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/loadMore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/_10sdp"
@@ -538,7 +684,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold"
-                    android:visibility="gone"
+                    android:visibility="visible"
 
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -600,51 +746,56 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/materialButton"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/_220sdp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/white"
+            android:elevation="0dp"
+            android:padding="@dimen/_6sdp"
             android:text="@string/report"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="@dimen/_14sdp"
+            app:cornerRadius="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView4" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/appCompatButton3"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/_200sdp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="10dp"
             android:backgroundTint="@color/btn_green"
+
             android:text="@string/selectdates"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="@dimen/_14sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/appCompatButton2"
-            app:layout_constraintTop_toBottomOf="@+id/materialButton"
-            app:layout_constraintVertical_bias="0.512" />
+            app:layout_constraintHorizontal_bias="0.847"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/materialButton" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/appCompatButton2"
             android:layout_width="wrap_content"
+
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginEnd="28dp"
             android:backgroundTint="@color/white"
             android:text="@string/back"
             android:textAllCaps="false"
             android:textColor="@color/black"
-
             android:textSize="@dimen/_14sdp"
             app:layout_constraintBottom_toBottomOf="@+id/appCompatButton3"
             app:layout_constraintEnd_toStartOf="@+id/appCompatButton3"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/appCompatButton3" />
+            app:layout_constraintHorizontal_bias="0.377"
+            app:layout_constraintStart_toStartOf="@+id/materialButton"
+            app:layout_constraintTop_toTopOf="@+id/appCompatButton3"
+            app:layout_constraintVertical_bias="0.0" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/add_reviewBn"
@@ -657,17 +808,9 @@
             android:textSize="@dimen/_14sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.539"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appCompatButton3"
-            app:layout_constraintVertical_bias="0.974" />
+            app:layout_constraintTop_toBottomOf="@+id/appCompatButton3" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="20dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
