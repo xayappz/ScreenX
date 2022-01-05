@@ -8,17 +8,16 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textView"
         style="@style/Heading"
-        android:layout_width="0dp"
+        android:layout_width="93dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="@dimen/_5sdp"
         android:singleLine="true"
         android:text="@string/closet"
         app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintStart_toEndOf="@+id/imageView6"
-        app:layout_constraintTop_toTopOf="@+id/imageView6"
-        app:layout_constraintWidth_default="wrap" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView6" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageView6"
