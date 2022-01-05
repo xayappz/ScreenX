@@ -29,6 +29,14 @@
        <item name="android:padding">@dimen/_8sdp</item>
 
     </style>
+
+    <style name="TextViewStyleItem" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">@dimen/_6sdp</item>
+
+
+    </style>
     <style name="Heading" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
@@ -45,6 +53,15 @@
     <style name="Heading3" parent="Heading2">
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:padding">@dimen/_2sdp</item>
+
+    </style>
+
+    <style name="HeadingItem" parent="Heading2">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:padding">0dp</item>
+
 
     </style>
     <style name="SellingP" parent="Heading2">
@@ -90,6 +107,10 @@
         <item name="android:text">@string/add_review</item>
 
 
+    </style>
+    <style name="CustomTextStyle" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">true</item>
     </style>
 
 </resources>

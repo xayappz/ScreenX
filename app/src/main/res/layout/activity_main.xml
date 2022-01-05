@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".views.MainActivity">
 
 
         <androidx.viewpager2.widget.ViewPager2
@@ -83,7 +83,7 @@
                     android:id="@+id/appCompatButton"
                     android:layout_width="@dimen/_34sdp"
                     android:layout_height="@dimen/_14sdp"
-                    android:layout_marginEnd="12dp"
+                    android:layout_marginEnd="22dp"
                     android:layout_marginBottom="4dp"
                     android:background="@drawable/button_bg"
                     android:text="@string/card_text_bestfit"

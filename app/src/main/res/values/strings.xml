@@ -8,6 +8,14 @@
     <string name="sellingP">SELLING PRICE: </string>
     <string name="retailP">RETAIL PRICE: </string>
     <string name="size">SIZE:</string>
+    <string name="closet">My Closet</string>
+    <string name="user_name">Maud Garret</string>
+    <string name="user_id">#123412</string>
+    <string name="your_rating">Your Rating:</string>
+    <string name="total">Total Items:</string>
+    <string name="loadned">Loaned:</string>
+    <string name="available">Available:</string>
+
     <string name="price">$300</string>
     <string name="rprice">$1200</string>
     <string name="sizeM">M</string>
@@ -27,5 +35,7 @@
     <string name="add_review">Add Review</string>
     <string name="uploadpics">Upload Photos</string>
     <string name="itfits">\"IT FIT ME WELL\"</string>
-
+    <string name="loaned_items_fragment">LsED ITsEMS</string>
+    <string name="available_items_fragment">AVAILABLE ITEMS</string>
+    <string name="disables_items_fragment">DISABLED ITEMS</string>
 </resources>

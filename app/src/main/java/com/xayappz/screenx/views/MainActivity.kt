@@ -1,7 +1,6 @@
-package com.xayappz.screenx
+package com.xayappz.screenx.views
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.*
@@ -9,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import androidx.viewpager2.widget.ViewPager2
+import com.xayappz.screenx.R
 import com.xayappz.screenx.adapters.ReviewAdapter
 import com.xayappz.screenx.adapters.ViewPageAdapter
 import com.xayappz.screenx.db.Database
