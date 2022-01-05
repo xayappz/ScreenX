@@ -41,8 +41,6 @@ class MainActivity : AppCompatActivity(), ClickReview, DeleteReview, PassToActiv
             this,
             DialogFactory(this.application)
         )[DialogViewModel::class.java]
-
-        // reviewViewModel = ViewModelProvider(this)[DialogViewModel::class.java]
         ViewPagerId.adapter = ViewPageAdapter(imageList)
         ViewPagerId.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         images_review_recyclerView
@@ -137,19 +135,10 @@ class MainActivity : AppCompatActivity(), ClickReview, DeleteReview, PassToActiv
     }
 
 
-    override fun onCellClickDelete(data: String) {
-        lifecycleScope.launch(Dispatchers.Main) {
-            Log.d("DEELTE", "IAMGE")
-            dialogViewModel.deleteUserReviewImage(data)
-            reviewAdapter.notifyDataSetChanged()
-        }
-    }
+
 
     override fun onCellDeleteImage(userId: String, data: String) {
         lifecycleScope.launch(Dispatchers.Main) {
-            Log.d("DALATE", userId)
-            Log.d("dataaaa", data)
-
             dialogViewModel.deleteUserImage(userId, data)
             dialogViewModel.getReview().observe(this@MainActivity, Observer {
 
@@ -178,6 +167,10 @@ class MainActivity : AppCompatActivity(), ClickReview, DeleteReview, PassToActiv
             })
             reviewAdapter.notifyDataSetChanged()
         }
+    }
+
+    override fun onCellClickDelete(data: String) {
+
     }
 
 

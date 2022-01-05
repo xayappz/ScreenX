@@ -14,7 +14,6 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.xayappz.screenx.R
-import com.xayappz.screenx.models.Images
 import com.xayappz.screenx.models.ReviewImage
 import com.xayappz.screenx.utils.*
 
@@ -34,7 +33,6 @@ internal class ReviewAdapter(
         var description: TextView = view.findViewById(R.id.reviewTxt)
         var card: CardView = view.findViewById(R.id.cardView)
         var date: TextView = view.findViewById(R.id.dateTxt)
-        var userImage: ImageView = view.findViewById(R.id.profile_image)
         var reviewImages: RecyclerView = view.findViewById(R.id.images_review_recyclerView)
         var rating: RatingBar = view.findViewById(R.id.ratingBar)
         var imageShow: ImageView = view.findViewById(R.id.imageView5)
@@ -50,7 +48,6 @@ internal class ReviewAdapter(
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        var images: ArrayList<Images> = ArrayList()
         var reviewImageAdapter: ReviewImageAdapter
         val layoutManagerImage = LinearLayoutManager(activity)
         holder.profile_image.setImageDrawable(activity.getDrawable(R.drawable.model))
@@ -78,16 +75,12 @@ internal class ReviewAdapter(
 
         }
         holder.imageShow.setOnClickListener {
-            Log.d("IDDDD", itemsList.get(position).id.toString())
-            images.clear()
             if (isVisibleImages) {
-                Log.d("AAA", isVisibleImages.toString())
                 holder.reviewImages.visibility = View.VISIBLE
                 holder.imageShow.setImageResource(R.drawable.ic_baseline_minimize_24)
                 isVisibleImages = false
 
             } else {
-                Log.d("BBB", isVisibleImages.toString())
                 holder.imageShow.setImageResource(R.drawable.ic_baseline_remove_red_eye_24)
                 isVisibleImages = true
                 holder.reviewImages.visibility = View.GONE
@@ -122,8 +115,6 @@ internal class ReviewAdapter(
     }
 
     override fun onCellDeleteImage(userId: String, data: String) {
-        Log.d("imagee", data.toString())
-        Log.d("userId", userId.toString())
         passToActivity.onCellDeleteImage(data, userId)
     }
 
