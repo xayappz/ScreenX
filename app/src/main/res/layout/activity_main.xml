@@ -15,7 +15,7 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/ViewPagerId"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_380sdp"
+            android:layout_height="@dimen/_70sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,13 +36,10 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="0dp"
-            android:layout_height="@dimen/_190sdp"
-            android:layout_margin="@dimen/_20sdp"
-            android:layout_marginStart="25dp"
-
-            android:layout_marginEnd="25dp"
-            android:elevation="@dimen/_10sdp"
-            app:cardCornerRadius="@dimen/_4sdp"
+            android:layout_height="@dimen/_210sdp"
+            android:layout_marginStart="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_25sdp"
             app:layout_constraintBottom_toBottomOf="@+id/ViewPagerId"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -55,17 +52,13 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textcard"
+                    style="@style/Heading"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:maxLines="2"
-                    android:padding="@dimen/_5sdp"
                     android:text="@string/card_text"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_16sdp"
-                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/view1"
                     app:layout_constraintEnd_toStartOf="@+id/barrier6"
-                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/view1"
                     app:layout_constraintTop_toTopOf="@+id/view1"
                     app:layout_constraintVertical_bias="0.363" />
@@ -76,7 +69,9 @@
                     android:layout_height="31dp"
 
                     android:layout_marginStart="96dp"
+                    android:layout_marginEnd="8dp"
                     app:layout_constraintBottom_toTopOf="@+id/appCompatButton"
+                    app:layout_constraintHorizontal_weight="1"
                     app:layout_constraintStart_toEndOf="@+id/textcard"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0"
@@ -87,7 +82,6 @@
                     android:layout_width="@dimen/_34sdp"
                     android:layout_height="@dimen/_14sdp"
                     android:layout_marginEnd="8dp"
-
                     android:layout_marginBottom="4dp"
                     android:background="@drawable/button_bg"
                     android:text="@string/card_text_bestfit"
@@ -96,19 +90,19 @@
                     app:layout_constraintBottom_toTopOf="@+id/rating"
                     app:layout_constraintEnd_toEndOf="@+id/icon_card"
                     app:layout_constraintHorizontal_bias="0.187"
+                    app:layout_constraintHorizontal_weight="1"
                     app:layout_constraintStart_toStartOf="@+id/icon_card" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/brandname"
+                    style="@style/TextViewStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:padding="@dimen/_6sdp"
                     android:text="@string/card_brand_name"
-                    android:textSize="@dimen/_10sdp"
-                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/textcard"
-                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintEnd_toStartOf="@+id/rating"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_weight="1"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textcard" />
 
@@ -117,20 +111,20 @@
                     style="?android:attr/ratingBarStyleIndicator"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:isIndicator="true"
+
                     android:progressTint="#FFCC01"
                     android:rating="3.5"
-                    android:scaleX=".8"
-                    android:scaleY="0.9"
-                    android:layout_marginEnd="8dp"
 
+                    android:scaleX=".9"
+                    android:scaleY="0.8"
                     android:stepSize="0.5"
-                    app:layout_constraintBottom_toTopOf="@+id/loreum"
+
+                    app:layout_constraintBottom_toBottomOf="@+id/brandname"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.405"
-                    app:layout_constraintStart_toEndOf="@+id/textcard"
-                    app:layout_constraintTop_toBottomOf="@+id/appCompatButton"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/rating"
+                    app:layout_constraintTop_toTopOf="@+id/brandname"
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/rating"
@@ -139,34 +133,31 @@
                     android:text="4.5"
                     android:textSize="@dimen/_14sdp"
                     app:layout_constraintBottom_toBottomOf="@+id/brandname"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.563"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textcard"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintEnd_toStartOf="@+id/ratingBar"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/brandname"
+                    app:layout_constraintTop_toTopOf="@+id/brandname" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/loreum"
-
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_5sdp"
+                    android:maxLines="2"
+                    android:padding="@dimen/_8sdp"
                     android:text="@string/loreum"
                     android:textSize="@dimen/_10sdp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_weight="1"
                     app:layout_constraintTop_toBottomOf="@+id/brandname" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/sellingprice"
 
+                    style="@style/TextViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_6sdp"
                     android:text="@string/sellingP"
-
-                    android:textSize="@dimen/_10sdp"
-                    android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/size"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
@@ -175,14 +166,12 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/XU"
 
+                    style="@style/TextViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_5sdp"
-                    android:text="X u."
-                    android:textSize="@dimen/_8sdp"
+                    android:padding="@dimen/_2sdp"
+                    android:text="X U."
 
-
-                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/price"
                     app:layout_constraintStart_toEndOf="@+id/price"
                     app:layout_constraintTop_toTopOf="@+id/price"
@@ -193,16 +182,17 @@
                     android:id="@+id/price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:padding="@dimen/_4sdp"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:padding="@dimen/_2sdp"
                     android:text="@string/price"
-                    android:textColor="@color/black"
 
+                    android:textColor="@color/black"
                     android:textSize="@dimen/_18sdp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/sellingprice"
                     app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_weight="1"
                     app:layout_constraintStart_toStartOf="@+id/sellingprice"
                     app:layout_constraintTop_toBottomOf="@+id/sellingprice"
                     app:layout_constraintVertical_bias="0.0" />
@@ -210,34 +200,32 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/retailprice"
 
+                    style="@style/TextViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:layout_marginTop="76dp"
-                    android:padding="@dimen/_5sdp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="16dp"
                     android:text="@string/retailP"
-                    android:textSize="@dimen/_8sdp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toStartOf="@+id/view"
-                    app:layout_constraintHorizontal_bias="0.197"
-                    app:layout_constraintStart_toEndOf="@+id/XU"
-                    app:layout_constraintTop_toTopOf="@+id/loreum" />
+                    app:layout_constraintStart_toEndOf="@+id/sellingprice"
+                    app:layout_constraintTop_toBottomOf="@+id/loreum" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/rprice"
-                    android:layout_width="85dp"
+                    android:layout_width="0dp"
 
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:text="@string/rprice"
+                    android:layout_marginTop="28dp"
 
+                    android:gravity="left"
+                    android:text="@string/rprice"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_12sdp"
+                    android:textSize="@dimen/_14sdp"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/XU"
-                    app:layout_constraintTop_toBottomOf="@+id/retailprice"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintBottom_toBottomOf="@+id/price"
+                    app:layout_constraintEnd_toEndOf="@+id/retailprice"
+                    app:layout_constraintStart_toStartOf="@+id/retailprice"
+                    app:layout_constraintTop_toTopOf="@+id/retailprice" />
 
                 <View
                     android:id="@+id/view"
@@ -253,8 +241,8 @@
                 <View
 
                     android:id="@+id/view1"
-                    android:layout_width="@dimen/_6sdp"
-                    android:layout_height="@dimen/_18sdp"
+                    android:layout_width="@dimen/_4sdp"
+                    android:layout_height="@dimen/_12sdp"
                     android:layout_marginTop="16dp"
                     android:background="@color/teal_700"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -263,14 +251,13 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/size"
+                    style="@style/TextViewStyle"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
 
+                    android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:padding="@dimen/_5sdp"
                     android:text="@string/size"
-                    android:textSize="@dimen/_10sdp"
-                    android:textStyle="bold"
+
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/loreum"
@@ -321,13 +308,12 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
+            style="@style/CardView"
             android:layout_width="0dp"
-            android:layout_height="@dimen/_80sdp"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginEnd="25dp"
-            android:elevation="@dimen/_10sdp"
-            app:cardCornerRadius="@dimen/_4sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_25sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView">
@@ -342,37 +328,24 @@
 
                 <View
                     android:id="@+id/view2"
-                    android:layout_width="@dimen/_6sdp"
-                    android:layout_height="@dimen/_18sdp"
-
+                    android:layout_width="@dimen/_4sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:layout_marginTop="16dp"
                     android:background="@color/teal_700"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/size2"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.19" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/size2"
-
-
+                    style="@style/Heading2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:padding="@dimen/_5sdp"
-
                     android:text="@string/howmany"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_12sdp"
-                    android:textStyle="bold"
-
                     app:layout_constraintBottom_toBottomOf="@+id/view2"
-                    app:layout_constraintEnd_toStartOf="@+id/unitP"
-                    app:layout_constraintHorizontal_bias="0.158"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/view2"
-                    app:layout_constraintVertical_bias="0.588" />
+                    app:layout_constraintVertical_bias="0.48" />
 
                 <View
                     android:id="@+id/view22"
@@ -423,73 +396,76 @@
                     android:id="@+id/unitprice"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:gravity="start"
+                    android:gravity="left"
+                    android:padding="@dimen/_5sdp"
                     android:text="@string/unitpriceis"
                     android:textColor="@color/black"
-
                     android:textSize="@dimen/_12sdp"
+
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/unitP"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_weight="1"
                     app:layout_constraintStart_toStartOf="@+id/unitP"
-                    app:layout_constraintTop_toBottomOf="@+id/unitP"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintTop_toBottomOf="@+id/unitP" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/unitP"
+                    style="@style/TextViewStyle"
                     android:layout_width="wrap_content"
-
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="24dp"
+                    android:layout_marginEnd="8dp"
                     android:text="@string/unitprice"
-                    android:textSize="@dimen/_8sdp"
-                    android:textStyle="bold"
+
                     app:layout_constraintEnd_toStartOf="@+id/stockk"
-                    app:layout_constraintTop_toTopOf="@+id/selctor" />
+                    app:layout_constraintTop_toTopOf="@+id/view22" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/stockq"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:padding="@dimen/_3sdp"
+
                     android:text="@string/totstock"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/U"
                     app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_weight="0.5"
                     app:layout_constraintStart_toStartOf="@+id/stockk"
                     app:layout_constraintTop_toBottomOf="@+id/stockk"
                     app:layout_constraintVertical_bias="0.0" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/stockk"
-                    android:layout_width="wrap_content"
+                    style="@style/TextViewStyle"
 
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-
+                    android:layout_marginEnd="4dp"
                     android:text="@string/stock"
-                    android:textSize="@dimen/_8sdp"
-                    android:textStyle="bold"
+
+                    app:layout_constraintBottom_toTopOf="@+id/unitprice"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/unitP" />
+                    app:layout_constraintTop_toTopOf="@+id/unitP"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/U"
-                    android:layout_width="wrap_content"
-
+                    android:layout_width="29dp"
                     android:layout_height="wrap_content"
-                    android:text="u."
-                    android:textSize="@dimen/_8sdp"
+                    android:layout_marginBottom="4dp"
 
+                    android:text="u."
+                    android:textSize="@dimen/_10sdp"
                     app:layout_constraintBottom_toBottomOf="@+id/stockq"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/stockq"
-                    app:layout_constraintTop_toTopOf="@+id/stockq" />
-
-
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="@+id/stockk"
+                    app:layout_constraintTop_toTopOf="@+id/stockq"
+                    app:layout_constraintVertical_bias="1.0" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -497,60 +473,61 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView22"
+            style="@style/CardView"
             android:layout_width="0dp"
-            android:layout_height="@dimen/_80sdp"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginEnd="25dp"
-            android:elevation="@dimen/_10sdp"
-            app:cardCornerRadius="@dimen/_4sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_25sdp"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView2"
-            >
+            app:layout_constraintTop_toBottomOf="@+id/cardView2">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp">
 
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/profile_image"
                     android:layout_width="@dimen/_56sdp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/_44sdp"
                     android:src="@drawable/model"
 
-                    app:civ_border_color="#FFFF"
+                    app:civ_border_color="#000000"
                     app:civ_border_width="2dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/reviewwenameTxt"
+                    style="@style/Heading2"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
 
-                    android:padding="@dimen/_4sdp"
-                    android:text="User Profile"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_12sdp"
-                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:text="User Name"
+                    app:layout_constraintEnd_toStartOf="@+id/ratinggg"
+                    app:layout_constraintHorizontal_weight="1"
                     app:layout_constraintStart_toEndOf="@+id/profile_image"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/ratinggg"
+                    style="@style/TextViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_10sdp"
+
+                    android:layout_marginEnd="4dp"
                     android:text="10 RATING"
                     app:layout_constraintBottom_toBottomOf="@+id/reviewTxt"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/reviewwenameTxt"
-                    app:layout_constraintVertical_bias="0.0" />
+                    app:layout_constraintVertical_bias="0.509" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/sss"
@@ -560,35 +537,31 @@
                     android:text="4.5"
                     app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView"
                     app:layout_constraintEnd_toStartOf="@+id/appCompatImageView"
-                    app:layout_constraintHorizontal_bias="1.0"
-                    app:layout_constraintStart_toStartOf="@+id/ratinggg"
                     app:layout_constraintTop_toTopOf="@+id/appCompatImageView" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/reviewTxt"
+                    style="@style/TextViewStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/_4sdp"
-                    android:text="@string/itfits"
-                    android:textSize="@dimen/_10sdp"
 
-                    android:textStyle="bold"
+                    android:text="@string/itfits"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/sss"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintEnd_toStartOf="@+id/ratinggg"
                     app:layout_constraintStart_toEndOf="@+id/profile_image"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.597" />
+                    app:layout_constraintTop_toBottomOf="@+id/reviewwenameTxt"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/appCompatImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
 
-                    android:layout_marginTop="40dp"
-                    android:layout_marginEnd="28dp"
+                    android:layout_marginTop="33dp"
                     android:src="@drawable/ic_baseline_star_24"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/ratinggg"
+                    app:layout_constraintHorizontal_bias="0.795"
+                    app:layout_constraintStart_toStartOf="@+id/ratinggg"
                     app:layout_constraintTop_toTopOf="@+id/ratinggg" />
 
 
@@ -601,11 +574,10 @@
             android:id="@+id/cardView3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:layout_marginEnd="@dimen/_25sdp"
 
-            android:layout_marginEnd="25dp"
-            android:elevation="@dimen/_10sdp"
-            app:cardCornerRadius="@dimen/_4sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView22">
@@ -618,32 +590,23 @@
 
                 <View
                     android:id="@+id/review_view"
-                    android:layout_width="@dimen/_6sdp"
-                    android:layout_height="@dimen/_18sdp"
-
+                    android:layout_width="@dimen/_4sdp"
+                    android:layout_height="@dimen/_12sdp"
                     android:layout_marginTop="@dimen/_16sdp"
+
                     android:background="@color/teal_700"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/reviewTV"
-
+                    style="@style/Heading3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:padding="@dimen/_10sdp"
                     android:text="@string/reviews"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_12sdp"
-
-                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@+id/review_view"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toEndOf="@+id/review_view"
-                    app:layout_constraintTop_toTopOf="@+id/review_view"
-                    app:layout_constraintVertical_bias="0.478" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/review_view" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/review_recyclerView"
@@ -661,11 +624,11 @@
             android:id="@+id/cardView4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
-            android:elevation="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_25sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_25sdp"
             android:visibility="visible"
-            app:cardCornerRadius="@dimen/_4sdp"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView3">
@@ -801,11 +764,7 @@
             android:id="@+id/add_reviewBn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/purple_700"
-            android:text="@string/add_review"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_14sdp"
+style="@style/MyButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
