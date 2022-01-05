@@ -35,7 +35,7 @@
     <string name="add_review">Add Review</string>
     <string name="uploadpics">Upload Photos</string>
     <string name="itfits">\"IT FIT ME WELL\"</string>
-    <string name="loaned_items_fragment">LsED ITsEMS</string>
+    <string name="loaned_items_fragment">LOANED ITEMS</string>
     <string name="available_items_fragment">AVAILABLE ITEMS</string>
     <string name="disables_items_fragment">DISABLED ITEMS</string>
 </resources>
