@@ -10,6 +10,7 @@ import com.xayappz.screenx.adapters.TabAdapter
 class ItemActivity : AppCompatActivity() {
     var tabLayout: TabLayout? = null
     var viewPager: ViewPager? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item)
@@ -30,6 +31,8 @@ class ItemActivity : AppCompatActivity() {
 
         viewPager!!.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
 
+        tabLayout!!.setScrollPosition(1,0f,true);
+        viewPager!!.currentItem = 1;
         tabLayout!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 viewPager!!.currentItem = tab.position

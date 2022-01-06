@@ -1,5 +1,6 @@
 package com.xayappz.screenx.views
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -36,6 +37,10 @@ class MainActivity : AppCompatActivity(), ClickReview, DeleteReview, PassToActiv
             Room.databaseBuilder(applicationContext, Database::class.java, "reviewDB")
                 .fallbackToDestructiveMigration().build()
         dummyBannerImages()
+        appCompatButton2.setOnClickListener {val intent = Intent(this, ItemActivity::class.java)
+            startActivity(intent)
+
+        }
 
         dialogViewModel = ViewModelProvider(
             this,
