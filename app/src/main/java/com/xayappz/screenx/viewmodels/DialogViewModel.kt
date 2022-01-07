@@ -198,18 +198,4 @@ class DialogViewModel(
     }
 
 
-    fun stringtoBitmap(imageBytes: ByteArray): Bitmap? {
-        var bitmap: Bitmap? = null
-        try {
-            val yuvimage = YuvImage(imageBytes, ImageFormat.YUY2, 120, 30, null)
-            val baos = ByteArrayOutputStream()
-            yuvimage.compressToJpeg(Rect(0, 0, 20, 20), 100, baos)
-            val jdata = baos.toByteArray()
-            bitmap = BitmapFactory.decodeByteArray(jdata, 0, jdata.size)
-        } catch (e: Exception) {
-        }
-        //imageListSave?.add(bitmap)
-
-        return bitmap
-    }
 }

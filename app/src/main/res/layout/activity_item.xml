@@ -8,12 +8,13 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/textView"
         style="@style/Heading"
-        android:layout_width="93dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="@dimen/_5sdp"
         android:singleLine="true"
         android:text="@string/closet"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -46,26 +47,27 @@
         style="@style/Heading2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="@dimen/_5sdp"
-        android:textSize="20sp"
+        android:padding="@dimen/_2sdp"
         android:text="@string/user_name"
+        android:textSize="20sp"
         app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
         app:layout_constraintEnd_toStartOf="@+id/youtratingTv"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/circleImageView"
         app:layout_constraintTop_toTopOf="@+id/circleImageView"
-       />
-
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/Id"
         style="@style/TextViewStyleItem"
-        android:layout_width="89dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/_1sdp"
+        android:layout_marginTop="4dp"
         android:text="@string/user_id"
         app:layout_constrainedWidth="true"
+        app:layout_constraintEnd_toStartOf="@+id/rating"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/circleImageView"
         app:layout_constraintTop_toBottomOf="@+id/nameTv" />
 
@@ -75,7 +77,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:padding="@dimen/_5sdp"
         android:text="@string/your_rating"
         app:layout_constraintBottom_toBottomOf="@+id/nameTv"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
@@ -106,27 +107,25 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/rating"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="@dimen/_5sdp"
         android:text="4.5"
-        app:layout_constraintBottom_toBottomOf="@+id/Id"
+        app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
         app:layout_constraintEnd_toStartOf="@+id/ratingBar"
-        app:layout_constraintTop_toTopOf="@+id/Id" />
+        app:layout_constraintTop_toTopOf="@+id/ratingBar" />
 
     <androidx.appcompat.widget.AppCompatRatingBar
         android:id="@+id/ratingBar"
-        style="?android:attr/ratingBarStyleSmall"
+        style="@style/Widget.AppCompat.RatingBar.Indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:isIndicator="true"
         android:progressTint="#FFCC01"
         android:rating="4"
-        android:scaleX="1"
-        android:scaleY="1"
+        android:scaleX="0.9"
+        android:scaleY="0.9"
         android:stepSize="0.5"
-        app:layout_constraintBottom_toBottomOf="@+id/rating"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintEnd_toStartOf="@id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/youtratingTv" />
 
     <TextView
@@ -134,7 +133,7 @@
         style="@style/TextViewStyleItem"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
+        android:layout_marginStart="6dp"
         android:layout_marginTop="8dp"
         android:text="@string/total"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -203,8 +202,10 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/guideline3"
+        app:layout_constraintStart_toStartOf="@id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/loadnedT"
         app:tabIndicatorColor="@color/btn_green"
         app:tabSelectedTextColor="@color/black"
@@ -216,7 +217,6 @@
         android:id="@+id/viewPager"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabLayout">
 

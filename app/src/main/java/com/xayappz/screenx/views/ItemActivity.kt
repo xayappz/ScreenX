@@ -2,10 +2,12 @@ package com.xayappz.screenx.views
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.xayappz.screenx.R
 import com.xayappz.screenx.adapters.TabAdapter
+import com.xayappz.screenx.viewmodels.ItemViewModel
 
 class ItemActivity : AppCompatActivity() {
     var tabLayout: TabLayout? = null
@@ -31,7 +33,7 @@ class ItemActivity : AppCompatActivity() {
 
         viewPager!!.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
 
-        tabLayout!!.setScrollPosition(1,0f,true);
+        tabLayout!!.setScrollPosition(1, 0f, true);
         viewPager!!.currentItem = 1;
         tabLayout!!.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {

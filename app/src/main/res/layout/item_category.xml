@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
@@ -14,7 +13,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/_90sdp"
         android:layout_margin="@dimen/_4sdp"
         android:clickable="true">
 
@@ -42,6 +41,8 @@
             style="@style/CardViewStyleItem"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:cardCornerRadius="@dimen/_4sdp"
+            app:cardElevation="@dimen/_10sdp"
             app:layout_constraintEnd_toStartOf="@id/guideline3"
             app:layout_constraintStart_toStartOf="@id/guideline2"
             app:layout_constraintTop_toTopOf="parent">
@@ -74,6 +75,7 @@
                     android:id="@+id/image"
                     android:layout_width="@dimen/_100sdp"
                     android:layout_height="@dimen/_100sdp"
+                    android:scaleType="fitXY"
                     android:src="@drawable/image1"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -85,9 +87,10 @@
                     android:id="@+id/item_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
                     android:gravity="left"
                     android:maxLines="2"
-                    android:padding="@dimen/_6sdp"
+                    android:padding="@dimen/_4sdp"
                     android:text="@{item.itemName}"
                     android:textColor="@color/black"
                     android:textSize="14sp"
@@ -102,12 +105,14 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/brandName"
-                    style="@style/TextViewStyle"
+                    style="@style/TextViewStyleItem"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-
-                    android:padding="@dimen/_6sdp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:padding="@dimen/_4sdp"
                     android:text="@string/card_brand_name"
+                    android:textSize="10sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/seeicon"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -119,27 +124,33 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/amt"
                     style="@style/Heading2"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="166dp"
-                    android:padding="@dimen/_1sdp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:padding="@dimen/_2sdp"
                     android:text="@string/price"
+                    android:textSize="15sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@id/guideline4"
                     app:layout_constraintEnd_toEndOf="@+id/brandName"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/guideline6"
                     app:layout_constraintTop_toBottomOf="@+id/brandName"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintVertical_bias="1.0"
+                    app:layout_constraintWidth_default="wrap" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/day"
                     style="@style/TextViewStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:padding="@dimen/_2sdp"
+                    android:singleLine="true"
                     android:text="Day"
-
                     app:layout_constraintBottom_toTopOf="@+id/guideline4"
                     app:layout_constraintEnd_toStartOf="@+id/us"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -150,7 +161,7 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/us"
                     style="@style/TextViewStyle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="36dp"
 
@@ -166,10 +177,13 @@
                     style="@style/Heading"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:padding="@dimen/_2sdp"
                     android:text="XS"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toTopOf="@+id/guideline4"
+                    app:layout_constraintEnd_toStartOf="@+id/star"
                     app:layout_constraintStart_toEndOf="@+id/us"
                     app:layout_constraintTop_toTopOf="@+id/us" />
 
@@ -178,12 +192,12 @@
                     android:layout_width="22dp"
                     android:layout_height="22dp"
 
-                    android:layout_marginStart="40dp"
+                    android:layout_marginStart="20dp"
                     android:src="@drawable/ic_baseline_star_24"
                     app:layout_constraintBottom_toTopOf="@+id/guideline4"
                     app:layout_constraintStart_toEndOf="@+id/us"
                     app:layout_constraintTop_toBottomOf="@+id/brandName"
-                    app:layout_constraintVertical_bias="1.0" />
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/ratt"
@@ -201,7 +215,6 @@
                     android:layout_width="22dp"
                     android:layout_height="22dp"
 
-                    android:layout_marginStart="8dp"
                     android:padding="@dimen/_2sdp"
                     android:src="@drawable/ic_baseline_remove_red_eye_24"
                     app:layout_constraintBottom_toTopOf="@+id/guideline4"
@@ -212,11 +225,16 @@
                     style="@style/TextViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:padding="@dimen/_2sdp"
                     android:text="25"
                     app:layout_constraintBottom_toBottomOf="@+id/seeicon"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline5"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/seeicon"
-                    app:layout_constraintTop_toTopOf="@+id/seeicon" />
+                    app:layout_constraintTop_toTopOf="@+id/seeicon"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <androidx.constraintlayout.widget.Guideline
                     android:id="@+id/guideline4"
@@ -230,8 +248,11 @@
 
                 <CheckBox
                     android:id="@+id/checkBox"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:buttonTint="@color/black"
+                    android:translationX="-5dp"
+                    android:translationY="-15dp"
                     android:visibility="gone"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

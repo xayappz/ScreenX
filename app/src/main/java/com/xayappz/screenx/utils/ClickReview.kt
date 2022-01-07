@@ -1,32 +1,45 @@
 package com.xayappz.screenx.utils
 
-import com.xayappz.screenx.db.ReviewTable
-import com.xayappz.screenx.models.ImageReview
 import com.xayappz.screenx.models.Items
+import java.text.FieldPosition
 
 interface ClickReview {
     fun onCellClickListener(data: String)
-    fun onCellClickListener(data: String,userId:String)
+    fun onCellClickListener(data: String, userId: String)
 
 }
-interface DeleteReview{
+
+interface DeleteReview {
     fun onCellClickDelete(data: String)
 
 }
-interface DeleteImage{
-    fun onCellDeleteImage(data: String,userId: String)
+
+interface DeleteImage {
+    fun onCellDeleteImage(data: String, userId: String)
 
 }
-interface PassToActivity{
-    fun onCellDeleteImage(data: String,userId: String)
+
+interface PassToActivity {
+    fun onCellDeleteImage(data: String, userId: String)
 
 }
+
 interface ItemLongClickListener {
-    fun onLongItemClicked(items: Items):Boolean
+    fun onLongItemClicked(items: Items): Boolean
 }
+
 interface SelectAllListener {
-    fun onAllSelectClicked(allSelected:Boolean)
+    fun onAllSelectClicked(allSelected: Boolean)
 }
+
 interface UnSelectAllListener {
-    fun onAllUnSelectClicked(allSelected:Boolean)
+    fun onAllUnSelectClicked(allSelected: Boolean)
+}
+
+interface SelectedSingleListener {
+    fun onSingleSelected(data: String)
+}
+
+interface unSelectedSingleListener {
+    fun onUnSingleSelected(data: String)
 }

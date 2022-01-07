@@ -2,6 +2,7 @@ package com.xayappz.screenx.views
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.*
@@ -37,8 +38,10 @@ class MainActivity : AppCompatActivity(), ClickReview, DeleteReview, PassToActiv
             Room.databaseBuilder(applicationContext, Database::class.java, "reviewDB")
                 .fallbackToDestructiveMigration().build()
         dummyBannerImages()
-        appCompatButton2.setOnClickListener {val intent = Intent(this, ItemActivity::class.java)
+        appCompatButton2.setOnClickListener {
+            val intent = Intent(this, ItemActivity::class.java)
             startActivity(intent)
+            overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
 
         }
 

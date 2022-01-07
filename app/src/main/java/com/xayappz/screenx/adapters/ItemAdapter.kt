@@ -6,9 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.xayappz.screenx.databinding.ItemCategoryBinding
 import com.xayappz.screenx.models.Items
-import com.xayappz.screenx.utils.ItemLongClickListener
-import com.xayappz.screenx.utils.SelectAllListener
-import com.xayappz.screenx.utils.UnSelectAllListener
+import com.xayappz.screenx.utils.*
 import kotlinx.android.synthetic.main.item_category.view.*
 
 
@@ -16,7 +14,13 @@ class ItemAdapter(
     private val data: List<Items>,
     private val itemClick: ItemLongClickListener,
     private val isChecked: Boolean,
-    private val unSelectAllListener: UnSelectAllListener
+    private val isAnyUnchecked: Boolean,
+    private val isSelectAll: Boolean,
+    private val selectionEnabled: Boolean,
+    private val unSelectAllListener: UnSelectAllListener,
+    private val singleListener: SelectedSingleListener,
+    private val unsingleListener: unSelectedSingleListener
+
 ) :
     RecyclerView.Adapter<ItemAdapter.MyViewHolder>(), SelectAllListener {
 
@@ -41,7 +45,23 @@ class ItemAdapter(
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.bind(data[position], itemClick)
-        if (isChecked) {
+        if (selectionEnabled) {
+            holder.itemView.checkBox.visibility = View.VISIBLE
+            holder.itemView.checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
+                var itemName=data.get(position).itemName
+                if (isChecked) {
+                    singleListener.onSingleSelected(itemName)
+                } else {
+                    unsingleListener.onUnSingleSelected(itemName)
+                }
+            }
+        }
+
+        if (isAnyUnchecked) {
+            holder.itemView.checkBox.isChecked = false
+            holder.itemView.checkBox.visibility = View.VISIBLE
+        }
+        if (isSelectAll) {
             holder.itemView.checkBox.visibility = View.VISIBLE
             holder.itemView.checkBox.isChecked = true
             holder.itemView.checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
@@ -49,6 +69,8 @@ class ItemAdapter(
             }
 
         }
+
+
     }
 
     override fun getItemCount(): Int {
