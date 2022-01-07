@@ -4,29 +4,36 @@
 -> ROOM DB for localling storing Reviews with Coroutines
 
 
--> MVVM custom Dialog for Review Adding
+-> MVVM components and DataBinding
+
+
+-> Kotlin
+
+
+-> Dynamic Views 
+
+![Screenshot_1641566266](https://user-images.githubusercontent.com/77268176/148560079-0c5a08b1-7ea5-4c84-b31c-8b11c6b7d84d.png)
+
+
+![Screenshot_1641566278](https://user-images.githubusercontent.com/77268176/148560046-6e2098cb-130c-4987-87f7-144d2f3607c4.png)
+
+
+![Screenshot_1641566289](https://user-images.githubusercontent.com/77268176/148560056-1230d173-b3fe-4e40-9f65-affe8992a08d.png)
+
+
+![Screenshot_1641566300](https://user-images.githubusercontent.com/77268176/148560059-8c5a671b-701c-4140-b80f-ed653362e899.png)
+
+
+![Screenshot_1641566305](https://user-images.githubusercontent.com/77268176/148560064-6e411272-fc26-4e10-b907-ce4841b66e56.png)
+
+
+![Screenshot_1641566306](https://user-images.githubusercontent.com/77268176/148560070-517d7875-3c45-41d9-9a4f-6cb6b3e8891b.png)
+
+
+![Screenshot_1641566309](https://user-images.githubusercontent.com/77268176/148560073-54970a67-7396-4af1-8e2d-2a989621d21a.png)
+
+
+![Screenshot_1641566316](https://user-images.githubusercontent.com/77268176/148560075-37b6c57f-cd8b-4996-8308-ee36a7f687d3.png)
 
 
 
-![Screenshot_1640838894](https://user-images.githubusercontent.com/77268176/147722080-38fcc991-6bbf-4999-b407-9cb5d4be9d04.png)
-
-
-![Screenshot_1640838903](https://user-images.githubusercontent.com/77268176/147722077-ae358818-64f4-4607-9a3c-bd96e40e2cc5.png)
-
-![Screenshot_1640838925](https://user-images.githubusercontent.com/77268176/147722078-2b04323f-a5f1-4747-9dd7-7f1361d0a0b4.png)
-
-![Screenshot_1640838930](https://user-images.githubusercontent.com/77268176/147722079-c7b6bd21-065c-494d-a83f-f68186e8e79d.png)
-
-
-
-Add/Edit/Remove Reviews and upload images by Capturing from Phone
-
-![Screenshot_1641312764](https://user-images.githubusercontent.com/77268176/148089537-54e106f1-be07-4f4e-8d99-df6d8b831f91.png)
-
-![Screenshot_1641312768](https://user-images.githubusercontent.com/77268176/148089543-aa87d7f9-f87c-47e9-b9de-480f6fc1be5e.png)
-
-![Screenshot_1641312778](https://user-images.githubusercontent.com/77268176/148089546-fc482ea3-d0e5-4dfa-9d33-16daf827e746.png)
-
-![Screenshot_1641312783](https://user-images.githubusercontent.com/77268176/148089549-fba99c86-1a0a-496d-b872-9b13b2a644c9.png)
-
-![Screenshot_1641312758](https://user-images.githubusercontent.com/77268176/148089552-9cdba0b5-29d3-4477-b882-eeda5d6f3223.png)
