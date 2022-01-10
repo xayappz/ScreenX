@@ -15,7 +15,7 @@
 ![Screenshot_1641790827](https://user-images.githubusercontent.com/77268176/148722227-32466580-37b2-48e1-9aaa-baf8ae410b74.png)
 
 
-![Screenshot_1641792659](https://user-images.githubusercontent.com/77268176/148722228-73f0a335-f213-40ee-bfb7-763124a63218.png)
+![Screenshot_1641794575](https://user-images.githubusercontent.com/77268176/148724023-0c739e13-7b1c-420b-99c7-f3460d2cc830.png)
 
 
 ![Screenshot_1641792665](https://user-images.githubusercontent.com/77268176/148722232-d30da28d-5981-4e0f-a7eb-6336c006642f.png)
