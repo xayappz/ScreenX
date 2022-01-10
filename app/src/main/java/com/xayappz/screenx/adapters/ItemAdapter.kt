@@ -48,7 +48,7 @@ class ItemAdapter(
         if (selectionEnabled) {
             holder.itemView.checkBox.visibility = View.VISIBLE
             holder.itemView.checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
-                var itemName=data.get(position).itemName
+                var itemName = data.get(position).itemName
                 if (isChecked) {
                     singleListener.onSingleSelected(itemName)
                 } else {

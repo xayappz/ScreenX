@@ -149,8 +149,6 @@ class ReviewDialog : DialogFragment(), ClickReview, DeleteReview {
                         )
 
 
-
-
                     } else {
                         withContext(Dispatchers.Main)
                         {

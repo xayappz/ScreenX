@@ -1,7 +1,6 @@
 package com.xayappz.screenx.views.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.xayappz.screenx.R
@@ -21,16 +19,13 @@ import com.xayappz.screenx.utils.SelectedSingleListener
 import com.xayappz.screenx.utils.UnSelectAllListener
 import com.xayappz.screenx.utils.unSelectedSingleListener
 import com.xayappz.screenx.viewmodels.ItemViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 
 class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener,
     SelectedSingleListener, unSelectedSingleListener {
     lateinit var binding: FragmentAvailableBinding
     lateinit var recyclerManager: RecyclerView.LayoutManager
-    lateinit var data: List<Items>
-
+    var data: ArrayList<Items> = ArrayList()
+    var datafromAdapterAll: MutableList<String> = ArrayList()
     var datafromAdapter: MutableList<String> = ArrayList()
     private var isAllSelected: Boolean = false
     private var isFromSingle: Boolean = false
@@ -50,18 +45,13 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
         super.onViewCreated(view, savedInstanceState)
         itemViewModel = ViewModelProvider(this)[ItemViewModel::class.java]
         loadDummyData()
+        itemViewModel.getDataFromSelected().observe(requireActivity(), Observer {
+            datafromAdapter.clear()
+            datafromAdapter.addAll(it)
 
-        lifecycleScope.launch(Dispatchers.Main)
-        {
-            itemViewModel.getDataFromSelected().observe(requireActivity(), Observer {
-                Log.d("ITTTTT",it.size.toString())
-                datafromAdapter.clear()
-                datafromAdapter.addAll(it)
-
-            })
+        })
 
 
-        }
         binding.closeSelection.setOnClickListener {
             selectionEnabled = false
             isFromSingle = false
@@ -104,10 +94,8 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
         binding.checkboxSelectAll.setOnCheckedChangeListener { buttonView, isChecked ->
             isAllSelected = isChecked
             if (!isAllSelected) {
-                lifecycleScope.launch(Dispatchers.Main)
-                {
-                    itemViewModel.removeAll()
-                }
+                itemViewModel.removeAll()
+
             }
             binding.itemRecycler.adapter =
                 ItemAdapter(
@@ -125,18 +113,16 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
         }
         binding.disableItem.setOnClickListener {
             if (isAllSelected) {
-                Log.d("ISAALL", "YES")
-                var print = ""
                 for (Data in data) {
-                    print += (Data.itemName) + ","
+                    datafromAdapterAll.add(Data.itemName)
                 }
-                Toast.makeText(activity, print, Toast.LENGTH_SHORT).show()
-
+                Toast.makeText(activity, datafromAdapterAll.toString(), Toast.LENGTH_SHORT).show()
+                datafromAdapterAll.clear()
             } else {
-                Log.d("ISSINGLE", "YES")
-
                 if (isFromSingle) {
-                    Toast.makeText(activity, datafromAdapter.toString(), Toast.LENGTH_SHORT).show()
+                    if (datafromAdapter.size > 0)
+                        Toast.makeText(activity, datafromAdapter.toString(), Toast.LENGTH_SHORT)
+                            .show()
 
                 }
             }
@@ -145,28 +131,13 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
 
     private fun loadDummyData() {
 
-        data = listOf<Items>(
-            Items(
-                "1",
-                getString(R.string.card_text) + "1"
-            ),
-            Items(
-                "2",
-                getString(R.string.card_text) + "2"
-            ),
-            Items(
-                "3",
-                getString(R.string.card_text) + "3"
-            ),
-            Items(
-                "4",
-                getString(R.string.card_text) + "4"
-            ),
-            Items(
-                "5",
-                getString(R.string.card_text) + "5"
-            )
-        )
+        for (i in 1..5) {
+            var classObject = Items()
+            classObject.itemName = getString(R.string.card_text) + i
+            classObject.id = i.toString()
+            data.add(classObject)
+        }
+
 
     }
 
@@ -184,9 +155,6 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
             singleListener = this@AvailableFragment,
             unsingleListener = this@AvailableFragment
         )
-
-
-
         return true
     }
 
@@ -211,36 +179,15 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
     override fun onSingleSelected(data: String) {
         if (!isAllSelected) {
             isFromSingle = true
-            lifecycleScope.launch(Dispatchers.Main)
-            {
-                itemViewModel.addDataFromSelected(data)
-            }
-        }else
-            {
-                isFromSingle = false
-            }
+            itemViewModel.addDataFromSelected(data)
+        } else {
+            isFromSingle = false
         }
-
-
+    }
 
 
     override fun onUnSingleSelected(data: String) {
-        lifecycleScope.launch(Dispatchers.Main)
-        {
-            itemViewModel.removeDataFromSelected(data)
-
-            lifecycleScope.launch(Dispatchers.Main)
-            {
-                itemViewModel.getDataFromSelected().observe(requireActivity(), Observer {
-                    datafromAdapter.clear()
-                    datafromAdapter.addAll(it)
-
-                })
-
-
-            }
-        }
-
+        itemViewModel.removeDataFromSelected(data)
     }
 
 

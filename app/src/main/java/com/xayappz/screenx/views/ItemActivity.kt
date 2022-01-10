@@ -2,12 +2,10 @@ package com.xayappz.screenx.views
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.xayappz.screenx.R
 import com.xayappz.screenx.adapters.TabAdapter
-import com.xayappz.screenx.viewmodels.ItemViewModel
 
 class ItemActivity : AppCompatActivity() {
     var tabLayout: TabLayout? = null

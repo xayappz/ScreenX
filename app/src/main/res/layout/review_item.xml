@@ -52,6 +52,7 @@
                 android:id="@+id/reviewwenameTxt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
 
                 android:text="@string/app_name"
                 android:textColor="@color/black"
@@ -62,7 +63,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/profile_image"
                 app:layout_constraintTop_toTopOf="@+id/profile_image"
-                app:layout_constraintVertical_bias="0.346" />
+                app:layout_constraintVertical_bias="0.538" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/reviewTxt"
@@ -70,28 +71,30 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="2"
-                android:padding="@dimen/_2sdp"
+android:layout_marginStart="@dimen/_10sdp"
                 android:text="@string/loreum"
                 android:textSize="@dimen/_10sdp"
                 android:textStyle="bold"
+
                 android:visibility="visible"
-                app:layout_constraintBottom_toBottomOf="@+id/profile_image"
-                app:layout_constraintEnd_toEndOf="@+id/ratingBar"
+                app:layout_constraintBottom_toBottomOf="@+id/dateTxt"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/profile_image"
-                app:layout_constraintTop_toTopOf="@+id/dateTxt"
-                app:layout_constraintVertical_bias="0.454" />
+                app:layout_constraintStart_toEndOf="@+id/dateTxt"
+                app:layout_constraintTop_toBottomOf="@+id/reviewwenameTxt" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/dateTxt"
-                android:layout_width="wrap_content"
+                android:layout_width="47dp"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="date"
+
                 android:textSize="@dimen/_10sdp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/reviewTxt"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/profile_image"
+                app:layout_constraintStart_toStartOf="@+id/profile_image"
                 app:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
             <androidx.appcompat.widget.AppCompatRatingBar

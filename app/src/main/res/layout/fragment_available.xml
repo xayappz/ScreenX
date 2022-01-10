@@ -8,8 +8,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:animateLayoutChanges="true"
         android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
         android:background="@color/grey">
 
         <View
@@ -38,7 +38,7 @@
             android:padding="@dimen/_5sdp"
             android:text="@string/available_items"
             android:textColor="@color/black"
-            android:textSize="@dimen/_18sdp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toBottomOf="@+id/view1"
@@ -58,8 +58,8 @@
             android:id="@+id/checkbox_select_all"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/select_all"
             android:buttonTint="@color/black"
+            android:text="@string/select_all"
             app:layout_constraintBottom_toBottomOf="@+id/nameTv"
             app:layout_constraintEnd_toStartOf="@id/guideline3"
             app:layout_constraintTop_toTopOf="@+id/nameTv" />
@@ -74,7 +74,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/disableItem"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="@dimen/_1sdp"
@@ -84,8 +84,11 @@
             android:textSize="10sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@+id/view22"
-            app:layout_constraintEnd_toStartOf="@+id/selctor"
-            app:layout_constraintTop_toTopOf="@+id/view22" />
+            app:layout_constraintEnd_toEndOf="@+id/selctor"
+            app:layout_constraintHorizontal_bias="0.416"
+            app:layout_constraintStart_toStartOf="@+id/view22"
+            app:layout_constraintTop_toTopOf="@+id/selctor"
+            app:layout_constraintVertical_bias="0.545" />
 
         <ImageView
             android:id="@+id/selctor"
@@ -95,6 +98,7 @@
             app:layout_constraintEnd_toEndOf="@+id/view22"
             app:layout_constraintTop_toTopOf="@+id/view22"
             app:layout_constraintVertical_bias="1.0"
+            app:tint="@color/teal_700"
             app:srcCompat="@drawable/ic_baseline_arrow_right_24" />
 
 
@@ -134,13 +138,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            app:constraint_referenced_ids="selctor,disableItem,view22,checkbox_select_all,closeSelection"
-         />
+            app:constraint_referenced_ids="selctor,disableItem,view22,checkbox_select_all,closeSelection" />
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/closeSelection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/closeSelection"
             android:src="@drawable/ic_baseline_close_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline3"

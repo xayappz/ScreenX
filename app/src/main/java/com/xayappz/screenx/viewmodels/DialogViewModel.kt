@@ -1,7 +1,6 @@
 package com.xayappz.screenx.viewmodels
 
 import android.app.Application
-import android.graphics.*
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -12,7 +11,6 @@ import com.xayappz.screenx.db.ReviewTable
 import com.xayappz.screenx.models.ReviewImage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.io.ByteArrayOutputStream
 
 
 class DialogViewModel(

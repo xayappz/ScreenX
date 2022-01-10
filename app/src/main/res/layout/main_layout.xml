@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/GuidelineMaster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:constraint_referenced_ids="ViewPagerId,indicatorId"
+            app:layout_constraintGuide_percent="0.55" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/ViewPagerId"
+            android:layout_width="match_parent"
+            app:layout_constraintBottom_toTopOf="@id/GuidelineMaster"
+            android:layout_height="wrap_content"
+          >
+
+        </androidx.viewpager2.widget.ViewPager2>
+
+        <me.relex.circleindicator.CircleIndicator3
+            android:id="@+id/indicatorId"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_28sdp"
+            app:ci_gravity="left|center_horizontal|center"
+            app:layout_constraintBottom_toTopOf="@id/GuidelineMaster"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/_24sdp"
+            android:layout_height="@dimen/_18sdp"
+            app:layout_constraintEnd_toStartOf="@+id/imageView4"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/heart_icon"
+            app:tint="#FFFFFF" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageView4"
+            android:layout_width="@dimen/_24sdp"
+
+            android:layout_height="@dimen/_18sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintRight_toRightOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_screen_share_24" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <include
+        android:id="@+id/inflateLayout"
+        layout="@layout/activity_main"
+        />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

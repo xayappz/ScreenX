@@ -1,7 +1,6 @@
 package com.xayappz.screenx.utils
 
 import com.xayappz.screenx.models.Items
-import java.text.FieldPosition
 
 interface ClickReview {
     fun onCellClickListener(data: String)

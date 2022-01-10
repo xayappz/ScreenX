@@ -8,7 +8,8 @@ import com.xayappz.screenx.views.fragments.AvailableFragment
 import com.xayappz.screenx.views.fragments.DisabledFragmet
 import com.xayappz.screenx.views.fragments.LoadedFragment
 
-class TabAdapter(private val myContext: Context, fm: FragmentManager, private var totalTabs: Int) : FragmentPagerAdapter(fm) {
+class TabAdapter(private val myContext: Context, fm: FragmentManager, private var totalTabs: Int) :
+    FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
         when (position) {

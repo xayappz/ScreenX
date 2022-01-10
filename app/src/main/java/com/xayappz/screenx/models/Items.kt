@@ -1,3 +1,5 @@
 package com.xayappz.screenx.models
 
-data class Items(val id: String, var itemName:String)
+data class Items (var id: String="", var itemName: String="")
+
+

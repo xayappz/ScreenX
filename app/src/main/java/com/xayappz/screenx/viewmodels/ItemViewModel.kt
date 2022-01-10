@@ -1,6 +1,5 @@
 package com.xayappz.screenx.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
@@ -9,26 +8,27 @@ class ItemViewModel : ViewModel() {
         MutableLiveData<ArrayList<String>>()
     private var itemData: ArrayList<String> = ArrayList()
 
-    suspend fun getDataFromSelected(): MutableLiveData<ArrayList<String>> {
-        Log.d("SSSSSSS",itemDataList.value?.size.toString()+"l")
+    fun getDataFromSelected(): MutableLiveData<ArrayList<String>> {
         return itemDataList
 
     }
 
-    suspend fun addDataFromSelected(data: String) {
+    fun addDataFromSelected(data: String) {
         itemData.add(data)
-        itemDataList.value = itemData
+        itemDataList.postValue(itemData)
         getDataFromSelected()
 
     }
 
-    suspend fun removeDataFromSelected(data: String) {
+    fun removeDataFromSelected(data: String) {
         itemData.remove(data)
         itemDataList.value?.remove(data)
+        itemDataList.postValue(itemData)
         getDataFromSelected()
 
     }
-    suspend fun removeAll() {
+
+    fun removeAll() {
         itemData.clear()
         itemDataList.value?.clear()
 
