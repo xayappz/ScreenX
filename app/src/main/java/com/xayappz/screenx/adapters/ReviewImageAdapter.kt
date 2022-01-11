@@ -46,7 +46,7 @@ internal class ReviewImageAdapter
             var newImage = count - 1
             deleteImage.onCellDeleteImage(newImage.toString(), userId)
             count--
-            notifyDataSetChanged()
+           notifyDataSetChanged()
 
         }
 

@@ -11,11 +11,6 @@ class ViewPageAdapter(private val images: List<Int>) :
     RecyclerView.Adapter<ViewPageAdapter.Pager2ViewHolder>() {
     inner class Pager2ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageOfBanner: ImageView = itemView.findViewById(R.id.bannerImg)
-
-        init {
-
-
-        }
     }
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ViewPageAdapter.Pager2ViewHolder {

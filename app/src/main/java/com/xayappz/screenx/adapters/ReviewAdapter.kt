@@ -22,7 +22,8 @@ internal class ReviewAdapter(
     private var activity: Activity,
     var reviewClick: ClickReview,
     var deleteReview: DeleteReview,
-    var passToActivity: PassToActivity
+    var passToActivity: PassToActivity,
+    var onViewHandle: ViewControl
 
 ) : RecyclerView.Adapter<ReviewAdapter.MyViewHolder>(), ClickReview, DeleteImage {
     private var isVisibleImages = true
@@ -74,7 +75,9 @@ internal class ReviewAdapter(
 
         }
         holder.imageShow.setOnClickListener {
+            onViewHandle.onViewHandle(isVisibleImages)
             if (isVisibleImages) {
+
                 holder.reviewImages.visibility = View.VISIBLE
                 holder.imageShow.setImageResource(R.drawable.ic_baseline_minimize_24)
                 isVisibleImages = false

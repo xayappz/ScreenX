@@ -1,6 +1,7 @@
 package com.xayappz.screenx.utils
 
 import com.xayappz.screenx.models.Items
+import com.xayappz.screenx.models.Section
 
 interface ClickReview {
     fun onCellClickListener(data: String)
@@ -41,4 +42,14 @@ interface SelectedSingleListener {
 
 interface unSelectedSingleListener {
     fun onUnSingleSelected(data: String)
+}
+
+interface ViewControl {
+    fun onViewHandle(data: Boolean)
+}
+interface ItemLongClickListenerNew {
+    fun onLongItemClicked(longPressed: Boolean): Boolean
+}
+interface ItemSingleSelectedNew{
+    fun onSingleClickNEW(data: String)
 }

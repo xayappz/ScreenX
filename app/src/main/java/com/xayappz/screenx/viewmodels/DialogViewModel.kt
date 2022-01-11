@@ -54,7 +54,7 @@ class DialogViewModel(
                     )
                 )
 
-            getReviewByLimit()
+            getReview()
         }
     }
 
@@ -65,7 +65,7 @@ class DialogViewModel(
         viewModelScope.launch(Dispatchers.IO) {
 
             database.reviewDAO().deleteImageById(newValue!!, userId!!)
-
+            //getReview()
         }
     }
 
@@ -97,13 +97,14 @@ class DialogViewModel(
                         id.toInt(), name!!, rating!!.toFloat(), review!!, counter
                     )
                 )
-            getReviewByLimit()
+            getReview()
         }
 
 
     }
 
     suspend fun getReviewByLimit(): MutableLiveData<ArrayList<ReviewImage>> {
+        Log.d("AASS", "SS")
         reviewData.clear()
         mutableLiveDataReviewImage.value?.clear()
         val profileDao = database.reviewDAO().loadAllReviewsBylimit()
@@ -134,8 +135,9 @@ class DialogViewModel(
         reviewData.clear()
         mutableLiveDataReviewImage.value?.clear()
         val profileDao = database.reviewDAO().loadAllReviews()
-        if (profileDao.size == 0) {
+        if (profileDao.isEmpty()) {
             mutableLiveDataReviewImage.postValue(reviewData)
+
             return mutableLiveDataReviewImage
         }
         for (data in profileDao) {
@@ -151,7 +153,6 @@ class DialogViewModel(
             )
             mutableLiveDataReviewImage.postValue(reviewData)
         }
-
 
         return mutableLiveDataReviewImage
 

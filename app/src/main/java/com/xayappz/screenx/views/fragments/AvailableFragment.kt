@@ -1,6 +1,7 @@
 package com.xayappz.screenx.views.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,21 +13,27 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.xayappz.screenx.R
 import com.xayappz.screenx.adapters.ItemAdapter
-import com.xayappz.screenx.databinding.FragmentAvailableBinding
+import com.xayappz.screenx.adapters.SectionAdapter
+import com.xayappz.screenx.databinding.ABinding
 import com.xayappz.screenx.models.Items
-import com.xayappz.screenx.utils.ItemLongClickListener
-import com.xayappz.screenx.utils.SelectedSingleListener
-import com.xayappz.screenx.utils.UnSelectAllListener
-import com.xayappz.screenx.utils.unSelectedSingleListener
+import com.xayappz.screenx.models.Section
+import com.xayappz.screenx.utils.*
 import com.xayappz.screenx.viewmodels.ItemViewModel
+import kotlinx.android.synthetic.main.a.*
 
 class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener,
-    SelectedSingleListener, unSelectedSingleListener {
-    lateinit var binding: FragmentAvailableBinding
+    SelectedSingleListener, unSelectedSingleListener, ItemLongClickListenerNew,ItemSingleSelectedNew {
+    lateinit var binding: ABinding
+    var listSections: ArrayList<Section> = ArrayList()
+
     lateinit var recyclerManager: RecyclerView.LayoutManager
     var data: ArrayList<Items> = ArrayList()
     var datafromAdapterAll: MutableList<String> = ArrayList()
     var datafromAdapter: MutableList<String> = ArrayList()
+
+    var datafromAdapterNEW: MutableList<String> = ArrayList()
+    var allData: MutableList<String> = ArrayList()
+
     private var isAllSelected: Boolean = false
     private var isFromSingle: Boolean = false
     private var selectionEnabled: Boolean = false
@@ -37,17 +44,26 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentAvailableBinding.inflate(inflater)
+        binding = ABinding.inflate(inflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Log.d("SS", "SASDdsa")
         itemViewModel = ViewModelProvider(this)[ItemViewModel::class.java]
         loadDummyData()
+        loadSections()
+
         itemViewModel.getDataFromSelected().observe(requireActivity(), Observer {
             datafromAdapter.clear()
             datafromAdapter.addAll(it)
+
+        })
+
+        itemViewModel.getDataFromSelectedNEW().observe(requireActivity(), Observer {
+            datafromAdapterNEW.clear()
+            datafromAdapterNEW.addAll(it)
 
         })
 
@@ -55,7 +71,10 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
         binding.closeSelection.setOnClickListener {
             selectionEnabled = false
             isFromSingle = false
-            binding.hiddenItems.visibility = View.GONE
+            closeSelection.visibility = View.GONE
+            checkbox_select_all.visibility = View.GONE
+            disableItem.visibility = View.GONE
+
             binding.checkboxSelectAll.isChecked = false
             binding.itemRecycler.adapter = ItemAdapter(
                 data,
@@ -72,43 +91,55 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
 
         }
 
-        recyclerManager = LinearLayoutManager(activity)
-        binding.itemRecycler.apply {
-            adapter =
-                ItemAdapter(
-                    data,
-                    this@AvailableFragment,
-                    isChecked = false,
-                    isAnyUnchecked = false,
-                    isSelectAll = false,
-                    unSelectAllListener = this@AvailableFragment,
-                    selectionEnabled = selectionEnabled,
-                    singleListener = this@AvailableFragment,
-                    unsingleListener = this@AvailableFragment
-                )
-            layoutManager = recyclerManager
-
-        }
+//        recyclerManager = LinearLayoutManager(activity)
+//        binding.itemRecycler.apply {
+//            adapter =
+//                ItemAdapter(
+//                    data,
+//                    this@AvailableFragment,
+//                    isChecked = false,
+//                    isAnyUnchecked = false,
+//                    isSelectAll = false,
+//                    unSelectAllListener = this@AvailableFragment,
+//                    selectionEnabled = selectionEnabled,
+//                    singleListener = this@AvailableFragment,
+//                    unsingleListener = this@AvailableFragment
+//                )
+//            layoutManager = recyclerManager
+//
+//        }
 
 
         binding.checkboxSelectAll.setOnCheckedChangeListener { buttonView, isChecked ->
             isAllSelected = isChecked
-            if (!isAllSelected) {
-                itemViewModel.removeAll()
+//            if (!isAllSelected) {
+//                itemViewModel.removeAll()
+//
+//            }
+//            binding.itemRecycler.adapter =
+//                ItemAdapter(
+//                    data,
+//                    this@AvailableFragment,
+//                    false,
+//                    isAnyUnchecked = false,
+//                    isSelectAll = isChecked,
+//                    unSelectAllListener = this@AvailableFragment,
+//                    selectionEnabled = selectionEnabled,
+//                    singleListener = this@AvailableFragment,
+//                    unsingleListener = this@AvailableFragment
+//                )
 
+            binding.itemRecycler.apply {
+                adapter =
+                    SectionAdapter(
+                        this@AvailableFragment,
+                        isAllSelected,
+                        listSections,
+                        this@AvailableFragment,
+
+                        )
+                layoutManager = recyclerManager
             }
-            binding.itemRecycler.adapter =
-                ItemAdapter(
-                    data,
-                    this@AvailableFragment,
-                    false,
-                    isAnyUnchecked = false,
-                    isSelectAll = isChecked,
-                    unSelectAllListener = this@AvailableFragment,
-                    selectionEnabled = selectionEnabled,
-                    singleListener = this@AvailableFragment,
-                    unsingleListener = this@AvailableFragment
-                )
 
         }
         binding.disableItem.setOnClickListener {
@@ -116,12 +147,15 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
                 for (Data in data) {
                     datafromAdapterAll.add(Data.itemName)
                 }
-                Toast.makeText(activity, datafromAdapterAll.toString(), Toast.LENGTH_SHORT).show()
+
+
+
+                Toast.makeText(activity, allData.toString(), Toast.LENGTH_SHORT).show()
                 datafromAdapterAll.clear()
             } else {
                 if (isFromSingle) {
-                    if (datafromAdapter.size > 0)
-                        Toast.makeText(activity, datafromAdapter.toString(), Toast.LENGTH_SHORT)
+                    if (datafromAdapterNEW.size > 0)
+                        Toast.makeText(activity, datafromAdapterNEW.toString(), Toast.LENGTH_SHORT)
                             .show()
 
                 }
@@ -129,9 +163,62 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
         }
     }
 
+    private fun loadSections() {
+        recyclerManager = LinearLayoutManager(activity)
+
+        var firstCategory = "Casual Wear"
+        var secondCategory = "Winter Wear"
+        var thirdCategory = "Summer Wear"
+
+
+        var dataOne: ArrayList<String> = ArrayList();
+        var dataTwo: ArrayList<String> = ArrayList();
+        var dataThree: ArrayList<String> = ArrayList();
+
+
+        dataOne.add("Casual Dress 1")
+        dataOne.add("Casual Dress 2")
+        dataOne.add("Casual Dress 3")
+
+
+        dataTwo.add("Winter Dress 1")
+        dataTwo.add("Winter Dress 3")
+        dataTwo.add("Winter Dress 3")
+
+
+        dataThree.add("Summer Dress 1")
+        dataThree.add("Summer Dress 2")
+        dataThree.add("Summer Dress 3")
+
+        allData.addAll(dataOne)
+        allData.addAll(dataTwo)
+        allData.addAll(dataThree)
+
+        listSections.add(Section(firstCategory, dataOne))
+        listSections.add(Section(secondCategory, dataTwo))
+        listSections.add(Section(thirdCategory, dataThree))
+
+        Log.d("listsections", listSections.toString())
+
+        binding.itemRecycler.apply {
+            adapter =
+                SectionAdapter(
+                    this@AvailableFragment,
+                    false,
+                    listSections,
+                    this@AvailableFragment,
+
+                    )
+            layoutManager = recyclerManager
+        }
+
+    }
+
+
     private fun loadDummyData() {
 
-        for (i in 1..5) {
+        for (i in 1..9) {
+
             var classObject = Items()
             classObject.itemName = getString(R.string.card_text) + i
             classObject.id = i.toString()
@@ -143,7 +230,9 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
 
     override fun onLongItemClicked(items: Items): Boolean {
         selectionEnabled = true
-        binding.hiddenItems.visibility = View.VISIBLE
+        closeSelection.visibility = View.VISIBLE
+        checkbox_select_all.visibility = View.VISIBLE
+        disableItem.visibility = View.VISIBLE
         binding.itemRecycler.adapter = ItemAdapter(
             data,
             this@AvailableFragment,
@@ -160,6 +249,7 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
 
     override fun onAllUnSelectClicked(allSelected: Boolean) {
         isAllSelected = false
+
         binding.checkboxSelectAll.isChecked = false
         binding.itemRecycler.adapter = ItemAdapter(
             data,
@@ -189,6 +279,25 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
     override fun onUnSingleSelected(data: String) {
         itemViewModel.removeDataFromSelected(data)
     }
+
+    override fun onLongItemClicked(longPressed: Boolean): Boolean {
+        selectionEnabled = true
+        closeSelection.visibility = View.VISIBLE
+        checkbox_select_all.visibility = View.VISIBLE
+        disableItem.visibility = View.VISIBLE
+
+        return true
+    }
+
+
+
+    override fun onSingleClickNEW(data: String) {
+        if (!isAllSelected) {
+            isFromSingle = true
+            itemViewModel.addDataFromSelectedNEW(data)
+        } else {
+            isFromSingle = false
+        }    }
 
 
 }

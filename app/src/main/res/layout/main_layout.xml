@@ -2,28 +2,19 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_height="@dimen/_290sdp">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/GuidelineMaster"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:constraint_referenced_ids="ViewPagerId,indicatorId"
-            app:layout_constraintGuide_percent="0.55" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/ViewPagerId"
             android:layout_width="match_parent"
-            app:layout_constraintBottom_toTopOf="@id/GuidelineMaster"
-            android:layout_height="wrap_content"
-          >
+            android:layout_height="@dimen/_290sdp"
+            app:layout_constraintTop_toTopOf="parent">
 
         </androidx.viewpager2.widget.ViewPager2>
 
@@ -32,7 +23,7 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/_28sdp"
             app:ci_gravity="left|center_horizontal|center"
-            app:layout_constraintBottom_toTopOf="@id/GuidelineMaster"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:behavior_hideable="false"
-    app:behavior_peekHeight="@dimen/_260sdp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
-
 
 
     <androidx.core.widget.NestedScrollView
@@ -17,6 +15,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/_120sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_alignParentBottom="true"
             android:layout_height="wrap_content"
             android:background="@color/grey"
             app:behavior_hideable="false">
@@ -26,7 +27,7 @@
                 android:id="@+id/cardView"
                 style="@style/CardView"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_170sdp"
+                android:layout_height="0dp"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +65,6 @@
 
                         app:layout_constraintStart_toStartOf="@+id/appCompatButton"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintVertical_bias="0.717"
                         app:srcCompat="@drawable/ic_baseline_info_24" />
 
                     <androidx.appcompat.widget.AppCompatButton
@@ -138,9 +138,9 @@
                         style="@style/TextViewStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_4sdp"
                         android:padding="@dimen/_3sdp"
                         android:text="@string/sellingP"
-
                         app:layout_constraintStart_toStartOf="@+id/guidline1"
                         app:layout_constraintTop_toBottomOf="@+id/loreum" />
 
@@ -148,15 +148,14 @@
                         android:id="@+id/XU"
 
                         style="@style/TextViewStyle"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_2sdp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
                         android:padding="0dp"
                         android:text=" X U."
                         app:layout_constraintBottom_toBottomOf="@+id/price"
                         app:layout_constraintStart_toEndOf="@+id/price"
-                        app:layout_constraintTop_toTopOf="@+id/price"
-                        app:layout_constraintVertical_bias="1.0"
                         app:textAllCaps="false" />
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -164,15 +163,16 @@
                         style="@style/SellingP"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_6sdp"
+                        android:layout_marginStart="@dimen/_3sdp"
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:padding="0dp"
+
                         android:singleLine="true"
                         android:text="@string/price"
                         app:layout_constraintEnd_toEndOf="@+id/sellingprice"
                         app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="@+id/guidline1"
+                        app:layout_constraintStart_toStartOf="@+id/sellingprice"
                         app:layout_constraintTop_toBottomOf="@+id/sellingprice"
                         app:layout_constraintWidth_default="wrap" />
 
@@ -182,9 +182,9 @@
                         style="@style/TextViewStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="8dp"
-                        android:padding="@dimen/_1sdp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="16dp"
+                        android:padding="0dp"
                         android:text="@string/retailP"
                         app:layout_constraintStart_toEndOf="@+id/sellingprice"
                         app:layout_constraintTop_toBottomOf="@+id/loreum" />
@@ -197,15 +197,17 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_6sdp"
                         android:ellipsize="end"
-
                         android:gravity="left"
                         android:maxLines="1"
-                        android:padding="3dp"
+                        android:padding="0dp"
                         android:text="@string/rprice"
                         app:layout_constraintBottom_toBottomOf="@+id/price"
+                        app:layout_constraintEnd_toEndOf="@+id/retailprice"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="@+id/retailprice"
                         app:layout_constraintTop_toTopOf="@+id/price"
-                        app:layout_constraintVertical_bias="0.8" />
+                        app:layout_constraintVertical_bias="0.9"
+                        app:layout_constraintWidth_default="wrap" />
 
                     <View
                         android:id="@+id/view"
@@ -215,10 +217,10 @@
                         android:background="@color/grey"
                         app:layout_constraintBottom_toBottomOf="@+id/rprice"
                         app:layout_constraintEnd_toStartOf="@+id/size"
-                        app:layout_constraintHorizontal_bias="0.497"
+                        app:layout_constraintHorizontal_bias="0.503"
                         app:layout_constraintStart_toEndOf="@+id/rprice"
                         app:layout_constraintTop_toTopOf="@+id/rprice"
-                        app:layout_constraintVertical_bias="0.92" />
+                        app:layout_constraintVertical_bias="0.551" />
 
                     <View
 
@@ -238,6 +240,7 @@
                         android:layout_width="wrap_content"
 
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:padding="@dimen/_3sdp"
 
                         android:text="@string/size"
@@ -248,31 +251,38 @@
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/sizeM"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-
+                        android:ellipsize="end"
+                        android:maxLines="1"
                         android:padding="3dp"
                         android:text="@string/sizeM"
+                        android:gravity="center"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/rprice"
+
                         app:layout_constraintEnd_toStartOf="@+id/guidline2"
-                        app:layout_constraintTop_toBottomOf="@+id/size"
-                        app:layout_constraintVertical_bias="0.083" />
+                        app:layout_constraintStart_toStartOf="@+id/size"
+                        app:layout_constraintTop_toBottomOf="@+id/size" />
 
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/sizeUS"
-                        android:layout_width="17dp"
-
-                        android:layout_height="16dp"
-
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="end"
+                        android:maxLines="1"
                         android:text="@string/sizeUS"
                         android:textSize="@dimen/_10sdp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@+id/sizeM"
                         app:layout_constraintEnd_toStartOf="@+id/sizeM"
-                        app:layout_constraintTop_toTopOf="@+id/sizeM" />
+                        app:layout_constraintHorizontal_bias="0.796"
+                        app:layout_constraintStart_toEndOf="@+id/view"
+                        app:layout_constraintTop_toBottomOf="@+id/size"
+                        app:layout_constraintVertical_bias="0.444"
+                        app:layout_constraintWidth_default="wrap" />
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guidline1"
@@ -662,6 +672,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:scrollbars="vertical"
+                        tools:listitem="@layout/review_item"
                         app:layout_constraintEnd_toStartOf="@id/guidline8"
                         app:layout_constraintStart_toStartOf="@id/guidline7"
                         app:layout_constraintTop_toBottomOf="@+id/reviewTV" />
