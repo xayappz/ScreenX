@@ -25,7 +25,7 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
     ItemSingleSelectedNew, ItemSingleunSELECTNew, unCHECKSELECTALL {
     lateinit var binding: FragmentAvailableBinding
     var listSections: ArrayList<Section> = ArrayList()
-
+//
     lateinit var recyclerManager: RecyclerView.LayoutManager
     var data: ArrayList<Items> = ArrayList()
     var datafromAdapterAll: MutableList<String> = ArrayList()
@@ -131,7 +131,7 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
                 {}
 //                itemViewModel.removeAllNEW()
 
-               // datafromAdapterNEW.clear()
+                // datafromAdapterNEW.clear()
 
             } else {
                 for (data in allData) {
@@ -139,7 +139,7 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
                     itemViewModel.addDataFromSelectedNEW(data)
 
                 }
-              //  datafromAdapterNEW.clear()
+                //  datafromAdapterNEW.clear()
 
             }
 
@@ -210,7 +210,7 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
 
             } else {
                 if(datafromAdapterNEW.size>0)
-                Toast.makeText(activity, datafromAdapterNEW.toString(), Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, datafromAdapterNEW.toString(), Toast.LENGTH_SHORT).show()
 
             }
 //            if (datafromAdapterNEW.size > 0) {
