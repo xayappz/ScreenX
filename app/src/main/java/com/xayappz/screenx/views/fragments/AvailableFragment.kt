@@ -25,7 +25,8 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
     ItemSingleSelectedNew, ItemSingleunSELECTNew, unCHECKSELECTALL {
     lateinit var binding: FragmentAvailableBinding
     var listSections: ArrayList<Section> = ArrayList()
-//
+
+    //
     lateinit var recyclerManager: RecyclerView.LayoutManager
     var data: ArrayList<Items> = ArrayList()
     var datafromAdapterAll: MutableList<String> = ArrayList()
@@ -38,6 +39,10 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
     private var isFromSingle: Boolean = false
     private var selectionEnabled: Boolean = false
     lateinit var itemViewModel: ItemViewModel
+
+    companion object {
+        var selectedAll: Boolean = false;
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -120,6 +125,7 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
 
 
         binding.checkboxSelectAll.setOnCheckedChangeListener { buttonView, isChecked ->
+            selectedAll = isChecked
             isAllSelected = isChecked
 
 
@@ -127,59 +133,60 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
                 "ISSSA", isAllSelected.toString()
             )
             if (!isAllSelected) {
-                if(isOnlyunSelect)
-                {}
+                if (isOnlyunSelect) {
+                }
 //                itemViewModel.removeAllNEW()
 
                 // datafromAdapterNEW.clear()
 
             } else {
                 for (data in allData) {
-                    Log.d("ADAATAT",data)
+                    Log.d("ADAATAT", data)
                     itemViewModel.addDataFromSelectedNEW(data)
 
                 }
                 //  datafromAdapterNEW.clear()
 
             }
+            binding.itemRecycler.adapter?.notifyDataSetChanged()
 
-            if (isOnlyunSelect) {
-
-                binding.itemRecycler.apply {
-                    adapter =
-                        SectionAdapter(
-                            this@AvailableFragment,
-                            isAllSelected,
-                            listSections,
-                            selectionEnabled,
-                            isOnlyunSelect,
-                            xxString,
-                            this@AvailableFragment,
-                            "", this@AvailableFragment,
-                            this@AvailableFragment
-
-                        )
-                    layoutManager = recyclerManager
-                }
-
-            } else {
-                binding.itemRecycler.apply {
-                    adapter =
-                        SectionAdapter(
-                            this@AvailableFragment,
-                            isAllSelected,
-                            listSections,
-                            selectionEnabled,
-                            isOnlyunSelect,
-                            xxString,
-                            this@AvailableFragment,
-                            "",
-                            this@AvailableFragment,
-                            this@AvailableFragment
-                        )
-                    layoutManager = recyclerManager
-                }
-            }
+//            if (isOnlyunSelect) {
+//
+//                binding.itemRecycler.apply {
+//                    adapter =
+//                        SectionAdapter(
+//                            this@AvailableFragment,
+//                            isAllSelected,
+//                            listSections,
+//                            selectionEnabled,
+//                            isOnlyunSelect,
+//                            xxString,
+//                            this@AvailableFragment,
+//                            "", this@AvailableFragment,
+//                            this@AvailableFragment
+//
+//                        )
+//                    layoutManager = recyclerManager
+//                }
+//
+//            } else {
+//                binding.itemRecycler.apply {
+//                    adapter =
+//                        SectionAdapter(
+//                            this@AvailableFragment,
+//                            isAllSelected,
+//                            listSections,
+//                            selectionEnabled,
+//                            isOnlyunSelect,
+//                            xxString,
+//                            this@AvailableFragment,
+//                            "",
+//                            this@AvailableFragment,
+//                            this@AvailableFragment
+//                        )
+//                    layoutManager = recyclerManager
+//                }
+//            }
 //            if (!isAllSelected) {
 //                itemViewModel.removeAll()
 //
@@ -209,8 +216,9 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
                 Toast.makeText(activity, datafromAdapterNEW.toString(), Toast.LENGTH_SHORT).show()
 
             } else {
-                if(datafromAdapterNEW.size>0)
-                    Toast.makeText(activity, datafromAdapterNEW.toString(), Toast.LENGTH_SHORT).show()
+                if (datafromAdapterNEW.size > 0)
+                    Toast.makeText(activity, datafromAdapterNEW.toString(), Toast.LENGTH_SHORT)
+                        .show()
 
             }
 //            if (datafromAdapterNEW.size > 0) {
@@ -411,7 +419,7 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
 
         isOnlyunSelect = true
         isAllSelected = false
-        xxString=data
+        xxString = data
         //allData.remove(data)
         itemViewModel.removeDataFromSelectedNEW(data)
         checkbox_select_all.isChecked = false

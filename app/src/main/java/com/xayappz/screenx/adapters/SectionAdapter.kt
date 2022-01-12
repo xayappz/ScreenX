@@ -12,6 +12,7 @@ import com.xayappz.screenx.utils.ItemLongClickListenerNew
 import com.xayappz.screenx.utils.ItemSingleSelectedNew
 import com.xayappz.screenx.utils.ItemSingleunSELECTNew
 import com.xayappz.screenx.utils.unCHECKSELECTALL
+import com.xayappz.screenx.views.fragments.AvailableFragment
 
 class SectionAdapter(
     var ItemLongClickListener: ItemLongClickListenerNew,
@@ -47,7 +48,7 @@ class SectionAdapter(
         sec = listsection.get(position)
         var items: ArrayList<String> = ArrayList()
         items.addAll(sec.sectionItems)
-
+        SelectAll = AvailableFragment.selectedAll
         holder.recyclerSectionData.adapter =
             SectionChildAdapter(
                 this,

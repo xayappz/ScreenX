@@ -61,7 +61,7 @@ class SectionChildAdapter(
                     holder.checkBox.isChecked = true
                     holder.checkBox.visibility = View.VISIBLE
 
-                }else{
+                } else {
                     holder.checkBox.isChecked = false
                     holder.checkBox.visibility = View.VISIBLE
 
