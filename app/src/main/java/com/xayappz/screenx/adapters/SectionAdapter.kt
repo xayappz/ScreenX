@@ -87,7 +87,7 @@ class SectionAdapter(
         ItemSingleunSELECTNew.onSingleunClickNEW(data, position)
         xxString = data
         Log.d("SADa", xxString)
-       // notifyItemChanged(position)
+        // notifyItemChanged(position)
 
     }
 
