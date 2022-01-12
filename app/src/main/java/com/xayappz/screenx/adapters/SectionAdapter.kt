@@ -47,7 +47,6 @@ class SectionAdapter(
         sec = listsection.get(position)
         var items: ArrayList<String> = ArrayList()
         items.addAll(sec.sectionItems)
-        Log.d("SOBUA", items.size.toString() + "SS")
 
         holder.recyclerSectionData.adapter =
             SectionChildAdapter(
@@ -87,8 +86,9 @@ class SectionAdapter(
     override fun onSingleunClickNEW(data: String, position: Int) {
         ItemSingleunSELECTNew.onSingleunClickNEW(data, position)
         xxString = data
-
+        Log.d("SADa", xxString)
        // notifyItemChanged(position)
+
     }
 
     override fun onunCHECKSELECTALL() {

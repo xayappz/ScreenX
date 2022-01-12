@@ -127,16 +127,19 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
                 "ISSSA", isAllSelected.toString()
             )
             if (!isAllSelected) {
-                itemViewModel.removeAllNEW()
+                if(isOnlyunSelect)
+                {}
+//                itemViewModel.removeAllNEW()
 
-                datafromAdapterNEW.clear()
+               // datafromAdapterNEW.clear()
 
             } else {
                 for (data in allData) {
+                    Log.d("ADAATAT",data)
                     itemViewModel.addDataFromSelectedNEW(data)
 
                 }
-                datafromAdapterNEW.clear()
+              //  datafromAdapterNEW.clear()
 
             }
 
@@ -199,9 +202,11 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
         binding.disableItem.setOnClickListener {
             Log.d("CLICKKCK", isAllSelected.toString())
             Log.d("allData", allData.toString())
+
+
             if (isAllSelected) {
 
-                Toast.makeText(activity, allData.toString(), Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, datafromAdapterNEW.toString(), Toast.LENGTH_SHORT).show()
 
             } else {
                 if(datafromAdapterNEW.size>0)
@@ -265,11 +270,6 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
         dataThree.add("Summer Dress 1")
         dataThree.add("Summer Dress 2")
         dataThree.add("Summer Dress 3")
-        dataThree.add("Summer Dress 3")
-        dataThree.add("Summer Dress 3")
-        dataThree.add("Summer Dress 3")
-        dataThree.add("Summer Dress 3")
-        dataThree.add("Summer Dress 8")
 
         allData.addAll(dataOne)
         allData.addAll(dataTwo)
@@ -411,6 +411,8 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
 
         isOnlyunSelect = true
         isAllSelected = false
+        xxString=data
+        //allData.remove(data)
         itemViewModel.removeDataFromSelectedNEW(data)
         checkbox_select_all.isChecked = false
         //binding.itemRecycler.adapter?.notifyItemChanged(pos)

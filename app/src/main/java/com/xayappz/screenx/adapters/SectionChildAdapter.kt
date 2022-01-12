@@ -44,6 +44,8 @@ class SectionChildAdapter(
     override fun onBindViewHolder(holder: viewHolder, position: Int) {
         Log.d("SDSDAd", longPos + "SS")
         Log.d("selectionEnabled", selectionEnabled.toString() + "SS")
+        Log.d("SelectAll", SelectAll.toString() + "SS")
+        Log.d("xxString", xxString + "")
         holder.item_name.text = listsectionData.get(position)
         if (isOnlyunSelect) {
 
@@ -52,6 +54,20 @@ class SectionChildAdapter(
         if (SelectAll) {
             holder.checkBox.isChecked = true
             holder.checkBox.visibility = View.VISIBLE
+        } else {
+            if (selectionEnabled && !xxString.isNullOrEmpty()) {
+
+                if (!holder.item_name.text.equals(xxString)) {
+                    holder.checkBox.isChecked = true
+                    holder.checkBox.visibility = View.VISIBLE
+
+                }else{
+                    holder.checkBox.isChecked = false
+                    holder.checkBox.visibility = View.VISIBLE
+
+                }
+            }
+
         }
         holder.checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
@@ -67,12 +83,14 @@ class SectionChildAdapter(
                         holder.item_name.text.toString(),
                         position
                     )
+                } else {
+                    holder.checkBox.isChecked = false
+                    ItemSingleunSELECTNew.onSingleunClickNEW(
+                        holder.item_name.text.toString(),
+                        position
+                    )
                 }
-                holder.checkBox.isChecked = false
-                ItemSingleunSELECTNew.onSingleunClickNEW(
-                    holder.item_name.text.toString(),
-                    position
-                )
+
 
             }
 
@@ -81,6 +99,7 @@ class SectionChildAdapter(
 
 
         if (selectionEnabled && !longPos.isNullOrEmpty()) {
+            Log.d("ASDdd", "gg")
             holder.checkBox.visibility = View.VISIBLE
             if (holder.item_name.text.equals(longPos)) {
                 holder.checkBox.isChecked = true
