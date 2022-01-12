@@ -109,7 +109,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/day"
                     app:layout_constraintHeight_default="wrap"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
-                    app:layout_constraintStart_toStartOf="@+id/guideline6"
+                    app:layout_constraintStart_toStartOf="@+id/brandName"
                     app:layout_constraintWidth_default="wrap" />
 
                 <androidx.appcompat.widget.AppCompatTextView
