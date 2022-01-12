@@ -265,6 +265,11 @@ class AvailableFragment : Fragment(), ItemLongClickListener, UnSelectAllListener
         dataThree.add("Summer Dress 1")
         dataThree.add("Summer Dress 2")
         dataThree.add("Summer Dress 3")
+        dataThree.add("Summer Dress 3")
+        dataThree.add("Summer Dress 3")
+        dataThree.add("Summer Dress 3")
+        dataThree.add("Summer Dress 3")
+        dataThree.add("Summer Dress 8")
 
         allData.addAll(dataOne)
         allData.addAll(dataTwo)

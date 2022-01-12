@@ -93,13 +93,13 @@
             app:layout_constraintBottom_toTopOf="@+id/endguide"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@id/startguide" />
+            app:layout_constraintTop_toBottomOf="@id/disableItem" />
 
         <androidx.constraintlayout.widget.Group
             android:id="@+id/hiddenItems"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:visibility="visible"
             app:constraint_referenced_ids="disableItem,checkbox_select_all,closeSelection" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -125,7 +125,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:constraint_referenced_ids="itemRecycler"
-            app:layout_constraintGuide_percent="0.25" />
+            app:layout_constraintGuide_percent="0.23" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

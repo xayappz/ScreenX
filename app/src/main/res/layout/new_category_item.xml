@@ -100,18 +100,15 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:layout_marginStart="@dimen/_3sdp"
                     android:padding="0dp"
                     android:text="@string/price"
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="@id/guideline4"
                     app:layout_constraintBottom_toTopOf="@+id/guideline4"
-
                     app:layout_constraintEnd_toStartOf="@+id/day"
                     app:layout_constraintHeight_default="wrap"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="@+id/guideline6"
                     app:layout_constraintWidth_default="wrap" />
 
@@ -125,10 +122,8 @@
                     android:padding="0dp"
                     android:singleLine="true"
                     android:text="Day"
-
                     app:layout_constraintBottom_toTopOf="@+id/guideline4"
                     app:layout_constraintEnd_toStartOf="@+id/us"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/amt"
                     app:layout_constraintWidth_default="wrap" />
 
