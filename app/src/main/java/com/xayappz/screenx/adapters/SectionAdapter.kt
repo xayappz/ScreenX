@@ -10,16 +10,24 @@ import com.xayappz.screenx.R
 import com.xayappz.screenx.models.Section
 import com.xayappz.screenx.utils.ItemLongClickListenerNew
 import com.xayappz.screenx.utils.ItemSingleSelectedNew
+import com.xayappz.screenx.utils.ItemSingleunSELECTNew
+import com.xayappz.screenx.utils.unCHECKSELECTALL
 
 class SectionAdapter(
     var ItemLongClickListener: ItemLongClickListenerNew,
     var SelectAll: Boolean,
     var listsection: ArrayList<Section>,
-    var ItemSingleSelectedNew: ItemSingleSelectedNew
+    var selectionEnabled: Boolean,
+    var isOnlyunSelect: Boolean,
+    var xxString: String,
+    var ItemSingleSelectedNew: ItemSingleSelectedNew,
+    var longPos: String,
+    var ItemSingleunSELECTNew: ItemSingleunSELECTNew,
+    var unCHECKSELECTALL: unCHECKSELECTALL
 
 
 ) : RecyclerView.Adapter<SectionAdapter.viewHolder>(), ItemLongClickListenerNew,
-    ItemSingleSelectedNew {
+    ItemSingleSelectedNew, ItemSingleunSELECTNew, unCHECKSELECTALL {
 
     inner class viewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var sectionName: TextView = itemView.findViewById(R.id.categoryName)
@@ -41,7 +49,19 @@ class SectionAdapter(
         items.addAll(sec.sectionItems)
         Log.d("SOBUA", items.size.toString() + "SS")
 
-        holder.recyclerSectionData.adapter = SectionChildAdapter(this, items, SelectAll,this)
+        holder.recyclerSectionData.adapter =
+            SectionChildAdapter(
+                this,
+                items,
+                SelectAll,
+                this,
+                selectionEnabled,
+                longPos,
+                this,
+                isOnlyunSelect,
+                xxString,
+                unCHECKSELECTALL
+            )
     }
 
     override fun getItemCount(): Int {
@@ -49,13 +69,31 @@ class SectionAdapter(
     }
 
 
-    override fun onLongItemClicked(longPressed: Boolean): Boolean {
-        ItemLongClickListener.onLongItemClicked(true)
+    override fun onLongItemClicked(longPressed: Boolean, pos: String, intpos: Int): Boolean {
+        Log.d("SSSSSadasdsad", pos.toString())
+        ItemLongClickListener.onLongItemClicked(true, pos, intpos)
+        selectionEnabled = true
+        longPos = pos
+        //notifyItemChanged(intpos)
+        notifyDataSetChanged()
         return true
     }
 
-    override fun onSingleClickNEW(data: String) {
-        ItemSingleSelectedNew.onSingleClickNEW(data)
+    override fun onSingleClickNEW(data: String, pos: Int, state: Boolean) {
+        Log.d("VVCXZ", data)
+        ItemSingleSelectedNew.onSingleClickNEW(data, pos, state)
     }
+
+    override fun onSingleunClickNEW(data: String, position: Int) {
+        ItemSingleunSELECTNew.onSingleunClickNEW(data, position)
+        xxString = data
+
+       // notifyItemChanged(position)
+    }
+
+    override fun onunCHECKSELECTALL() {
+        unCHECKSELECTALL.onunCHECKSELECTALL()
+    }
+
 
 }

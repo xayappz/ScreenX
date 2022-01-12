@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
+<layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -103,23 +103,17 @@
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/amt"
                     style="@style/Heading2"
-                    android:layout_width="0dp"
+                    android:layout_width="32dp"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:padding="0dp"
-                    app:layout_constraintHeight_default="wrap"
                     android:text="@string/price"
-                    app:layout_constraintBottom_toBottomOf="@id/guideline4"
-                    app:layout_constraintHorizontal_chainStyle="spread"
-                    app:layout_constraintHorizontal_bias="0.0"
-
                     android:textSize="14sp"
                     android:textStyle="bold"
+
                     app:layout_constraintBottom_toTopOf="@+id/guideline4"
-                    app:layout_constraintEnd_toStartOf="@+id/day"
-                    app:layout_constraintStart_toStartOf="@+id/guideline6"
-                    app:layout_constraintWidth_default="wrap" />
+                    app:layout_constraintStart_toStartOf="@+id/brandName" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/day"
@@ -134,7 +128,6 @@
 
                     app:layout_constraintBottom_toTopOf="@+id/guideline4"
                     app:layout_constraintEnd_toStartOf="@+id/us"
-                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toEndOf="@+id/amt"
                     app:layout_constraintWidth_default="wrap" />
 
@@ -152,7 +145,6 @@
                     app:layout_constraintEnd_toStartOf="@+id/xs"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/day"
-                    app:layout_constraintVertical_bias="1.0"
                     app:layout_constraintWidth_default="wrap" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -169,7 +161,7 @@
                     app:layout_constraintEnd_toStartOf="@+id/ratt"
                     app:layout_constraintStart_toEndOf="@+id/us"
                     app:layout_constraintTop_toTopOf="@+id/us"
-                    app:layout_constraintVertical_bias="1.0" />
+                    />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/ratt"

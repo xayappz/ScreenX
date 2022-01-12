@@ -1,16 +1,17 @@
 package com.xayappz.screenx.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class ItemViewModel : ViewModel() {
     private var itemDataList: MutableLiveData<ArrayList<String>> =
         MutableLiveData<ArrayList<String>>()
-    private var itemDataListNEW: MutableLiveData<ArrayList<String>> =
-        MutableLiveData<ArrayList<String>>()
+    private var itemDataListNEW: MutableLiveData<HashSet<String>> =
+        MutableLiveData<HashSet<String>>()
 
     private var itemData: ArrayList<String> = ArrayList()
-    private var itemDataNEW: ArrayList<String> = ArrayList()
+    private var itemDataNEW: HashSet<String> = HashSet()
 
     fun getDataFromSelected(): MutableLiveData<ArrayList<String>> {
         return itemDataList
@@ -42,28 +43,32 @@ class ItemViewModel : ViewModel() {
 
 
 
-    fun getDataFromSelectedNEW(): MutableLiveData<ArrayList<String>> {
+    fun getDataFromSelectedNEW(): MutableLiveData<HashSet<String>> {
+
         return itemDataListNEW
 
     }
     fun addDataFromSelectedNEW(data: String) {
         itemDataNEW.add(data)
-        itemDataListNEW.postValue(itemDataNEW)
-        getDataFromSelected()
+        Log.d("SDSAD",data.toString())
+        itemDataListNEW.value=itemDataNEW
+        getDataFromSelectedNEW()
 
     }
 
     fun removeDataFromSelectedNEW(data: String) {
+        Log.d("NEWREMOCE",data)
         itemDataNEW.remove(data)
         itemDataListNEW.value?.remove(data)
         itemDataListNEW.postValue(itemDataNEW)
-        getDataFromSelected()
+        getDataFromSelectedNEW()
 
     }
 
     fun removeAllNEW() {
         itemDataNEW.clear()
         itemDataListNEW.value?.clear()
+        getDataFromSelectedNEW()
 
     }
 

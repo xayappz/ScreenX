@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ScresssssssssssssssssssssssssssssssssssssssssssssssssssssssssssenX</string>
+    <string name="app_name">ScreenX</string>
     <string name="card_text">Linen Dresses White\nNo Pattern </string>
     <string name="card_text_bestfit">Best Fit</string>
 
@@ -40,7 +40,7 @@
     <string name="disables_items_fragment">DISABLED ITEMS</string>
     <string name="available_items">Available Items</string>
     <string name="select_all">Select All</string>
-    <string name="disable_this">DISABLE THIS ITEM</string>
+    <string name="disable_this">\tDISABLE THIS ITEM</string>
     <string name="category">CATEGORY</string>
 
 

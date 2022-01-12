@@ -88,7 +88,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
 
-        app:constraint_referenced_ids="circleImageView,imageView6,textView"
+        app:constraint_referenced_ids="circleImageView,imageView6,textView,guideline2"
         app:layout_constraintGuide_percent="0.05"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -99,10 +99,20 @@
         android:layout_height="wrap_content"
 
         android:orientation="vertical"
-        app:constraint_referenced_ids="youtratingTv,textView"
+        app:constraint_referenced_ids="youtratingTv,textView,guideline2"
         app:layout_constraintGuide_percent="0.95"
         app:layout_constraintStart_toStartOf="parent" />
 
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/endguide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:orientation="horizontal"
+        app:constraint_referenced_ids="viewPager"
+        app:layout_constraintGuide_percent="1"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/rating"
@@ -214,8 +224,11 @@
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_constraintStart_toEndOf="parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/endguide"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabLayout">
 

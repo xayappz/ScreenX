@@ -37,6 +37,6 @@ class ItemActivity : AppCompatActivity() {
             tab.text = itemTabs[position]
         }.attach()
 
-
+        viewPager?.currentItem = 1
     }
 }
