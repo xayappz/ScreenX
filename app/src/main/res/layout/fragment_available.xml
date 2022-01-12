@@ -79,11 +79,12 @@
             android:textColor="@color/black"
             android:textSize="10sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/nameTv"
             app:layout_constraintBottom_toTopOf="@+id/startguide"
-            app:layout_constraintHorizontal_bias="0.161"
+            app:layout_constraintEnd_toEndOf="@+id/nameTv"
+            app:layout_constraintHorizontal_bias="0.208"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintTop_toBottomOf="@+id/nameTv" />
+            app:layout_constraintTop_toBottomOf="@+id/nameTv"
+            app:layout_constraintVertical_bias="0.15" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/itemRecycler"

@@ -58,7 +58,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8sdp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="28dp"
                     android:ellipsize="end"
                     android:gravity="left"
                     android:maxLines="2"
@@ -70,6 +70,7 @@
                     android:textSize="14sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toStartOf="@+id/guideline5"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/guideline6"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -87,8 +88,10 @@
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/amt"
                     app:layout_constraintEnd_toStartOf="@+id/guideline5"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="@+id/guideline6"
-                    app:layout_constraintTop_toBottomOf="@+id/item_name" />
+                    app:layout_constraintTop_toBottomOf="@+id/item_name"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/amt"
@@ -97,17 +100,18 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:maxLines="1"
+                    android:layout_marginStart="@dimen/_3sdp"
                     android:padding="0dp"
-                    app:layout_constraintHeight_default="wrap"
                     android:text="@string/price"
-                    app:layout_constraintBottom_toBottomOf="@id/guideline4"
-                    app:layout_constraintHorizontal_chainStyle="spread"
-                    app:layout_constraintHorizontal_bias="0.0"
-
                     android:textSize="14sp"
                     android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@id/guideline4"
                     app:layout_constraintBottom_toTopOf="@+id/guideline4"
+
                     app:layout_constraintEnd_toStartOf="@+id/day"
+                    app:layout_constraintHeight_default="wrap"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="@+id/guideline6"
                     app:layout_constraintWidth_default="wrap" />
 
@@ -202,7 +206,7 @@
                     android:orientation="horizontal"
                     app:constraint_referenced_ids="amt,us,xs,ratt,views"
 
-                    app:layout_constraintGuide_percent="0.80" />
+                    app:layout_constraintGuide_percent="0.74" />
 
                 <CheckBox
                     android:id="@+id/checkBox"
