@@ -19,7 +19,6 @@ class ItemViewModel : ViewModel() {
     }
 
 
-
     fun addDataFromSelected(data: String) {
         itemData.add(data)
         itemDataList.postValue(itemData)
@@ -42,22 +41,22 @@ class ItemViewModel : ViewModel() {
     }
 
 
-
     fun getDataFromSelectedNEW(): MutableLiveData<HashSet<String>> {
-
+        Log.d("SIZE", itemDataListNEW.value?.size.toString())
         return itemDataListNEW
 
     }
+
     fun addDataFromSelectedNEW(data: String) {
         itemDataNEW.add(data)
-        Log.d("SDSAD",data.toString())
-        itemDataListNEW.value=itemDataNEW
+        Log.d("SDSAD", data.toString())
+        itemDataListNEW.postValue(itemDataNEW)
         getDataFromSelectedNEW()
 
     }
 
     fun removeDataFromSelectedNEW(data: String) {
-        Log.d("NEWREMOCE",data)
+        Log.d("NEWREMOCE", data)
         itemDataNEW.remove(data)
         itemDataListNEW.value?.remove(data)
         itemDataListNEW.postValue(itemDataNEW)
@@ -71,5 +70,11 @@ class ItemViewModel : ViewModel() {
         getDataFromSelectedNEW()
 
     }
+
+    fun getSizeData(): Int? {
+        return itemDataListNEW.value?.size
+
+    }
+
 
 }

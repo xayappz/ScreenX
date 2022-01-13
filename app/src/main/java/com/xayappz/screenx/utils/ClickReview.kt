@@ -59,6 +59,14 @@ interface ItemSingleunSELECTNew {
     fun onSingleunClickNEW(data: String, pos: Int)
 }
 
-interface unCHECKSELECTALL {
-    fun onunCHECKSELECTALL()
+interface isSelectedListener {
+    fun isSelectedReponse(selected: Boolean, data: String)
+}
+
+interface LongPressListener {
+    fun onLongItemClicked(): Boolean
+}
+
+interface AnyCheckinSelectAllMode {
+    fun ItemClicked(data: String)
 }
