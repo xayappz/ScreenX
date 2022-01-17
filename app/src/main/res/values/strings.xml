@@ -42,6 +42,7 @@
     <string name="select_all">Select All</string>
     <string name="disable_this">\tDISABLE THIS ITEM</string>
     <string name="category">CATEGORY</string>
+    <string name="delete_text">Please select any item to delete</string>
 
 
 </resources>

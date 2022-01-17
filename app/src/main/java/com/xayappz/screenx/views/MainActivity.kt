@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity(), ClickReview, DeleteReview, PassToActiv
         ViewPagerId.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         images_review_recyclerView
         indicatorId.setViewPager(ViewPagerId)
-        ViewPagerId.autoScroll(2000)
+        ViewPagerId.autoScroll(3000)
 
 
         val layoutManager = LinearLayoutManager(applicationContext)
@@ -227,7 +227,6 @@ class MainActivity : AppCompatActivity(), ClickReview, DeleteReview, PassToActiv
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
-                // Not necessary
             }
         })
 

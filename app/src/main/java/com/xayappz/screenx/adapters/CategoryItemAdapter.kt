@@ -13,9 +13,9 @@ import com.xayappz.screenx.utils.isSelectedListener
 
 class CategoryItemAdapter(
     var listsection: ArrayList<Section>,
-    var isSelectedListener: isSelectedListener,
-    var LongPressListener: LongPressListener,
-    var AnyCheckinSelectAllMode: AnyCheckinSelectAllMode
+    var isSelectedListener: isSelectedListener?,
+    var LongPressListener: LongPressListener?,
+    var AnyCheckinSelectAllMode: AnyCheckinSelectAllMode?
 
 ) : RecyclerView.Adapter<CategoryItemAdapter.viewHolder>() {
 
@@ -34,13 +34,19 @@ class CategoryItemAdapter(
 
         holder.sectionName.text = listsection.get(position).sectionName
         val sec: Section = listsection.get(position)
-        var items: ArrayList<String> = ArrayList()
+        val items: ArrayList<String> = ArrayList()
         items.addAll(sec.sectionItems)
         holder.recyclerSectionData.adapter =
-            AvailableItemAdapter(
-                listsectionData = items, isSelectedListener = isSelectedListener,
-                LongPressListener, AnyCheckinSelectAllMode
-            )
+            isSelectedListener?.let {
+                AnyCheckinSelectAllMode?.let { it1 ->
+                    LongPressListener?.let { it2 ->
+                        AvailableItemAdapter(
+                            listsectionData = items, isSelectedListener = it,
+                            it2, it1
+                        )
+                    }
+                }
+            }
     }
 
     override fun getItemCount(): Int {
