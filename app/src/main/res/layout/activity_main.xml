@@ -15,12 +15,12 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/_120sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_alignParentBottom="true"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="@dimen/_120sdp"
             android:background="@color/grey"
-            app:behavior_hideable="false">
+            app:behavior_hideable="false"
+            app:layout_constraintBottom_toBottomOf="parent">
 
 
             <androidx.cardview.widget.CardView
@@ -33,6 +33,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/_20sdp"
+
                     android:layout_height="match_parent">
 
 
@@ -63,6 +65,7 @@
 
                         app:layout_constraintStart_toStartOf="@+id/appCompatButton"
                         app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.631"
                         app:srcCompat="@drawable/ic_baseline_info_24" />
 
                     <androidx.appcompat.widget.AppCompatButton
@@ -136,7 +139,6 @@
                         style="@style/TextViewStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_4sdp"
                         android:padding="@dimen/_3sdp"
                         android:text="@string/sellingP"
                         app:layout_constraintStart_toStartOf="@+id/guidline1"
@@ -165,7 +167,6 @@
                         android:ellipsize="end"
                         android:maxLines="1"
                         android:padding="0dp"
-
                         android:singleLine="true"
                         android:text="@string/price"
                         app:layout_constraintEnd_toEndOf="@+id/sellingprice"
@@ -181,7 +182,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="12dp"
                         android:padding="0dp"
                         android:text="@string/retailP"
                         app:layout_constraintStart_toEndOf="@+id/sellingprice"
@@ -217,7 +218,7 @@
                         app:layout_constraintEnd_toStartOf="@+id/size"
                         app:layout_constraintHorizontal_bias="0.503"
                         app:layout_constraintStart_toEndOf="@+id/rprice"
-                        app:layout_constraintTop_toTopOf="@+id/rprice"
+                        app:layout_constraintTop_toBottomOf="@+id/loreum"
                         app:layout_constraintVertical_bias="0.551" />
 
                     <View
@@ -238,7 +239,6 @@
                         android:layout_width="wrap_content"
 
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
                         android:padding="@dimen/_3sdp"
 
                         android:text="@string/size"
@@ -252,10 +252,10 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:ellipsize="end"
+                        android:gravity="center"
                         android:maxLines="1"
                         android:padding="3dp"
                         android:text="@string/sizeM"
-                        android:gravity="center"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp"
                         android:textStyle="bold"
@@ -662,10 +662,10 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:scrollbars="vertical"
-                        tools:listitem="@layout/review_item"
                         app:layout_constraintEnd_toStartOf="@id/guidline8"
                         app:layout_constraintStart_toStartOf="@id/guidline7"
-                        app:layout_constraintTop_toBottomOf="@+id/reviewTV" />
+                        app:layout_constraintTop_toBottomOf="@+id/reviewTV"
+                        tools:listitem="@layout/review_item" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>

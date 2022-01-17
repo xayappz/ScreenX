@@ -5,44 +5,15 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class ItemViewModel : ViewModel() {
-    private var itemDataList: MutableLiveData<ArrayList<String>> =
-        MutableLiveData<ArrayList<String>>()
+
     private var itemDataListNEW: MutableLiveData<HashSet<String>> =
         MutableLiveData<HashSet<String>>()
 
-    private var itemData: ArrayList<String> = ArrayList()
     private var itemDataNEW: HashSet<String> = HashSet()
-
-    fun getDataFromSelected(): MutableLiveData<ArrayList<String>> {
-        return itemDataList
-
-    }
-
-
-    fun addDataFromSelected(data: String) {
-        itemData.add(data)
-        itemDataList.postValue(itemData)
-        getDataFromSelected()
-
-    }
-
-    fun removeDataFromSelected(data: String) {
-        itemData.remove(data)
-        itemDataList.value?.remove(data)
-        itemDataList.postValue(itemData)
-        getDataFromSelected()
-
-    }
-
-    fun removeAll() {
-        itemData.clear()
-        itemDataList.value?.clear()
-
-    }
 
 
     fun getDataFromSelectedNEW(): MutableLiveData<HashSet<String>> {
-        Log.d("SIZE", itemDataListNEW.value?.size.toString())
+        Log.d("SIZEData", itemDataListNEW.value?.size.toString())
         return itemDataListNEW
 
     }

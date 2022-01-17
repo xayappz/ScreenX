@@ -7,52 +7,54 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.xayappz.screenx.R
 import com.xayappz.screenx.adapters.CategoryItemAdapter
 import com.xayappz.screenx.databinding.FragmentAvailableBinding
-import com.xayappz.screenx.models.Items
 import com.xayappz.screenx.models.Section
 import com.xayappz.screenx.utils.AnyCheckinSelectAllMode
 import com.xayappz.screenx.utils.LongPressListener
 import com.xayappz.screenx.utils.isSelectedListener
 import com.xayappz.screenx.viewmodels.ItemViewModel
 
- class AvailableFrag : Fragment(), isSelectedListener, LongPressListener, AnyCheckinSelectAllMode {
-    lateinit var binding: FragmentAvailableBinding
+class AvailableFrag : Fragment(), isSelectedListener, LongPressListener, AnyCheckinSelectAllMode {
+    private lateinit var binding: FragmentAvailableBinding
 
-    var listSections: ArrayList<Section> = ArrayList()
-    lateinit var recyclerManager: RecyclerView.LayoutManager
-    var data: ArrayList<Items> = ArrayList()
-    lateinit var itemViewModel: ItemViewModel
-    var getData: MutableList<String> = ArrayList()
-    var alldata: ArrayList<String> = ArrayList()
+    private var listSections: ArrayList<Section> = ArrayList()
+    private lateinit var recyclerManager: RecyclerView.LayoutManager
+    private lateinit var itemViewModel: ItemViewModel
+    private var getData: MutableList<String> = ArrayList()
+    private var alldata: ArrayList<String> = ArrayList()
 
     companion object {
-        var isselectedAll: Boolean = false;
-        var selectionMode: Boolean = false;
-        var whichChecked: String = "";
+        var isselectedAll: Boolean = false
+        var selectionMode: Boolean = false
+        var whichChecked: String = ""
         var MasterListener = false
         var toggleSelectionMode = false
+        var longPressItem = ""
     }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentAvailableBinding.inflate(inflater)
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        itemViewModel = ViewModelProvider(this)[ItemViewModel::class.java]
+        val x: ItemViewModel by activityViewModels()
         loadDummyData()
+        itemViewModel = x
 
-        itemViewModel.getDataFromSelectedNEW().observe(requireActivity(), Observer {
+
+        itemViewModel.getDataFromSelectedNEW().observe(requireActivity(), {
 
             getData.clear()
 
@@ -75,6 +77,7 @@ import com.xayappz.screenx.viewmodels.ItemViewModel
             isselectedAll = false
             whichChecked = ""
             MasterListener = false
+            longPressItem = ""
             itemViewModel.removeAllNEW()
             notifyList()
         }
@@ -88,9 +91,8 @@ import com.xayappz.screenx.viewmodels.ItemViewModel
                 if (itemViewModel.getSizeData()!! > 0) {
                     Toast.makeText(activity, getData.toString(), Toast.LENGTH_SHORT).show()
 
-                }else
-                {
-                    Toast.makeText(activity, "Please select any item to delete", Toast.LENGTH_SHORT)
+                } else if (itemViewModel.getSizeData() == 0 || itemViewModel.getSizeData() == null) {
+                    Toast.makeText(activity, getString(R.string.delete_text), Toast.LENGTH_SHORT)
                         .show()
                 }
 
@@ -98,7 +100,7 @@ import com.xayappz.screenx.viewmodels.ItemViewModel
     }
 
     private fun selectAllCheck() {
-        binding.checkboxSelectAll.setOnCheckedChangeListener { buttonView, isChecked ->
+        binding.checkboxSelectAll.setOnCheckedChangeListener { _, isChecked ->
             isselectedAll = isChecked
             if (isselectedAll) {
                 MasterListener = false
@@ -108,6 +110,7 @@ import com.xayappz.screenx.viewmodels.ItemViewModel
                     itemViewModel.addDataFromSelectedNEW(Data)
                 }
             } else {
+                longPressItem = ""
                 if (!MasterListener) {
                     itemViewModel.removeAllNEW()
 
@@ -122,14 +125,14 @@ import com.xayappz.screenx.viewmodels.ItemViewModel
 
     private fun loadDummyData() {
         recyclerManager = LinearLayoutManager(activity)
-        var firstCategory = "Casual Wear"
-        var secondCategory = "Winter Wear"
-        var thirdCategory = "Summer Wear"
+        val firstCategory = "Casual Wear"
+        val secondCategory = "Winter Wear"
+        val thirdCategory = "Summer Wear"
 
 
-        var dataOne: ArrayList<String> = ArrayList();
-        var dataTwo: ArrayList<String> = ArrayList();
-        var dataThree: ArrayList<String> = ArrayList();
+        val dataOne: ArrayList<String> = ArrayList()
+        val dataTwo: ArrayList<String> = ArrayList()
+        val dataThree: ArrayList<String> = ArrayList()
 
 
         dataOne.add("Casual Dress 1")
@@ -177,9 +180,10 @@ import com.xayappz.screenx.viewmodels.ItemViewModel
         }
     }
 
-    override fun onLongItemClicked(): Boolean {
+    override fun onLongItemClicked(Item: String): Boolean {
         selectionMode = true
         toggleSelectionMode = true
+        longPressItem = Item
         showSelectionMode()
         notifyList()
         return true
@@ -199,7 +203,7 @@ import com.xayappz.screenx.viewmodels.ItemViewModel
         selectionMode = false
         isselectedAll = false
         whichChecked = ""
-
+        longPressItem = ""
     }
 
     override fun ItemClicked(data: String) {

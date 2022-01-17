@@ -13,29 +13,29 @@ import com.xayappz.screenx.utils.isSelectedListener
 import com.xayappz.screenx.views.fragments.AvailableFrag
 
 class AvailableItemAdapter(
-    var listsectionData: ArrayList<String>,
-    var isSelectedListener: isSelectedListener,
-    var LongPressListener: LongPressListener,
-    var AnyCheckinSelectAllMode: AnyCheckinSelectAllMode,
+    private var listsectionData: ArrayList<String>,
+    private var isSelectedListener: isSelectedListener?,
+    private var LongPressListener: LongPressListener?,
+    private var AnyCheckinSelectAllMode: AnyCheckinSelectAllMode?,
 
-    ) : RecyclerView.Adapter<AvailableItemAdapter.viewHolder>() {
-    var AllCheckedEnabled = false
+    ) : RecyclerView.Adapter<AvailableItemAdapter.ViewHolder>() {
+    private var AllCheckedEnabled = false
 
-    inner class viewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var item_name: TextView = itemView.findViewById(R.id.item_name)
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var name: TextView = itemView.findViewById(R.id.item_name)
         var checkBox: CheckBox = itemView.findViewById(R.id.checkBox)
 
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): viewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.new_category_item, parent, false)
-        return viewHolder(itemView)
+        return ViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: viewHolder, position: Int) {
-        holder.item_name.text = listsectionData[position]
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.name.text = listsectionData[position]
 
         if (AvailableFrag.whichChecked.isEmpty()) {
             if (AvailableFrag.selectionMode) {
@@ -51,21 +51,21 @@ class AvailableItemAdapter(
 
         } else {
             holder.checkBox.visibility = View.VISIBLE
-            holder.checkBox.isChecked = !holder.item_name.text.equals(AvailableFrag.whichChecked)
+            holder.checkBox.isChecked = !holder.name.text.equals(AvailableFrag.whichChecked)
         }
         holder.itemView.setOnLongClickListener()
         {
 
-            LongPressListener.onLongItemClicked()
+            LongPressListener!!.onLongItemClicked(holder.name.text.toString())
 
         }
 
-        holder.checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
-            var productName = holder.item_name.text.toString()
+        holder.checkBox.setOnCheckedChangeListener { _, isChecked ->
+            val productName = holder.name.text.toString()
             holder.checkBox.visibility = View.VISIBLE
             if (AllCheckedEnabled) {
                 holder.checkBox.isChecked = false
-                AnyCheckinSelectAllMode.ItemClicked(productName)
+                AnyCheckinSelectAllMode!!.ItemClicked(productName)
 
             } else {
                 if (isChecked)
@@ -73,9 +73,13 @@ class AvailableItemAdapter(
 
 
             }
-            isSelectedListener.isSelectedReponse(isChecked, productName)
+            isSelectedListener!!.isSelectedReponse(isChecked, productName)
 
         }
+        if (AvailableFrag.longPressItem.equals(holder.name.text.toString())) {
+            holder.checkBox.isChecked = true
+        }
+
     }
 
     override fun getItemCount(): Int {

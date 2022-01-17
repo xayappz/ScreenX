@@ -64,9 +64,14 @@ interface isSelectedListener {
 }
 
 interface LongPressListener {
-    fun onLongItemClicked(): Boolean
+    fun onLongItemClicked(Item: String): Boolean
 }
 
 interface AnyCheckinSelectAllMode {
     fun ItemClicked(data: String)
+}
+
+interface ChangeFragment {
+
+    fun changedState(boolean: Boolean)
 }

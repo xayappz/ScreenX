@@ -209,11 +209,11 @@
 
             <CheckBox
                 android:id="@+id/checkBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_230sdp"
                 android:buttonTint="@color/black"
                 android:translationX="-7dp"
-                android:translationY="-15dp"
+                android:translationY="-140dp"
                 android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
