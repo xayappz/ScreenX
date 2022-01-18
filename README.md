@@ -25,4 +25,10 @@
 
 
 
+Disabled Products 
+
+![Screenshot_1642424486](https://user-images.githubusercontent.com/77268176/149774775-03060a5e-7068-4510-86d2-6f99044496a0.png)
+
+
+![Screenshot_1642424506](https://user-images.githubusercontent.com/77268176/149774780-e64681f7-f45c-4518-81bf-5ae3ddd0f182.png)
 
