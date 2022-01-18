@@ -18,6 +18,8 @@ import com.xayappz.screenx.utils.AnyCheckinSelectAllMode
 import com.xayappz.screenx.utils.LongPressListener
 import com.xayappz.screenx.utils.isSelectedListener
 import com.xayappz.screenx.viewmodels.ItemViewModel
+import kotlinx.android.synthetic.main.fragment_available.*
+import kotlinx.android.synthetic.main.fragment_disabled.*
 
 class AvailableFrag : Fragment(), isSelectedListener, LongPressListener, AnyCheckinSelectAllMode {
     private lateinit var binding: FragmentAvailableBinding
@@ -109,12 +111,15 @@ class AvailableFrag : Fragment(), isSelectedListener, LongPressListener, AnyChec
 
                     itemViewModel.addDataFromSelectedNEW(Data)
                 }
+                getCount()
             } else {
                 longPressItem = ""
                 if (!MasterListener) {
                     itemViewModel.removeAllNEW()
 
                 }
+                getCount()
+
 
 
             }
@@ -178,6 +183,7 @@ class AvailableFrag : Fragment(), isSelectedListener, LongPressListener, AnyChec
         } else {
             itemViewModel.removeDataFromSelectedNEW(data)
         }
+        getCount()
     }
 
     override fun onLongItemClicked(Item: String): Boolean {
@@ -186,6 +192,7 @@ class AvailableFrag : Fragment(), isSelectedListener, LongPressListener, AnyChec
         longPressItem = Item
         showSelectionMode()
         notifyList()
+        getCount()
         return true
     }
 
@@ -212,7 +219,20 @@ class AvailableFrag : Fragment(), isSelectedListener, LongPressListener, AnyChec
         isselectedAll = false
         binding.checkboxSelectAll.isChecked = false
         whichChecked = data
+        getCount()
     }
 
+    @SuppressLint("SetTextI18n")
+    fun getCount() {
+        var x = itemViewModel.getSizeData()
+        if (x == null) {
+            counterTV.text = "Selected 1 Items"
+
+        } else {
+
+            counterTV.text = "Selected $x Items"
+
+        }
+    }
 
 }

@@ -18,13 +18,13 @@
 ![Screenshot_1641794575](https://user-images.githubusercontent.com/77268176/148724023-0c739e13-7b1c-420b-99c7-f3460d2cc830.png)
 
 
-![Screenshot_1642076187](https://user-images.githubusercontent.com/77268176/149329048-dbabde61-5f4e-492e-9be1-9de26e9d4cec.png)
 
 Disabled Products 
 
-![Screenshot_1642424486](https://user-images.githubusercontent.com/77268176/149774775-03060a5e-7068-4510-86d2-6f99044496a0.png)
+![Screenshot_1642528012](https://user-images.githubusercontent.com/77268176/149991274-9ff36360-6ff0-4a0c-a40b-8a178b1819fe.png)
 
 
-![Screenshot_1642424506](https://user-images.githubusercontent.com/77268176/149774780-e64681f7-f45c-4518-81bf-5ae3ddd0f182.png)
+![Screenshot_1642528027](https://user-images.githubusercontent.com/77268176/149991284-8ac21406-9417-4dc6-afae-671eeb160a88.png)
+
 
 ![Screenshot_1642076217](https://user-images.githubusercontent.com/77268176/149329058-5597940a-fb11-45e0-93d8-0011e9e4cb7a.png)

@@ -34,12 +34,13 @@ class MainActivity : AppCompatActivity(), ClickReview, DeleteReview, PassToActiv
     private lateinit var reviewAdapter: ReviewAdapter
     private lateinit var database: Database
     private val imageList = mutableListOf<Int>()
-    private val reviewList: ArrayList<ReviewImage> = ArrayList<ReviewImage>()
+    private var reviewList: ArrayList<ReviewImage> = ArrayList<ReviewImage>()
+    var hasMore = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        setContentView(com.xayappz.screenx.R.layout.main_layout)
+        setContentView(R.layout.main_layout)
 
 
         database =
@@ -76,41 +77,45 @@ class MainActivity : AppCompatActivity(), ClickReview, DeleteReview, PassToActiv
         loadMore.setOnClickListener {
             lifecycleScope.launch(Dispatchers.Main) {
                 dialogViewModel.getReview().observe(this@MainActivity, Observer {
-
-
                     reviewList.clear()
-
                     reviewList.addAll(it)
                     reviewAdapter = ReviewAdapter(
                         reviewList,
                         this@MainActivity,
                         this@MainActivity,
                         this@MainActivity,
-                        this@MainActivity,
-                        this@MainActivity
+                        this@MainActivity, this@MainActivity
 
                     )
 
 
                     review_recyclerView.adapter = reviewAdapter
                     reviewAdapter.notifyDataSetChanged()
+
                     loadMore.visibility = View.GONE
                 })
             }
         }
 
 
-        GlobalScope.launch(Dispatchers.Main) {
-            dialogViewModel.getReviewByLimit().observe(this@MainActivity, Observer {
-                Log.d("SSjjj", it.size.toString())
-                reviewList.clear()
-                if (it.size > 4) {
-                    loadMore.visibility = View.VISIBLE
-                } else {
-                    loadMore.visibility = View.GONE
 
-                }
+
+
+
+        lifecycleScope.launch(Dispatchers.Main) {
+            dialogViewModel.getReview().observe(this@MainActivity, Observer {
+                reviewList.clear()
                 reviewList.addAll(it)
+
+                    if (it?.size!! > 5) {
+                        hasMore = true
+                        Log.d("MOREm",hasMore.toString())
+                        if (hasMore) {
+                            loadMore.visibility = View.VISIBLE
+                        } else {
+                            loadMore.visibility = View.GONE
+                    }
+                }
                 reviewAdapter = ReviewAdapter(
                     reviewList,
                     this@MainActivity,
@@ -122,7 +127,6 @@ class MainActivity : AppCompatActivity(), ClickReview, DeleteReview, PassToActiv
 
 
                 review_recyclerView.adapter = reviewAdapter
-                reviewAdapter.notifyDataSetChanged()
             })
 
 
@@ -198,6 +202,7 @@ class MainActivity : AppCompatActivity(), ClickReview, DeleteReview, PassToActiv
 //
 //        }
     }
+
     fun ViewPager2.autoScroll(interval: Long) {
 
         val handler = Handler()
@@ -213,10 +218,11 @@ class MainActivity : AppCompatActivity(), ClickReview, DeleteReview, PassToActiv
                 handler.postDelayed(this, interval)
             }
         }
-        (object: ViewPager.OnPageChangeListener {        override fun onPageSelected(position: Int) {
-            // Updating "scroll position" when user scrolls manually
-            scrollPosition = position + 1
-        }
+        (object : ViewPager.OnPageChangeListener {
+            override fun onPageSelected(position: Int) {
+                // Updating "scroll position" when user scrolls manually
+                scrollPosition = position + 1
+            }
 
             override fun onPageScrollStateChanged(state: Int) {
                 // Not necessary

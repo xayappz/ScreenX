@@ -616,8 +616,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
 
-                    android:layout_height="match_parent">
-
+                    android:layout_height="wrap_content">
 
                     <androidx.constraintlayout.widget.Guideline
                         android:id="@+id/guidline7"
@@ -659,7 +658,7 @@
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/review_recyclerView"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:scrollbars="vertical"
                         app:layout_constraintEnd_toStartOf="@id/guidline8"
@@ -709,12 +708,10 @@
                         android:id="@+id/dotsmore"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
                         android:text="@string/loaddots"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp"
                         android:textStyle="bold"
-
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@+id/loadMore"
                         app:layout_constraintHorizontal_bias="0.493"
