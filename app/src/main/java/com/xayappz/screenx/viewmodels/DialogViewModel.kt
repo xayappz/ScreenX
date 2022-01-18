@@ -21,12 +21,17 @@ class DialogViewModel(
         Room.databaseBuilder(application, Database::class.java, "reviewDB")
             .fallbackToDestructiveMigration().build()
     private var reviewData: ArrayList<ReviewImage> = ArrayList()
+    private var reviewDataLimit: ArrayList<ReviewImage> = ArrayList()
+
     private var reviewDataUser: ArrayList<ReviewImage> = ArrayList()
 
     private var mutableLiveDataReviewByUser: MutableLiveData<List<ReviewImage>> =
         MutableLiveData<List<ReviewImage>>()
 
     private var mutableLiveDataReviewImage: MutableLiveData<ArrayList<ReviewImage>> =
+        MutableLiveData<ArrayList<ReviewImage>>()
+
+    private var mutableLiveDataReviewImageLimit: MutableLiveData<ArrayList<ReviewImage>> =
         MutableLiveData<ArrayList<ReviewImage>>()
 
     fun saveUserAnswer(
@@ -104,32 +109,35 @@ class DialogViewModel(
     }
 
     suspend fun getReviewByLimit(): MutableLiveData<ArrayList<ReviewImage>> {
-        Log.d("AASS", "SS")
-        reviewData.clear()
-        mutableLiveDataReviewImage.value?.clear()
+        reviewDataLimit.clear()
+        mutableLiveDataReviewImageLimit.value?.clear()
         val profileDao = database.reviewDAO().loadAllReviewsBylimit()
-        if (profileDao.size == 0) {
-            mutableLiveDataReviewImage.postValue(reviewData)
-            return mutableLiveDataReviewImage
-        }
-        for (data in profileDao) {
-            reviewData.add(
-                ReviewImage(
-                    data.id,
-                    data.name,
-                    data.comment,
-                    data.image,
-                    data.rating,
-                    "30 Dec"
+        if (profileDao.isEmpty()) {
+            mutableLiveDataReviewImageLimit.value = reviewDataLimit
+            return mutableLiveDataReviewImageLimit
+        } else {
+            for (data in profileDao) {
+                Log.d("DAdds", data.name.toString())
+                reviewDataLimit.add(
+                    ReviewImage(
+                        data.id,
+                        data.name,
+                        data.comment,
+                        data.image,
+                        data.rating,
+                        "30 Dec"
+                    )
                 )
-            )
-            mutableLiveDataReviewImage.postValue(reviewData)
+                mutableLiveDataReviewImageLimit.postValue(reviewDataLimit)
+            }
         }
 
 
-        return mutableLiveDataReviewImage
+        return mutableLiveDataReviewImageLimit
 
     }
+
+
 
     suspend fun getReview(): MutableLiveData<ArrayList<ReviewImage>> {
         reviewData.clear()
