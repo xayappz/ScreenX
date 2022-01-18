@@ -19,7 +19,6 @@
 
 
 
-
 Disabled Products 
 
 ![Screenshot_1642528012](https://user-images.githubusercontent.com/77268176/149991274-9ff36360-6ff0-4a0c-a40b-8a178b1819fe.png)
@@ -28,3 +27,4 @@ Disabled Products
 ![Screenshot_1642528027](https://user-images.githubusercontent.com/77268176/149991284-8ac21406-9417-4dc6-afae-671eeb160a88.png)
 
 
+![Screenshot_1642076217](https://user-images.githubusercontent.com/77268176/149329058-5597940a-fb11-45e0-93d8-0011e9e4cb7a.png)
