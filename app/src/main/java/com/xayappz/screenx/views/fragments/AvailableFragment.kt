@@ -118,6 +118,8 @@ class AvailableFrag : Fragment(), isSelectedListener, LongPressListener, AnyChec
                     itemViewModel.removeAllNEW()
 
                 }
+                getCount()
+
 
 
             }
