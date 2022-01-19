@@ -74,7 +74,7 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/disableItem"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_20sdp"
             android:background="@drawable/disable_style"
             android:drawableEnd="@drawable/ic_baseline_arrow_right_24"
             android:gravity="center"
@@ -95,6 +95,7 @@
             android:id="@+id/itemRecycler"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_8sdp"
             app:layout_constraintBottom_toTopOf="@+id/endguide"
             app:layout_constraintEnd_toStartOf="@+id/guideline3"
             app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -104,7 +105,7 @@
             android:id="@+id/hiddenItems"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="visible"
+            android:visibility="gone"
             app:constraint_referenced_ids="disableItem,checkbox_select_all,closeSelection,counterTV" />
 
         <androidx.appcompat.widget.AppCompatImageView

@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:behavior_hideable="false"
+    app:behavior_peekHeight="@dimen/_200sdp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
 
@@ -17,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginTop="@dimen/_120sdp"
             android:background="@color/grey"
             app:behavior_hideable="false"
             app:layout_constraintBottom_toBottomOf="parent">
@@ -33,9 +34,9 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:paddingBottom="@dimen/_20sdp"
+                    android:layout_height="match_parent"
 
-                    android:layout_height="match_parent">
+                    android:paddingBottom="@dimen/_20sdp">
 
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -664,7 +665,7 @@
                         app:layout_constraintEnd_toStartOf="@id/guidline8"
                         app:layout_constraintStart_toStartOf="@id/guidline7"
                         app:layout_constraintTop_toBottomOf="@+id/reviewTV"
-                        tools:listitem="@layout/review_item" />
+/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
@@ -682,12 +683,9 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/loadMore"
-
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_20sdp"
-                    android:layout_marginEnd="@dimen/_10sdp">
+                    android:visibility="gone">
 
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -698,7 +696,6 @@
                         android:textColor="@color/black"
                         android:textSize="@dimen/_12sdp"
                         android:textStyle="bold"
-                        android:visibility="visible"
 
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"

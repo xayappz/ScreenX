@@ -59,7 +59,13 @@ class AvailableItemAdapter(
             LongPressListener!!.onLongItemClicked(holder.name.text.toString())
 
         }
+        if (AvailableFrag.selectionMode) {
 
+            holder.itemView.setOnClickListener {
+                holder.checkBox.performClick()
+            }
+
+        }
         holder.checkBox.setOnCheckedChangeListener { _, isChecked ->
             val productName = holder.name.text.toString()
             holder.checkBox.visibility = View.VISIBLE
@@ -70,8 +76,6 @@ class AvailableItemAdapter(
             } else {
                 if (isChecked)
                     holder.checkBox.isChecked = true
-
-
             }
             isSelectedListener!!.isSelectedReponse(isChecked, productName)
 

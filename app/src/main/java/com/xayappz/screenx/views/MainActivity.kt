@@ -37,6 +37,12 @@ class MainActivity : AppCompatActivity(), ClickReview, DeleteReview, PassToActiv
     private var reviewList: ArrayList<ReviewImage> = ArrayList<ReviewImage>()
     var hasMore = false
 
+    companion object {
+
+        var sizetoLoad: Int = 0
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
@@ -76,7 +82,9 @@ class MainActivity : AppCompatActivity(), ClickReview, DeleteReview, PassToActiv
 
         loadMore.setOnClickListener {
             lifecycleScope.launch(Dispatchers.Main) {
+
                 dialogViewModel.getReview().observe(this@MainActivity, Observer {
+                    sizetoLoad = it.size
                     reviewList.clear()
                     reviewList.addAll(it)
                     reviewAdapter = ReviewAdapter(
@@ -104,16 +112,17 @@ class MainActivity : AppCompatActivity(), ClickReview, DeleteReview, PassToActiv
 
         lifecycleScope.launch(Dispatchers.Main) {
             dialogViewModel.getReview().observe(this@MainActivity, Observer {
+                sizetoLoad = 5
                 reviewList.clear()
                 reviewList.addAll(it)
 
-                    if (it?.size!! > 5) {
-                        hasMore = true
-                        Log.d("MOREm",hasMore.toString())
-                        if (hasMore) {
-                            loadMore.visibility = View.VISIBLE
-                        } else {
-                            loadMore.visibility = View.GONE
+                if (it?.size!! > 5) {
+                    hasMore = true
+                    Log.d("MOREm", hasMore.toString() + "")
+                    if (hasMore) {
+                        loadMore.visibility = View.VISIBLE
+                    } else {
+                        loadMore.visibility = View.GONE
                     }
                 }
                 reviewAdapter = ReviewAdapter(

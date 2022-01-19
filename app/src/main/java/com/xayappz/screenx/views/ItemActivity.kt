@@ -1,9 +1,15 @@
 package com.xayappz.screenx.views
 
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
+import android.view.ViewGroup
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.android.material.tabs.TabLayoutMediator
 import com.xayappz.screenx.R
 import com.xayappz.screenx.adapters.TabAdapter
@@ -40,12 +46,16 @@ class ItemActivity : AppCompatActivity() {
         }.attach()
 
         viewPager?.currentItem = 1
+        tabLayout?.setSelectedTabIndicatorColor(Color.parseColor("#000000"));
+        tabLayout?.setSelectedTabIndicatorHeight (10);
+        tabLayout?.setTabTextColors(Color.parseColor("#000000"), Color.parseColor("#000000"));
         viewPager?.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageScrolled(
                 position: Int,
                 positionOffset: Float,
                 positionOffsetPixels: Int
             ) {
+
             }
 
             override fun onPageSelected(position: Int) {
@@ -54,6 +64,31 @@ class ItemActivity : AppCompatActivity() {
 
             override fun onPageScrollStateChanged(state: Int) {
                 super.onPageScrollStateChanged(state)
+            }
+        })
+
+
+        tabLayout!!.addOnTabSelectedListener(object : OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+
+                for (index in 0 until (tab.view as ViewGroup).childCount) {
+                    val nextChild = (tab.view as ViewGroup).getChildAt(index)
+                    if (nextChild is TextView) {
+                        nextChild.setTypeface(null, Typeface.BOLD)
+                    }
+                }
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+            override fun onTabUnselected(tab: TabLayout.Tab) {
+
+                for (index in 0 until (tab.view as ViewGroup).childCount) {
+                    val nextChild = (tab.view as ViewGroup).getChildAt(index)
+                    if (nextChild is TextView) {
+                        nextChild.setTypeface(null, Typeface.NORMAL)
+                    }
+                }
+
             }
         })
     }
@@ -66,4 +101,6 @@ class ItemActivity : AppCompatActivity() {
 //    fun setUpListener(Listener: ChangeFragment) {
 //        ChangeFragment = Listener
 //    }
+
+
 }

@@ -62,11 +62,10 @@
         style="@style/TextViewStyleItem"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:text="@string/user_id"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toStartOf="@+id/rating"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/circleImageView"
         app:layout_constraintTop_toBottomOf="@+id/nameTv" />
 
@@ -119,13 +118,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="4.5"
-        app:layout_constraintBottom_toBottomOf="@+id/ratingBar"
+        app:layout_constraintBottom_toBottomOf="@+id/Id"
         app:layout_constraintEnd_toStartOf="@+id/ratingBar"
-        app:layout_constraintTop_toTopOf="@+id/ratingBar" />
+        app:layout_constraintTop_toTopOf="@+id/Id" />
 
     <androidx.appcompat.widget.AppCompatRatingBar
         android:id="@+id/ratingBar"
-        style="@style/Widget.AppCompat.RatingBar.Indicator"
+        style="@style/Widget.AppCompat.RatingBar.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:isIndicator="true"
@@ -135,7 +134,7 @@
         android:scaleY="0.9"
         android:stepSize="0.5"
         app:layout_constraintEnd_toStartOf="@id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/youtratingTv" />
+        app:layout_constraintTop_toTopOf="@+id/rating" />
 
     <TextView
         android:id="@+id/total"
@@ -180,6 +179,7 @@
         android:layout_marginStart="@dimen/_5sdp"
         android:text="14"
         app:layout_constraintEnd_toEndOf="@+id/total"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/total"
         app:layout_constraintTop_toBottomOf="@+id/total" />
 
@@ -218,6 +218,7 @@
         app:layout_constraintTop_toBottomOf="@+id/loadnedT"
         app:tabIndicatorColor="@color/btn_green"
         app:tabSelectedTextColor="@color/black"
+        app:tabTextColor="@color/black"
         app:tabTextAppearance="@style/CustomTabStyle">
 
     </com.google.android.material.tabs.TabLayout>
