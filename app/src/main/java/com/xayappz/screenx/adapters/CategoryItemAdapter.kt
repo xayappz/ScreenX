@@ -21,6 +21,7 @@ class CategoryItemAdapter(
 
     inner class viewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var sectionName: TextView = itemView.findViewById(R.id.categoryName)
+        var itemsCount: TextView = itemView.findViewById(R.id.CitemsCount)
         var recyclerSectionData: RecyclerView = itemView.findViewById(R.id.recyclerSectionData)
     }
 
@@ -32,9 +33,10 @@ class CategoryItemAdapter(
 
     override fun onBindViewHolder(holder: viewHolder, position: Int) {
 
-        holder.sectionName.text = listsection.get(position).sectionName
+        holder.sectionName.text = listsection.get(position).sectionName.toUpperCase()
         val sec: Section = listsection.get(position)
         val items: ArrayList<String> = ArrayList()
+        holder.itemsCount.text = sec.sectionItems.size.toString()+" ITEMS"
         items.addAll(sec.sectionItems)
         holder.recyclerSectionData.adapter =
             isSelectedListener?.let {

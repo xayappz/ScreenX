@@ -1,11 +1,9 @@
 package com.xayappz.screenx.adapters
 
-import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.xayappz.screenx.utils.ChangeFragment
 import com.xayappz.screenx.views.fragments.AvailableFrag
 import com.xayappz.screenx.views.fragments.DisabledFragment
 import com.xayappz.screenx.views.fragments.LoadedFragment

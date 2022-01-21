@@ -77,7 +77,7 @@ class DialogViewModel(
     suspend fun deleteReview(userId: String?) {
         viewModelScope.launch(Dispatchers.IO) {
             database.reviewDAO().deleteReview(userId!!)
-            getReviewByLimit()
+            getReview()
         }
     }
 

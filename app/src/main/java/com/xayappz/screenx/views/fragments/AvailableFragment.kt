@@ -226,7 +226,7 @@ class AvailableFrag : Fragment(), isSelectedListener, LongPressListener, AnyChec
     fun getCount() {
         var x = itemViewModel.getSizeData()
         if (x == null) {
-            counterTV.text = "Selected 1 Items"
+            counterTV.text = "Selected 1 Item"
 
         } else {
 
