@@ -23,17 +23,16 @@
 
 4) User should have the ability to delete the review or edit the review.
 
-5)Load more button should work as pagination, 5 items at a time.
+5) Load more button should work as pagination, 5 items at a time.
 
 6) The horizontal image list should be hidden initially on click particular review it should expand and when click again it should hide.
 
+## Screenshots 
 
 ![Screenshot_1641790827](https://user-images.githubusercontent.com/77268176/148722227-32466580-37b2-48e1-9aaa-baf8ae410b74.png)
 
 
-![Screenshot_1641794575](https://user-images.githubusercontent.com/77268176/148724023-0c739e13-7b1c-420b-99c7-f3460d2cc830.png)
-
-## 
+![Screenshot_1641794575](https://user-images.githubusercontent.com/77268176/148724023-0c739e13-7b1c-420b-99c7-f3460d2cc830.png) 
 
 The list is an header recycler view. Under each heading there can be n number of items
 
@@ -50,7 +49,8 @@ Flow should be like below
 5) on pressing disable item, a toast should be visible which has all the selected item names.
 
 
-Disabling Products 
+
+## Screenshots Disabling Products 
 
 ![Screenshot_1642528012](https://user-images.githubusercontent.com/77268176/149991274-9ff36360-6ff0-4a0c-a40b-8a178b1819fe.png)
 
