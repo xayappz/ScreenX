@@ -15,17 +15,17 @@
 
 ## Use Case :
 
-On pressing add review, an alert should open 
+1) On pressing add review, an alert should open 
 
-Alert should have fields like - name, comment, rating count, number of images(int - based on the count the number of images should be displayed inside horizontal list) and button to post review
+2) Alert should have fields like - name, comment, rating count, number of images(int - based on the count the number of images should be displayed inside horizontal list) and button to post review
 
-Once the review is posted it should display in the review list.
+3) Once the review is posted it should display in the review list.
 
-User should have the ability to delete the review or edit the review.
+4) User should have the ability to delete the review or edit the review.
 
-Load more button should work as pagination, 5 items at a time.
+5)Load more button should work as pagination, 5 items at a time.
 
-The horizontal image list should be hidden initially on click particular review it should expand and when click again it should hide.
+6) The horizontal image list should be hidden initially on click particular review it should expand and when click again it should hide.
 
 
 ![Screenshot_1641790827](https://user-images.githubusercontent.com/77268176/148722227-32466580-37b2-48e1-9aaa-baf8ae410b74.png)
